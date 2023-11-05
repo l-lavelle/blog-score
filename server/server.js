@@ -21,8 +21,12 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
+  //Hardcoded context for route testing
+  const context = () => {
+    return { _id: "6546ce376cda4e3adfb11f7e" };
+  };
   // TODO: will need to add in context
-  app.use("/graphql", expressMiddleware(server));
+  app.use("/graphql", expressMiddleware(server, { context }));
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")));

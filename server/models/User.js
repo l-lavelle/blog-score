@@ -5,11 +5,11 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
-  first: {
+  firstName: {
     type: String,
     required: true,
   },
-  last: {
+  lastName: {
     type: String,
     required: true,
   },
