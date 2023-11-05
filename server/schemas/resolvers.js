@@ -12,6 +12,19 @@ const resolvers = {
     addUser: async (parent, { firstName, lastName, username, password }) => {
       return await User.create({ firstName, lastName, username, password });
     },
+    updateUser: async (
+      parent,
+      { firstName, lastName, username, password },
+      context
+    ) => {
+      if (context) {
+        return await User.findOneAndUpdate(
+          { _id: context._id },
+          { $set: firstName, lastName, username, password },
+          { new: true, runValidators: true }
+        );
+      }
+    },
     addFriend: async (parent, { userId }, context) => {
       if (context) {
         console.log("context.id: ", context._id);
@@ -19,6 +32,15 @@ const resolvers = {
           { _id: context._id },
           { $addToSet: { friends: userId } },
           { new: true, runValidators: true }
+        );
+      }
+    },
+    deleteFriend: async (parent, { userId }, context) => {
+      if (context) {
+        return User.findOneAndUpdate(
+          { _id: context._id },
+          { $pull: { friends: userId } },
+          { new: true }
         );
       }
     },

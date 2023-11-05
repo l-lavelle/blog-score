@@ -16,8 +16,9 @@ const typeDefs = `
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, username: String!, password:String): User
-    updateUser():User
+    updateUser(firstName: String, lastName: String, username: String, password:String):User
     addFriend(userId:ID!):User
+    deleteFriend(userId:ID!):User
   }
 `;
 
