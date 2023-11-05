@@ -7,6 +7,7 @@ const typeDefs = `#graphql
     username: String
     friends: [User]
     friendCount:Int
+    password:String
   }
   input UserInput{
     firstName:String,

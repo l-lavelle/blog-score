@@ -10,22 +10,28 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      maxlength: 50,
     },
     lastName: {
       type: String,
       required: true,
       trim: true,
+      maxlength: 50,
     },
     username: {
       type: String,
       required: true,
       unique: true,
       trim: true,
+      minlength: 4,
+      maxlength: 30,
     },
     password: {
       type: String,
       required: true,
       trim: true,
+      minlength: 4,
+      maxlength: 72,
     },
     friends: [
       {
