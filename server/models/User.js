@@ -4,29 +4,45 @@
 
 const { Schema, model } = require("mongoose");
 
-const userSchema = new Schema({
-  first: {
-    type: String,
-    required: true,
-  },
-  last: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  friends: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
     },
-  ],
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
+
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
 });
 
 const User = model("User", userSchema);
