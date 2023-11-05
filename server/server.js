@@ -23,7 +23,7 @@ const startApolloServer = async () => {
 
   //Hardcoded context for route testing
   const context = () => {
-    return { _id: "6546ce376cda4e3adfb11f7e" };
+    return { _id: "6547a867a92091ba8ecc8021" };
   };
   // TODO: will need to add in context
   app.use("/graphql", expressMiddleware(server, { context }));

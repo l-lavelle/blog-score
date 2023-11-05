@@ -7,23 +7,23 @@ const resolvers = {
       return await User.find({}).populate("friends");
     },
   },
-
   Mutation: {
     addUser: async (parent, { firstName, lastName, username, password }) => {
       return await User.create({ firstName, lastName, username, password });
     },
-    //TODO: update currently not working
-    updateUser: async (
-      parent,
-      { firstName, lastName, username, password },
-      context
-    ) => {
+
+    updateUser: async (parent, { criteria }, context) => {
       if (context) {
         return await User.findOneAndUpdate(
           { _id: context._id },
-          { $set: firstName, lastName, username, password },
+          { $set: criteria },
           { new: true, runValidators: true }
         );
+      }
+    },
+    deleteUser: async (parent, args, context) => {
+      if (context) {
+        return User.findOneAndDelete({ _id: context._id });
       }
     },
     addFriend: async (parent, { userId }, context) => {
