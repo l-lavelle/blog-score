@@ -12,6 +12,7 @@ const resolvers = {
     addUser: async (parent, { firstName, lastName, username, password }) => {
       return await User.create({ firstName, lastName, username, password });
     },
+    //TODO: update currently not working
     updateUser: async (
       parent,
       { firstName, lastName, username, password },
