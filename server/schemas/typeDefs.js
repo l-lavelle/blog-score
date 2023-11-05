@@ -1,22 +1,26 @@
 //TODO: update user with all fields
-const typeDefs = `
+const typeDefs = `#graphql
   type User {
     _id: ID
     firstName: String
     lastName: String
     username: String
-    password: String
     friends: [User]
     friendCount:Int
   }
-
+  input UserInput{
+    firstName:String,
+    lastName:String,
+    username:String,
+    password:String
+  }
   type Query {
     users: [User]
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, username: String!, password:String!): User
-    updateUser(firstName: String, lastName: String, username: String, password:String):User
+    addUser(firstName: String!, lastName: String!, username: String!, password:String!): User 
+    updateUser(criteria:UserInput):User
     addFriend(userId:ID!):User
     deleteFriend(userId:ID!):User
   }
