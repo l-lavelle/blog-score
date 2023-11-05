@@ -21,6 +21,11 @@ const resolvers = {
         );
       }
     },
+    deleteUser: async (parent, args, context) => {
+      if (context) {
+        return User.findOneAndDelete({ _id: context._id });
+      }
+    },
     addFriend: async (parent, { userId }, context) => {
       if (context) {
         console.log("context.id: ", context._id);

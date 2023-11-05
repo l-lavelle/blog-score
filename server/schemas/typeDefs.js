@@ -21,6 +21,7 @@ const typeDefs = `#graphql
   type Mutation {
     addUser(firstName: String!, lastName: String!, username: String!, password:String!): User 
     updateUser(criteria:UserInput):User
+    deleteUser:User
     addFriend(userId:ID!):User
     deleteFriend(userId:ID!):User
   }
