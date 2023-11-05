@@ -7,11 +7,11 @@ const resolvers = {
       return await User.find({}).populate("friends");
     },
   },
-
   Mutation: {
     addUser: async (parent, { firstName, lastName, username, password }) => {
       return await User.create({ firstName, lastName, username, password });
     },
+
     updateUser: async (parent, { criteria }, context) => {
       if (context) {
         return await User.findOneAndUpdate(
