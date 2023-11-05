@@ -14,7 +14,7 @@ const resolvers = {
     },
     addFriend: async (parent, { userId }, context) => {
       if (context) {
-        console.log(context._id);
+        console.log("context.id: ", context._id);
         return await User.findOneAndUpdate(
           { _id: context._id },
           { $addToSet: { friends: userId } },

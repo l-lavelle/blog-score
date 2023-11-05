@@ -7,6 +7,7 @@ const typeDefs = `
     username: String
     password: String
     friends: [User]
+    friendCount:Int
   }
 
   type Query {
@@ -15,6 +16,7 @@ const typeDefs = `
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, username: String!, password:String): User
+    updateUser():User
     addFriend(userId:ID!):User
   }
 `;
