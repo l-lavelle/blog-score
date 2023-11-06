@@ -1,4 +1,5 @@
 //TODO: update user with all fields
+//Ask Aaron about password field
 const typeDefs = `#graphql
   type User {
     _id: ID
