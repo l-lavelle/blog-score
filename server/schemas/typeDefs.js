@@ -24,7 +24,6 @@ const typeDefs = `#graphql
   type Query {
     users: [User]
   }
-
   type Mutation {
     # addUser(firstName: String!, lastName: String!, username: String!, password:String!): CreateUser 
     addUser(user:UserInput):User
