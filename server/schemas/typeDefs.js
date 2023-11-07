@@ -8,13 +8,6 @@ const typeDefs = `#graphql
     friends: [User]
     friendCount:Int
   }
-  # type CreateUser{
-  #   _id: ID
-  #   firstName: String
-  #   lastName: String
-  #   username: String
-  #   password:String
-  # }
   input UserInput{
     firstName:String,
     lastName:String,
@@ -28,8 +21,6 @@ const typeDefs = `#graphql
     users: [User]
   }
   type Mutation {
-    # addUser(firstName: String!, lastName: String!, username: String!, password:String!): CreateUser 
-    # addUser(user:UserInput):User
     addUser(user:UserInput): Auth
     # login(email: String!, password: String!): Auth
     updateUser(criteria:UserInput):User

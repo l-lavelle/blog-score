@@ -4,17 +4,19 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    //working with auth
     users: async () => {
       return await User.find({}).populate("friends");
     },
   },
   Mutation: {
-    // working
+    //working with auth
     addUser: async (parent, { user }) => {
       const userdata = await User.create({ ...user });
       const token = signToken(userdata);
       return { token };
     },
+    //working with auth
     updateUser: async (parent, { criteria }, context) => {
       if (context.user) {
         return await User.findOneAndUpdate(
@@ -24,6 +26,7 @@ const resolvers = {
         );
       }
     },
+    //working with auth
     deleteUser: async (parent, args, context) => {
       console.log(context.user);
       if (context.user) {
