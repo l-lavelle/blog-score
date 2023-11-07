@@ -7,20 +7,31 @@ const typeDefs = `#graphql
     username: String
     friends: [User]
     friendCount:Int
-    password:String
   }
+  # type CreateUser{
+  #   _id: ID
+  #   firstName: String
+  #   lastName: String
+  #   username: String
+  #   password:String
+  # }
   input UserInput{
     firstName:String,
     lastName:String,
     username:String,
     password:String
   }
+  type Auth {
+    token: ID!
+  }
   type Query {
     users: [User]
   }
-
   type Mutation {
-    addUser(firstName: String!, lastName: String!, username: String!, password:String!): User 
+    # addUser(firstName: String!, lastName: String!, username: String!, password:String!): CreateUser 
+    # addUser(user:UserInput):User
+    addUser(user:UserInput): Auth
+    # login(email: String!, password: String!): Auth
     updateUser(criteria:UserInput):User
     deleteUser:User
     addFriend(userId:ID!):User

@@ -1,5 +1,6 @@
 // TODO: update user with all fields
 const { User } = require("../models");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -8,10 +9,14 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { firstName, lastName, username, password }) => {
-      return await User.create({ firstName, lastName, username, password });
+    addUser: async (parent, { user }) => {
+      const userdata = await User.create({ ...user });
+      const token = signToken(userdata);
+      return { token };
     },
-
+    // addUser: async (parent, { firstName, lastName, username, password }) => {
+    //   return await User.create({ firstName, lastName, username, password });
+    // },
     updateUser: async (parent, { criteria }, context) => {
       if (context) {
         return await User.findOneAndUpdate(
