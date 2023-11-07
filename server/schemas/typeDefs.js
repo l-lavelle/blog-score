@@ -9,9 +9,19 @@ const typeDefs = `#graphql
     friendCount:Int
   }
   type Comment{
+    _id:ID
     commentText: String,
-    author: string,
-    timestamps:Date
+    author: String,
+  }
+  type Post{
+    _id:ID 
+    postTitle:String,
+    postText:String
+    # pictureLink:String
+    # author:ID
+    # postComments: [Comment]
+    # createdAt: String
+    # tags: [String]
   }
   input UserInput{
     firstName:String,
@@ -30,9 +40,10 @@ const typeDefs = `#graphql
     login(username: String, password: String): Auth
     updateUser(criteria:UserInput):User
     deleteUser:User
-    addComment:()
-    updateComment:()
-    deleteComment:
+    addPost(postTitle:String, postText:String):Post
+    # addComment:(commentText:String, author:ID)
+    # updateComment:()
+    # deleteComment:
     # addFriend(userId:ID!):User
     # deleteFriend(userId:ID!):User
   }

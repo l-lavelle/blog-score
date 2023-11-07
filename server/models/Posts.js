@@ -12,24 +12,24 @@ const postSchema = new Schema({
   pictureLink: {
     type: String,
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  postComments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  //   author: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "User",
+  //   },
+  //   postComments: [
+  //     {
+  //       type: Schema.Types.ObjectId,
+  //       ref: "Comment",
+  //     },
+  //   ],
   tags: [
     {
       type: String,
     },
   ],
-  timestamps: true,
-  likes: {
-    type: Int,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

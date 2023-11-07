@@ -1,5 +1,5 @@
 // TODO: update user with all fields
-const { User } = require("../models");
+const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -50,26 +50,31 @@ const resolvers = {
         return User.findOneAndDelete({ _id: context.user._id });
       }
     },
-    // addFriend: async (parent, { userId }, context) => {
-    //   if (context) {
-    //     console.log("context.id: ", context._id);
-    //     return await User.findOneAndUpdate(
-    //       { _id: context._id },
-    //       { $addToSet: { friends: userId } },
-    //       { new: true, runValidators: true }
-    //     );
-    //   }
-    // },
-    // deleteFriend: async (parent, { userId }, context) => {
-    //   if (context) {
-    //     return User.findOneAndUpdate(
-    //       { _id: context._id },
-    //       { $pull: { friends: userId } },
-    //       { new: true }
-    //     );
-    //   }
-    // },
+    addPost: async (parent, { postTitle, postText }, context) => {
+      console.log(postTitle);
+      return Post.create({ postTitle, postText });
+    },
   },
+  // addFriend: async (parent, { userId }, context) => {
+  //   if (context) {
+  //     console.log("context.id: ", context._id);
+  //     return await User.findOneAndUpdate(
+  //       { _id: context._id },
+  //       { $addToSet: { friends: userId } },
+  //       { new: true, runValidators: true }
+  //     );
+  //   }
+  // },
+  // deleteFriend: async (parent, { userId }, context) => {
+  //   if (context) {
+  //     return User.findOneAndUpdate(
+  //       { _id: context._id },
+  //       { $pull: { friends: userId } },
+  //       { new: true }
+  //     );
+  //   }
+  // },
+  // },
 };
 
 module.exports = resolvers;
