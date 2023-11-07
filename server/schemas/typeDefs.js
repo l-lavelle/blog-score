@@ -7,6 +7,7 @@ const typeDefs = `#graphql
     username: String
     friends: [User]
     friendCount:Int
+    role:String
   }
   type Comment{
     _id:ID
@@ -27,13 +28,15 @@ const typeDefs = `#graphql
     firstName:String,
     lastName:String,
     username:String,
-    password:String
+    password:String,
+    role:String
   }
   type Auth {
     token: ID
   }
   type Query {
     users: [User]
+    posts: [Post]
   }
   type Mutation {
     addUser(user:UserInput): Auth
@@ -41,6 +44,7 @@ const typeDefs = `#graphql
     updateUser(criteria:UserInput):User
     deleteUser:User
     addPost(postTitle:String, postText:String):Post
+    
     # addComment:(commentText:String, author:ID)
     # updateComment:()
     # deleteComment:

@@ -8,6 +8,9 @@ const resolvers = {
     users: async () => {
       return await User.find({}).populate("friends");
     },
+    posts: async () => {
+      return await Post.find({});
+    },
   },
   Mutation: {
     //working with auth

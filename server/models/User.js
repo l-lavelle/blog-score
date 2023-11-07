@@ -34,6 +34,10 @@ const userSchema = new Schema(
       minlength: 4,
       maxlength: 72,
     },
+    role: {
+      type: String,
+      default: "user",
+    },
     friends: [
       {
         type: Schema.Types.ObjectId,
