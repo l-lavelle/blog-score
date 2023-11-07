@@ -22,7 +22,7 @@ const typeDefs = `#graphql
     password:String
   }
   type Auth {
-    token: ID!
+    token: ID
   }
   type Query {
     users: [User]

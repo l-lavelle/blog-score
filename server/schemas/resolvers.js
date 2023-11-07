@@ -9,26 +9,25 @@ const resolvers = {
     },
   },
   Mutation: {
+    // working
     addUser: async (parent, { user }) => {
       const userdata = await User.create({ ...user });
       const token = signToken(userdata);
       return { token };
     },
-    // addUser: async (parent, { firstName, lastName, username, password }) => {
-    //   return await User.create({ firstName, lastName, username, password });
-    // },
     updateUser: async (parent, { criteria }, context) => {
-      if (context) {
+      if (context.user) {
         return await User.findOneAndUpdate(
-          { _id: context._id },
+          { _id: context.user._id },
           { $set: criteria },
           { new: true, runValidators: true }
         );
       }
     },
     deleteUser: async (parent, args, context) => {
-      if (context) {
-        return User.findOneAndDelete({ _id: context._id });
+      console.log(context.user);
+      if (context.user) {
+        return User.findOneAndDelete({ _id: context.user._id });
       }
     },
     addFriend: async (parent, { userId }, context) => {
