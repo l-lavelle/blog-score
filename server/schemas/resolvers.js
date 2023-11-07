@@ -16,6 +16,23 @@ const resolvers = {
       const token = signToken(userdata);
       return { token };
     },
+    // wroking with auth
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
+
+      if (!user) {
+        throw AuthenticationError;
+      }
+
+      const passwordCheck = await user.isCorrectPassword(password);
+
+      if (!passwordCheck) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token };
+    },
     //working with auth
     updateUser: async (parent, { criteria }, context) => {
       if (context.user) {
