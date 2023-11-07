@@ -17,11 +17,11 @@ const typeDefs = `#graphql
     _id:ID 
     postTitle:String,
     postText:String
-    # pictureLink:String
-    # author:ID
-    # postComments: [Comment]
-    # createdAt: String
-    # tags: [String]
+    pictureLink:String
+    author:ID
+    postComments: [Comment]
+    createdAt: String
+    tags: [String]
   }
   input UserInput{
     firstName:String,

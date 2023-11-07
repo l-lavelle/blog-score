@@ -50,9 +50,16 @@ const resolvers = {
         return User.findOneAndDelete({ _id: context.user._id });
       }
     },
-    addPost: async (parent, { postTitle, postText }, context) => {
-      console.log(postTitle);
-      return Post.create({ postTitle, postText });
+    addPost: async (parent, { postTitle, postText, author }, context) => {
+      console.log(context.user);
+
+      const post = await Post.create({
+        postTitle,
+        postText,
+        author: context.user._id,
+      });
+
+      return post;
     },
   },
   // addFriend: async (parent, { userId }, context) => {

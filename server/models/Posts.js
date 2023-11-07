@@ -12,21 +12,23 @@ const postSchema = new Schema({
   pictureLink: {
     type: String,
   },
-  //   author: {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "User",
-  //   },
-  //   postComments: [
-  //     {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "Comment",
-  //     },
-  //   ],
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  postComments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  // Not working how anticipated
   tags: [
     {
       type: String,
     },
   ],
+  // TODO: need to format date
   createdAt: {
     type: Date,
     default: Date.now,
