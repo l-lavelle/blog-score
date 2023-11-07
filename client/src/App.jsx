@@ -1,18 +1,23 @@
 import React from 'react';
-import NavBar from './components/NavBar';
-import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent';
-import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/NavBar';
+import MainContent from './components/MainContent';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import './App.css'; 
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="container-fluid">
+      <div className="container mt-3">
         <div className="row">
-          <Sidebar />
-          <MainContent />
+          <div className="col-md-8">
+            <MainContent />
+          </div>
+          <div className="col-md-4">
+            <Sidebar />
+          </div>
         </div>
       </div>
       <Footer />

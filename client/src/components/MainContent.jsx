@@ -2,12 +2,16 @@ import React from 'react';
 import ArticlePreview from './ArticlePreview';
 
 const MainContent = () => {
+  const articles = [
+    // Array here
+  ];
+
   return (
-    <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <ArticlePreview />
-      <ArticlePreview />
-      <ArticlePreview />
-    </main>
+    <div className="main-content">
+      {articles.map((article, index) => (
+        <ArticlePreview key={index} {...article} />
+      ))}
+    </div>
   );
 };
 

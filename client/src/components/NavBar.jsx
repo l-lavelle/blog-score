@@ -1,10 +1,17 @@
 import React from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
 
-const Navbar = () => {
+const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Nav className="mr-auto">
+        <Nav.Link href="#home">Home</Nav.Link>
+        <Nav.Link href="#recent">Recent</Nav.Link>
+        <Nav.Link href="#favorites">Favorites</Nav.Link>
+        <Nav.Link href="#login">Login</Nav.Link>
+      </Nav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavBar;
