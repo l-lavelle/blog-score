@@ -8,6 +8,11 @@ const typeDefs = `#graphql
     friends: [User]
     friendCount:Int
   }
+  type Comment{
+    commentText: String,
+    author: string,
+    timestamps:Date
+  }
   input UserInput{
     firstName:String,
     lastName:String,
@@ -25,8 +30,11 @@ const typeDefs = `#graphql
     login(username: String, password: String): Auth
     updateUser(criteria:UserInput):User
     deleteUser:User
-    addFriend(userId:ID!):User
-    deleteFriend(userId:ID!):User
+    addComment:()
+    updateComment:()
+    deleteComment:
+    # addFriend(userId:ID!):User
+    # deleteFriend(userId:ID!):User
   }
 `;
 
