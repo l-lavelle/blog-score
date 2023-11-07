@@ -8,9 +8,12 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, { firstName, lastName, username, password }) => {
-      return await User.create({ firstName, lastName, username, password });
+    addUser: async (parent, { user }) => {
+      return await User.create({ ...user });
     },
+    // addUser: async (parent, { firstName, lastName, username, password }) => {
+    //   return await User.create({ firstName, lastName, username, password });
+    // },
     updateUser: async (parent, { criteria }, context) => {
       if (context) {
         return await User.findOneAndUpdate(
