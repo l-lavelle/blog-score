@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../config/connection"); // Adjust the path as necessary for your project setup
 const User = require("../models/User"); // Adjust the path to where your User model is defined
+const Post = require("../models/Posts");
 
 const userSeedData = [
   {
@@ -51,6 +52,20 @@ const userSeedData = [
   },
 ];
 
+const postSeedData = [
+  {
+    postTitle: "First Post Title",
+    postText: "This is the content of the first post.",
+    pictureLink: "http://example.com/image.jpg",
+//  author: someUserId,
+    postComments: [], 
+    tags: ["tag1", "tag2"],
+    likes: 0,
+    createdAt: new Date() // or Date.now()
+  },
+  // ... more posts
+];
+
 const seedDB = async () => {
   try {
     // Check if we have an active connection
@@ -70,7 +85,10 @@ const seedDB = async () => {
 
     await User.deleteMany({});
     await User.collection.insertMany(userSeedData);
-
+    await Post.deleteMany({});
+    await Post.collection.insertMany(postSeedData);
+    
+    console.log("Post seed data inserted!");
     console.log("User seed data inserted!");
   } catch (err) {
     console.error("Failed to seed database:", err);
