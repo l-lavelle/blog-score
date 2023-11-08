@@ -18,7 +18,8 @@ const typeDefs = `#graphql
     postComments: [Comment]
     createdAt: String
     tags: [String]
-    likes: Int
+    upvotes: Int
+    downvotes:Int
   }
   type Comment{
     _id:ID
@@ -52,12 +53,14 @@ const typeDefs = `#graphql
     updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User
-    addPost(postTitle:String, postText:String, tags:String):Post
+    addPost(postTitle:String, postText:String, tags:[String]):Post
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
     addComment(commentText:String, postId:ID):Comment
     updateComment(commentText:String):Comment
     # deleteComment:
+    upvotePost(postId:ID, upvotes:Int):Post
+
   }
 `;
 module.exports = typeDefs;

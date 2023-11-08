@@ -1,5 +1,4 @@
-// TODO: add in comments and posts not currently working
-
+// TODO: comments and posts not currently working
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 

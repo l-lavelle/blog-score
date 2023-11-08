@@ -103,17 +103,18 @@ const resolvers = {
     // Working with auth- all
     addComment: async (parent, { commentText, postId }, context) => {
       console.log(postId);
+      console.log("user.context", context.user);
       if (context.user) {
         const comment = await Comment.create({
           commentText,
           author: context.user._id,
         });
-        await Post.findOneAndUpdate(
+        const post = await Post.findOneAndUpdate(
           { _id: postId },
-          { $addToSet: { postComments: postId } },
+          { $addToSet: { postComments: { _id: postId } } },
           { new: true }
         );
-        return comment;
+        return post;
       }
     },
     //Working with auth- all
@@ -126,6 +127,17 @@ const resolvers = {
           { new: true, runValidators: true }
         );
         return comment;
+      }
+    },
+    // Add upvote to specific post
+    // TODO: add in user context to see who upvoted for recommendation engine??
+    upvotePost: async (parent, { postId, upvotes }, context) => {
+      if (context.user) {
+        return await Post.findOneAndUpdate(
+          { _id: postId },
+          { $inc: { upvotes: 1 } },
+          { new: true, runValidators: true }
+        );
       }
     },
   },
