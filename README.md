@@ -23,6 +23,7 @@ A friendly community of bloggers where articles are recommended for you.
 * 
 
 ## Technologies
+* Add tech here
 
 
 ## User Story
