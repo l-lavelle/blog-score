@@ -5,7 +5,7 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find({}).populate("friends");
+      return await User.find({}).populate("username");
     },
     posts: async () => {
       return await Post.find({}).populate("author");
@@ -105,24 +105,44 @@ const resolvers = {
     },
     likePost: async (parent, { postId }, context) => {
       if (context.user) {
-        return await Post.findByIdAndUpdate(
+        // Find the post to get its keywords
+        const post = await Post.findById(postId);
+        if (!post) {
+          throw new Error('Post not found');
+        }
+    
+        // Update the post's likes
+        const updatedPost = await Post.findByIdAndUpdate(
           postId,
           { $inc: { likes: 1 } },
           { new: true }
         );
+    
+        // Get the user's current liked keywords
+        const user = await User.findById(context.user._id);
+        const likedKeywords = user.likedKeywords;
+    
+        // Update the count for each keyword in the post
+        post.tags.forEach(tag => {
+          likedKeywords.set(tag, (likedKeywords.get(tag) || 0) + 1);
+        });
+    
+        // Save the updated user document
+        await user.save();
+    
+        return updatedPost;
       }
-      throw new AuthenticationError('You need to be logged in!');
     },
-    dislikePost: async (parent, { postId }, context) => {
-      if (context.user) {
-        return await Post.findByIdAndUpdate(
-          postId,
-          { $inc: { dislikes: 1 } },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    
+      dislikePost: async (parent, { postId }, context) => {
+    if (context.user) {
+      return await Post.findByIdAndUpdate(
+        postId,
+        { $inc: { dislikes: 1 } },
+        { new: true }
+      );
+    }
+  },
   },
 };
 
