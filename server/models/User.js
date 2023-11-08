@@ -1,6 +1,4 @@
 // TODO: add in comments and posts when written
-// Overall user score?? default 100
-// Validation anything else to add?
 
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -34,12 +32,10 @@ const userSchema = new Schema(
       minlength: 4,
       maxlength: 72,
     },
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    role: {
+      type: String,
+      default: "user",
+    },
   },
   {
     toJSON: {
@@ -60,10 +56,6 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-
-userSchema.virtual("friendCount").get(function () {
-  return this.friends.length;
-});
 
 const User = model("User", userSchema);
 
