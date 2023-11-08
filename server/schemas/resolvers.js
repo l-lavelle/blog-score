@@ -105,9 +105,6 @@ const resolvers = {
     },
     likePost: async (parent, { postId }, context) => {
       if (context.user) {
-<<<<<<< HEAD
-        return await Post.findByIdAndUpdate(
-=======
         // Find the post to get its keywords
         const post = await Post.findById(postId);
         if (!post) {
@@ -116,26 +113,10 @@ const resolvers = {
     
         // Update the post's likes
         const updatedPost = await Post.findByIdAndUpdate(
->>>>>>> main
           postId,
           { $inc: { likes: 1 } },
           { new: true }
         );
-<<<<<<< HEAD
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    dislikePost: async (parent, { postId }, context) => {
-      if (context.user) {
-        return await Post.findByIdAndUpdate(
-          postId,
-          { $inc: { dislikes: 1 } },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-=======
     
         // Get the user's current liked keywords
         const user = await User.findById(context.user._id);
@@ -162,7 +143,6 @@ const resolvers = {
       );
     }
   },
->>>>>>> main
   },
 };
 
