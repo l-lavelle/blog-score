@@ -28,6 +28,10 @@ const postSchema = new Schema({
       type: String,
     },
   ],
+  likes: {
+    type: Number,
+    default: 0,
+  },
   // TODO: need to format date
   createdAt: {
     type: Date,

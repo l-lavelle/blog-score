@@ -1,6 +1,4 @@
 // TODO: add in comments and posts when written
-// Overall user score?? default 100
-// Validation anything else to add?
 
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");

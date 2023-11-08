@@ -9,35 +9,34 @@ const typeDefs = `#graphql
     friendCount:Int
     role:String
   }
-  type Comment{
-    _id:ID
-    commentText: String,
-    author: String,
-  }
   type Post{
     _id:ID 
-    postTitle:String,
+    postTitle:String
     postText:String
     pictureLink:String
     author: User
     postComments: [Comment]
     createdAt: String
     tags: [String]
+    likes: Int
+  }
+  type Comment{
+    _id:ID
+    commentText: String
+    author: User
   }
   input PostInput{
-    postTitle:String,
+    postTitle:String
     postText:String
     pictureLink:String
-    author:ID
     createdAt: String
     tags: [String]
   }
   input UserInput{
-    firstName:String,
-    lastName:String,
-    username:String,
-    password:String,
-    role:String
+    firstName:String
+    lastName:String
+    username:String
+    password:String
   }
   type Auth {
     token: ID
@@ -45,6 +44,7 @@ const typeDefs = `#graphql
   type Query {
     users: [User]
     posts: [Post]
+    comments:[Comment]
   }
   type Mutation {
     addUser(user:UserInput): Auth
@@ -52,15 +52,14 @@ const typeDefs = `#graphql
     updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User
-    addPost(postTitle:String, postText:String):Post
+    addPost(postTitle:String, postText:String, tags:String):Post
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
-    # addComment:(commentText:String, author:ID)
-    # updateComment:()
+    addComment(commentText:String):Comment
+    updateComment(commentText:String):Comment
     # deleteComment:
-    # addFriend(userId:ID!):User
-    # deleteFriend(userId:ID!):User
   }
 `;
-
 module.exports = typeDefs;
+// role needs to be updatable to admin??- graphQL shield certain variables on routes??
+// add if else with role variable if admin??
