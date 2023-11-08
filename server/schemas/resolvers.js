@@ -1,10 +1,11 @@
-// TODO: update user with all fields
 // TODO: throw errors
+// routes to add: get blog post by tag with comments
 const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    //TODO not yet adding data to users will not popluate
     users: async () => {
       return await User.find({}).populate([
         {
@@ -77,7 +78,7 @@ const resolvers = {
     adminDelete: async (parent, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
-    // working with auth: admin || moderator?
+    // working with auth: admin
     addPost: async (parent, { postTitle, postText, tags }, context) => {
       if (context.user) {
         const post = await Post.create({
@@ -89,7 +90,7 @@ const resolvers = {
         return post;
       }
     },
-    // Update Post with _id: admin
+    // Update Post with _id: admin || moderator
     // TODO: add new author and updated date
     updatePost: async (parent, { criteria, postId }) => {
       return await Post.findOneAndUpdate(
@@ -104,8 +105,6 @@ const resolvers = {
     },
     // Working with auth- all
     addComment: async (parent, { commentText, postId }, context) => {
-      console.log(postId);
-      console.log("user.context", context.user);
       if (context.user) {
         const comment = await Comment.create({
           commentText,
@@ -118,7 +117,16 @@ const resolvers = {
             { $addToSet: { postComments: commentId } },
             { new: true }
           );
-          console.log(post);
+        } catch (err) {
+          console.log(err);
+        }
+        // need to see if this works
+        try {
+          const userPost = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { comments: commentId } },
+            { new: true }
+          );
         } catch (err) {
           console.log(err);
         }
