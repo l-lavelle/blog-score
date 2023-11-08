@@ -103,6 +103,26 @@ const resolvers = {
         return comment;
       }
     },
+    likePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        return await Post.findByIdAndUpdate(
+          postId,
+          { $inc: { likes: 1 } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    dislikePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        return await Post.findByIdAndUpdate(
+          postId,
+          { $inc: { dislikes: 1 } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
 };
 
