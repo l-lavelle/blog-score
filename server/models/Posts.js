@@ -1,4 +1,4 @@
-//Post value
+//User and post have rating
 const { Schema, model } = require("mongoose");
 const dayjs = require("dayjs");
 
@@ -18,6 +18,7 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  // TODO: check if working
   postComments: [
     {
       type: Schema.Types.ObjectId,
@@ -30,7 +31,12 @@ const postSchema = new Schema({
       type: String,
     },
   ],
-  likes: {
+  // TODO: need to setup routes for
+  upvotes: {
+    type: Number,
+    default: 0,
+  },
+  downvotes: {
     type: Number,
     default: 0,
   },

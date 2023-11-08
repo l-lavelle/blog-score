@@ -1,4 +1,4 @@
-// TODO: add in comments and posts when written
+// TODO: add in comments and posts not currently working
 
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -36,6 +36,18 @@ const userSchema = new Schema(
       type: String,
       default: "user",
     },
+    posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   {
     toJSON: {

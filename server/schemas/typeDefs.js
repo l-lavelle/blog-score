@@ -6,6 +6,8 @@ const typeDefs = `#graphql
     lastName: String
     username: String
     role:String
+    posts: [Post]
+    comments: [Comment]
   }
   type Post{
     _id:ID 

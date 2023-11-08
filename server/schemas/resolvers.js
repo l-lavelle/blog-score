@@ -5,7 +5,7 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find({}).populate("friends");
+      return await User.find({}).populate("comments");
     },
     posts: async () => {
       return await Post.find({}).populate("author");
