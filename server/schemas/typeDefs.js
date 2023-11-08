@@ -5,8 +5,6 @@ const typeDefs = `#graphql
     firstName: String
     lastName: String
     username: String
-    friends: [User]
-    friendCount:Int
     role:String
   }
   type Post{
@@ -63,3 +61,5 @@ const typeDefs = `#graphql
 module.exports = typeDefs;
 // role needs to be updatable to admin??- graphQL shield certain variables on routes??
 // add if else with role variable if admin??
+
+// check out user- need user and userInput??

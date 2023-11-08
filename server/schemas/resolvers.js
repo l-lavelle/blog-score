@@ -69,7 +69,7 @@ const resolvers = {
         return post;
       }
     },
-    // Update Post with _id: admin || moderator??
+    // Update Post with _id: admin
     // TODO: add new author and updated date
     updatePost: async (parent, { criteria, postId }) => {
       return await Post.findOneAndUpdate(
