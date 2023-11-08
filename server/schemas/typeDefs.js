@@ -6,6 +6,11 @@ const typeDefs = `#graphql
     lastName: String
     username: String
     role:String
+    likedKeywords: [Keyword]
+  }
+  type Keyword {
+    keyword: String
+    count: Int
   }
   type Post{
     _id:ID 
@@ -17,6 +22,7 @@ const typeDefs = `#graphql
     createdAt: String
     tags: [String]
     likes: Int
+    disLikes: Int
   }
   type Comment{
     _id:ID
@@ -56,6 +62,8 @@ const typeDefs = `#graphql
     addComment(commentText:String):Comment
     updateComment(commentText:String):Comment
     # deleteComment:
+    likePost(postId: ID!): Post
+    dislikePost(postId: ID!): Post
   }
 `;
 module.exports = typeDefs;

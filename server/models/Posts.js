@@ -32,6 +32,10 @@ const postSchema = new Schema({
     type: Number,
     default: 0,
   },
+  disLikes: {
+    type: Number,
+    default: 0,
+  },
   // TODO: need to format date
   createdAt: {
     type: Date,
