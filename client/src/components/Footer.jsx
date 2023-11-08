@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import './Footer.css'; 
 
 const Footer = () => {
   return (
-    <Container className="footer">
+    <Container fluid className="footer-container">
       <Row>
-        <Col>License</Col>
-        <Col>Socials</Col>
-        <Col>Developers</Col>
+        <Col href="#" className="footer-col">License</Col>
+        <Col href="#" className="footer-col">Socials</Col>
+        <Col href="#" className="footer-col">Developers</Col>
       </Row>
     </Container>
   );
