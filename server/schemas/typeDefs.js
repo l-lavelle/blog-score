@@ -56,6 +56,8 @@ const typeDefs = `#graphql
     addComment(commentText:String):Comment
     updateComment(commentText:String):Comment
     # deleteComment:
+    likePost(postId: ID!): Post
+    dislikePost(postId: ID!): Post
   }
 `;
 module.exports = typeDefs;
