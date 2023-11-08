@@ -61,5 +61,3 @@ const typeDefs = `#graphql
 module.exports = typeDefs;
 // role needs to be updatable to admin??- graphQL shield certain variables on routes??
 // add if else with role variable if admin??
-
-// check out user- need user and userInput??
