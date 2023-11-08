@@ -93,6 +93,7 @@ const resolvers = {
       }
     },
     //Working with auth- all
+    // TODO: updatedDate
     updateComment: async (parent, { commentText }, context) => {
       if (context.user) {
         const comment = await Post.findOneAndUpdate(

@@ -1,4 +1,6 @@
+//Post value
 const { Schema, model } = require("mongoose");
+const dayjs = require("dayjs");
 
 const postSchema = new Schema({
   postTitle: {
@@ -32,10 +34,10 @@ const postSchema = new Schema({
     type: Number,
     default: 0,
   },
-  // TODO: need to format date
   createdAt: {
     type: Date,
     default: Date.now,
+    get: (timestamp) => dayjs(timestamp).format("DD/MM/YYYY"),
   },
 });
 
