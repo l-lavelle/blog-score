@@ -17,7 +17,6 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  // TODO: not currently working
   postComments: [
     {
       type: Schema.Types.ObjectId,

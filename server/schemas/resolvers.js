@@ -1,4 +1,5 @@
 // TODO: update user with all fields
+// TODO: throw errors
 const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
@@ -77,11 +78,12 @@ const resolvers = {
       return User.findOneAndDelete({ _id: userId });
     },
     // working with auth: admin || moderator?
-    addPost: async (parent, { postTitle, postText, author }, context) => {
+    addPost: async (parent, { postTitle, postText, tags }, context) => {
       if (context.user) {
         const post = await Post.create({
           postTitle,
           postText,
+          tags,
           author: context.user._id,
         });
         return post;
@@ -109,12 +111,18 @@ const resolvers = {
           commentText,
           author: context.user._id,
         });
-        const post = await Post.findOneAndUpdate(
-          { _id: postId },
-          { $addToSet: { postComments: { _id: postId } } },
-          { new: true }
-        );
-        return post;
+        const commentId = comment._id;
+        try {
+          const post = await Post.findOneAndUpdate(
+            { _id: postId },
+            { $addToSet: { postComments: commentId } },
+            { new: true }
+          );
+          console.log(post);
+        } catch (err) {
+          console.log(err);
+        }
+        return comment;
       }
     },
     //Working with auth- all
