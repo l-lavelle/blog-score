@@ -84,20 +84,24 @@ const resolvers = {
     },
     // Working with auth- all
     addComment: async (parent, { commentText }, context) => {
-      console.log(context.user);
-      const post = await Comment.create({
-        commentText,
-        author: context.user._id,
-      });
-      return post;
+      if (context.user) {
+        const comment = await Comment.create({
+          commentText,
+          author: context.user._id,
+        });
+        return comment;
+      }
     },
+    //Working with auth- all
     updateComment: async (parent, { commentText }, context) => {
-      const comment = await Post.findOneAndUpdate(
-        { _id: context.user._id },
-        { $set: commentText },
-        { new: true, runValidators: true }
-      );
-      return comment;
+      if (context.user) {
+        const comment = await Post.findOneAndUpdate(
+          { _id: context.user._id },
+          { $set: commentText },
+          { new: true, runValidators: true }
+        );
+        return comment;
+      }
     },
   },
 };
