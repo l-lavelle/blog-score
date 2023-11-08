@@ -4,22 +4,22 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    //working with auth
     users: async () => {
       return await User.find({}).populate("friends");
     },
+
     posts: async () => {
-      return await Post.find({});
+      return await Post.find({}).populate("author");
     },
   },
   Mutation: {
-    //working with auth
+    //working with auth: all
     addUser: async (parent, { user }) => {
       const userdata = await User.create({ ...user });
       const token = signToken(userdata);
       return { token };
     },
-    // wroking with auth
+    // working with auth: all
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
 
@@ -36,7 +36,7 @@ const resolvers = {
       const token = signToken(user);
       return { token };
     },
-    //working with auth
+    //working with auth: all for your own account only
     updateUser: async (parent, { criteria }, context) => {
       if (context.user) {
         return await User.findOneAndUpdate(
@@ -46,13 +46,18 @@ const resolvers = {
         );
       }
     },
-    //working with auth
+    //working with auth: all
     deleteUser: async (parent, args, context) => {
       console.log(context.user);
       if (context.user) {
         return User.findOneAndDelete({ _id: context.user._id });
       }
     },
+    // Admin delete any user account
+    adminDelete: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+    // working with auth: admin || moderator?
     addPost: async (parent, { postTitle, postText, author }, context) => {
       console.log(context.user);
 
@@ -63,6 +68,18 @@ const resolvers = {
       });
 
       return post;
+    },
+    // Update Post with _id: admin || moderator??
+    updatePost: async (parent, { criteria, postId }) => {
+      return await Post.findOneAndUpdate(
+        { _id: postId },
+        { $set: criteria },
+        { new: true, runValidators: true }
+      );
+    },
+    // Delete post with _id: admin || moderator??
+    deletePost: async (parent, { postId }, context) => {
+      return Post.findOneAndDelete({ _id: postId });
     },
   },
   // addFriend: async (parent, { userId }, context) => {

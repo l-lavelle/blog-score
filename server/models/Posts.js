@@ -22,7 +22,7 @@ const postSchema = new Schema({
       ref: "Comment",
     },
   ],
-  // Not working how anticipated
+  // TODO: Not working how anticipated need to fix
   tags: [
     {
       type: String,
