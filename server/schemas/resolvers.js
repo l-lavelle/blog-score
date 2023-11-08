@@ -131,11 +131,21 @@ const resolvers = {
     },
     // Add upvote to specific post
     // TODO: add in user context to see who upvoted for recommendation engine??
-    upvotePost: async (parent, { postId, upvotes }, context) => {
+    // Do we want these seperate or together in one varible ??
+    upvotePost: async (parent, { postId }, context) => {
       if (context.user) {
         return await Post.findOneAndUpdate(
           { _id: postId },
           { $inc: { upvotes: 1 } },
+          { new: true, runValidators: true }
+        );
+      }
+    },
+    downvotePost: async (parent, { postId }, context) => {
+      if (context.user) {
+        return await Post.findOneAndUpdate(
+          { _id: postId },
+          { $inc: { downvotes: 1 } },
           { new: true, runValidators: true }
         );
       }
