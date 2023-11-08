@@ -5,10 +5,28 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find({}).populate("comments");
+      return await User.find({}).populate([
+        {
+          path: "posts",
+          model: "Post",
+        },
+        {
+          path: "comments",
+          model: "Comment",
+        },
+      ]);
     },
     posts: async () => {
-      return await Post.find({}).populate("author");
+      return await Post.find({}).populate([
+        {
+          path: "postComments",
+          model: "Comment",
+        },
+        {
+          path: "author",
+          model: "User",
+        },
+      ]);
     },
     comments: async () => {
       return await Comment.find({}).populate("author");
@@ -83,12 +101,18 @@ const resolvers = {
       return Post.findOneAndDelete({ _id: postId });
     },
     // Working with auth- all
-    addComment: async (parent, { commentText }, context) => {
+    addComment: async (parent, { commentText, postId }, context) => {
+      console.log(postId);
       if (context.user) {
         const comment = await Comment.create({
           commentText,
           author: context.user._id,
         });
+        await Post.findOneAndUpdate(
+          { _id: postId },
+          { $addToSet: { postComments: postId } },
+          { new: true }
+        );
         return comment;
       }
     },

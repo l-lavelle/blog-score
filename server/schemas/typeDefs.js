@@ -55,7 +55,7 @@ const typeDefs = `#graphql
     addPost(postTitle:String, postText:String, tags:String):Post
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
-    addComment(commentText:String):Comment
+    addComment(commentText:String, postId:ID):Comment
     updateComment(commentText:String):Comment
     # deleteComment:
   }
