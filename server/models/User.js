@@ -36,6 +36,11 @@ const userSchema = new Schema(
       type: String,
       default: "user",
     },
+    likedKeywords: {
+      type: Map,
+      of: Number,
+      default: {},
+    },
   },
   {
     toJSON: {

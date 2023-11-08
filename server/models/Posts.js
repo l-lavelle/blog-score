@@ -32,7 +32,11 @@ const postSchema = new Schema({
     type: Number,
     default: 0,
   },
+<<<<<<< HEAD
   dislikes: {
+=======
+  disLikes: {
+>>>>>>> main
     type: Number,
     default: 0,
   },
