@@ -6,14 +6,14 @@ const Footer = () => {
   return (
     <Container fluid className="footer-container fixed-bottom">
       <Row>
-      <Col className="footer-col">
-          {/* <Link to="/license" className="footer-link">License</Link> */}
+        <Col className="footer-col">
+          <a href="#license" className="footer-link text-decoration-none text-reset fw-bold">License</a>
         </Col>
         <Col className="footer-col">
-          {/* <Link to="/socials" className="footer-link">Socials</Link> */}
+          <a href="#socials" className="footer-link text-decoration-none text-reset fw-bold">Socials</a>
         </Col>
         <Col className="footer-col">
-          {/* <Link to="/developers" className="footer-link">Developers</Link> */}
+          <a href="#developers" className="footer-link text-decoration-none text-reset fw-bold">Developers</a>
         </Col>
       </Row>
     </Container>
