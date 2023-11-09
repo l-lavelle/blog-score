@@ -7,13 +7,13 @@ const Footer = () => {
     <Container fluid className="footer-container fixed-bottom">
       <Row>
       <Col className="footer-col">
-          <Link to="/license" className="footer-link">License</Link>
+          {/* <Link to="/license" className="footer-link">License</Link> */}
         </Col>
         <Col className="footer-col">
-          <Link to="/socials" className="footer-link">Socials</Link>
+          {/* <Link to="/socials" className="footer-link">Socials</Link> */}
         </Col>
         <Col className="footer-col">
-          <Link to="/developers" className="footer-link">Developers</Link>
+          {/* <Link to="/developers" className="footer-link">Developers</Link> */}
         </Col>
       </Row>
     </Container>
