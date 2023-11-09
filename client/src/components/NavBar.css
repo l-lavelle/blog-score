@@ -3,6 +3,7 @@
 
 .nav-link {
     font-weight: bold; /* Make nav-link text bold */
+    font-size: 1.2rem;
 }
 
 /* BlogScore title styling */
