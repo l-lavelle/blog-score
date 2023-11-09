@@ -7,6 +7,11 @@ const typeDefs = `#graphql
     role:String
     posts: [Post]
     comments: [Comment]
+    likedKeywords: [Keyword]
+  }
+  type Keyword {
+    keyword: String
+    count: Int
   }
   type Post{
     _id:ID 

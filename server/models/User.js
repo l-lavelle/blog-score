@@ -47,6 +47,11 @@ const userSchema = new Schema(
         ref: "Comment",
       },
     ],
+    likedKeywords: {
+      type: Map,
+      of: Number,
+      default: {},
+    },
   },
   {
     toJSON: {

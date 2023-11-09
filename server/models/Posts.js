@@ -38,6 +38,7 @@ const postSchema = new Schema(
       default: 0,
     },
   },
+
   {
     timestamps: true,
   }
