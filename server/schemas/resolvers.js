@@ -1,5 +1,6 @@
 // TODO: throw errors
 // routes to add: get blog post by tag with comments
+// add me route to find self
 const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
