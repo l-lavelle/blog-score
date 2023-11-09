@@ -5,7 +5,7 @@ import './NavBar.css';
 const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className='px-3'>
-      <Navbar.Brand href="#home">BlogScore</Navbar.Brand>
+      <Navbar.Brand className='font-c' href="#home">BlogScore</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <div className="flex-grow-1"></div>
       <Navbar.Collapse id="basic-navbar-nav">
