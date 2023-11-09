@@ -11,9 +11,8 @@ function App() {
       <NavBar />
       <div className="container mt-3">
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-8 col-lg-10 col-xl-12">
             <MainContent />
-            <h1>Testing</h1>
           </div>
         </div>
       </div>
