@@ -5,7 +5,6 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    //TODO not yet adding data to users will not popluate
     users: async () => {
       return await User.find({}).populate([
         {
@@ -89,15 +88,14 @@ const resolvers = {
         });
         const postId = post._id;
         const updateUser = await User.findOneAndUpdate(
-          { _id: postId },
-          { $addToSet: { posts: commentId } },
+          { _id: context.user._id },
+          { $addToSet: { posts: postId } },
           { new: true }
         );
         return post;
       }
     },
     // Update Post with _id: admin || moderator
-    // TODO: add new author and updated date
     updatePost: async (parent, { criteria, postId }) => {
       return await Post.findOneAndUpdate(
         { _id: postId },
@@ -126,7 +124,6 @@ const resolvers = {
         } catch (err) {
           console.log(err);
         }
-        // need to see if this works
         try {
           const userPost = await User.findOneAndUpdate(
             { _id: context.user._id },
@@ -139,17 +136,18 @@ const resolvers = {
         return comment;
       }
     },
-    //Working with auth- all
-    // TODO: updatedDate
-    updateComment: async (parent, { commentText }, context) => {
-      if (context.user) {
-        const comment = await Post.findOneAndUpdate(
-          { _id: context.user._id },
-          { $set: commentText },
-          { new: true, runValidators: true }
-        );
-        return comment;
-      }
+    // error ??- update if verified that its your comment??
+    updateComment: async (parent, { commentId, commentText }, context) => {
+      const comment = await Comment.findOneAndUpdate(
+        { _id: commentId },
+        { $set: { commentText } },
+        { new: true, runValidators: true }
+      );
+      return comment;
+    },
+    // Delete comment by id- delete if verified that its your comment??
+    deleteComment: async (parent, { commentId }) => {
+      return Comment.findOneAndDelete({ _id: commentId });
     },
     // Add upvote to specific post
     // TODO: add in user context to see who upvoted for recommendation engine??
