@@ -37,6 +37,7 @@ const postSchema = new Schema(
       type: Number,
       default: 0,
     },
+
   },
 
   {
