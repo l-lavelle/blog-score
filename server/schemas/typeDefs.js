@@ -21,6 +21,7 @@ const typeDefs = `#graphql
     author: User
     postComments: [Comment]
     createdAt: String
+    updatedAt: String
     tags: [String]
     upvotes: Int
     downvotes:Int
@@ -29,6 +30,7 @@ const typeDefs = `#graphql
     _id:ID
     commentText: String
     author: User
+    createdAt:String
   }
   input PostInput{
     postTitle:String
@@ -61,8 +63,8 @@ const typeDefs = `#graphql
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
     addComment(commentText:String, postId:ID):Comment
-    updateComment(commentText:String):Comment
-    # TODO: deleteComment:
+    updateComment(commentId:ID, commentText:String):Comment
+    deleteComment(commentId:ID):Comment
     upvotePost(postId:ID):Post
     downvotePost(postId:ID):Post
   }
