@@ -7,9 +7,9 @@ const typeDefs = `#graphql
     role:String
     posts: [Post]
     comments: [Comment]
-    likedKeywords: [Keyword]
+    likedKeywords: [KeywordCount] # Define it as an array of KeywordCount
   }
-  type Keyword {
+  type KeywordCount {
     keyword: String
     count: Int
   }
@@ -52,7 +52,8 @@ const typeDefs = `#graphql
     users: [User]
     posts: [Post]
     comments:[Comment]
-  }
+    getRecommendedPosts: [Post]
+    }
   type Mutation {
     addUser(user:UserInput): Auth
     login(username: String, password: String): Auth
@@ -65,7 +66,7 @@ const typeDefs = `#graphql
     addComment(commentText:String, postId:ID):Comment
     updateComment(commentId:ID, commentText:String):Comment
     deleteComment(commentId:ID):Comment
-    upvotePost(postId:ID):Post
+    upvotePost(postId:ID): User
     downvotePost(postId:ID):Post
   }
 `;
