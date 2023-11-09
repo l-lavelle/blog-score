@@ -9,10 +9,10 @@ const commentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  // TODO: need to format date
   createdAt: {
     type: Date,
     default: Date.now,
+    get: (timestamp) => dayjs(timestamp).format("DD/MM/YYYY"),
   },
 });
 
