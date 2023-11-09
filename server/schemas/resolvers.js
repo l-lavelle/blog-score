@@ -87,6 +87,12 @@ const resolvers = {
           tags,
           author: context.user._id,
         });
+        const postId = post._id;
+        const updateUser = await User.findOneAndUpdate(
+          { _id: postId },
+          { $addToSet: { posts: commentId } },
+          { new: true }
+        );
         return post;
       }
     },
@@ -155,16 +161,16 @@ const resolvers = {
           { $inc: { upvotes: 1 } },
           { new: true, runValidators: true }
         );
-         // Get the user's current liked keywords
-         const user = await User.findById(context.user._id);
-     
-         // Update the count for each keyword in the post
-         post.tags.forEach(tag => {
-           user.likedKeywords.set(tag, (user.likedKeywords.get(tag) || 0) + 1);
-         });
-     
-         // Save the updated user document
-         await user.save();
+        // Get the user's current liked keywords
+        const user = await User.findById(context.user._id);
+
+        // Update the count for each keyword in the post
+        post.tags.forEach((tag) => {
+          user.likedKeywords.set(tag, (user.likedKeywords.get(tag) || 0) + 1);
+        });
+
+        // Save the updated user document
+        await user.save();
       }
     },
     downvotePost: async (parent, { postId }, context) => {
@@ -174,26 +180,6 @@ const resolvers = {
           { $inc: { downvotes: 1 } },
           { new: true, runValidators: true }
         );
-      }
-    },
-    likePost: async (parent, { postId }, context) => {
-      if (context.user) {
-        // Find the post to get its keywords
-        const post = await Post.findById(postId);
-        if (!post) {
-          throw new Error('Post not found');
-        }
-    
-        // Update the post's likes
-        const updatedPost = await Post.findByIdAndUpdate(
-          postId,
-          { $inc: { likes: 1 } },
-          { new: true }
-        );
-    
-       
-    
-        return updatedPost;
       }
     },
   },
