@@ -1,4 +1,3 @@
-//TODO: update user with all fields
 const typeDefs = `#graphql
   type User {
     _id: ID
@@ -6,6 +5,8 @@ const typeDefs = `#graphql
     lastName: String
     username: String
     role:String
+    posts: [Post]
+    comments: [Comment]
     likedKeywords: [Keyword]
   }
   type Keyword {
@@ -21,8 +22,8 @@ const typeDefs = `#graphql
     postComments: [Comment]
     createdAt: String
     tags: [String]
-    likes: Int
-    disLikes: Int
+    upvotes: Int
+    downvotes:Int
   }
   type Comment{
     _id:ID
@@ -56,14 +57,14 @@ const typeDefs = `#graphql
     updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User
-    addPost(postTitle:String, postText:String, tags:String):Post
+    addPost(postTitle:String, postText:String, tags:[String]):Post
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
-    addComment(commentText:String):Comment
+    addComment(commentText:String, postId:ID):Comment
     updateComment(commentText:String):Comment
-    # deleteComment:
-    likePost(postId: ID!): Post
-    dislikePost(postId: ID!): Post
+    # TODO: deleteComment:
+    upvotePost(postId:ID):Post
+    downvotePost(postId:ID):Post
   }
 `;
 module.exports = typeDefs;
