@@ -5,6 +5,13 @@ const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
+  User: {
+    // This resolver will convert the Map to an array of objects
+    likedKeywords(user) {
+      // Convert the map to an array of objects
+      return Array.from(user.likedKeywords, ([keyword, count]) => ({ keyword, count }));
+    },
+  },
   Query: {
     users: async () => {
       return await User.find({}).populate([
@@ -29,6 +36,22 @@ const resolvers = {
           model: "User",
         },
       ]);
+    },
+    getRecommendedPosts: async (parent, args, context) => {
+      if (context.user) {
+        // Get the user's liked keywords
+        const user = await User.findById(context.user._id);
+        const likedKeywords = Array.from(user.likedKeywords.keys());
+    
+        // Find posts that have tags matching the user's liked keywords
+        const recommendedPosts = await Post.find({
+          tags: { $in: likedKeywords }
+        }).sort({ upvotes: -1 }); // This sorts the posts by upvotes in descending order
+    
+        return recommendedPosts;
+      } else {
+        throw new Error('You must be logged in to get recommendations');
+      }
     },
     comments: async () => {
       return await Comment.find({}).populate("author");
@@ -154,24 +177,37 @@ const resolvers = {
     // TODO: add in user context to see who upvoted for recommendation engine??
     // Do we want these seperate or together in one varible ??
     upvotePost: async (parent, { postId }, context) => {
-      if (context.user) {
-        await Post.findOneAndUpdate(
-          { _id: postId },
-          { $inc: { upvotes: 1 } },
-          { new: true, runValidators: true }
-        );
-        // Get the user's current liked keywords
-        const user = await User.findById(context.user._id);
-
-        // Update the count for each keyword in the post
-        post.tags.forEach((tag) => {
-          user.likedKeywords.set(tag, (user.likedKeywords.get(tag) || 0) + 1);
-        });
-
-        // Save the updated user document
-        await user.save();
+      // Simulate a user ID for testing purposes
+      const simulatedUserId = '654c4051db743bc2627c13f5';
+    
+      // Find the post and increment upvotes
+      const post = await Post.findByIdAndUpdate(
+        postId,
+        { $inc: { upvotes: 1 } },
+        { new: true }
+      ).populate('tags');
+    
+      if (!post) {
+        throw new Error('Post not found.');
       }
+    
+      // Find the user and update likedKeywords
+      const user = await User.findById(simulatedUserId);
+    
+      if (!user) {
+        throw new Error('User not found.');
+      }
+    
+      post.tags.forEach(tag => {
+        user.likedKeywords.set(tag, (user.likedKeywords.get(tag) || 0) + 1);
+      });
+    
+      // Save the updated user document
+      await user.save();
+    
+      return post; // If you want to return the updated post instead of user
     },
+    
     downvotePost: async (parent, { postId }, context) => {
       if (context.user) {
         return await Post.findOneAndUpdate(
