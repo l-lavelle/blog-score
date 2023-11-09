@@ -4,11 +4,12 @@ import './NavBar.css';
 
 const NavBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-between">
+    <Navbar bg="dark" variant="dark" expand="lg" className='px-3'>
       <Navbar.Brand href="#home">BlogScore</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <div className="flex-grow-1"></div>
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="justify-content-end" style={{ width: "100%" }}>
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#recent">Recent</Nav.Link>
           <Nav.Link href="#favorites">Favorites</Nav.Link>
