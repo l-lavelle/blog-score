@@ -177,8 +177,9 @@ const resolvers = {
     // TODO: add in user context to see who upvoted for recommendation engine??
     // Do we want these seperate or together in one varible ??
     upvotePost: async (parent, { postId }, context) => {
-      // Simulate a user ID for testing purposes
-      const simulatedUserId = '654c4051db743bc2627c13f5';
+      if (!context.user) {
+        throw new Error('You must be logged in to upvote a post.');
+      }
     
       // Find the post and increment upvotes
       const post = await Post.findByIdAndUpdate(
@@ -192,7 +193,7 @@ const resolvers = {
       }
     
       // Find the user and update likedKeywords
-      const user = await User.findById(simulatedUserId);
+      const user = await User.findById(context.user._id);
     
       if (!user) {
         throw new Error('User not found.');
@@ -207,7 +208,6 @@ const resolvers = {
     
       return post; // If you want to return the updated post instead of user
     },
-    
     downvotePost: async (parent, { postId }, context) => {
       if (context.user) {
         return await Post.findOneAndUpdate(
