@@ -50,6 +50,14 @@ const userSeedData = [
     password: "password125",
     friends: [],
   },
+  {
+    firstName: "Lauren",
+    lastName: "Lavelle",
+    username: "Cat-lady-withthe-cats",
+
+    password: "password8940",
+    friends: [],
+  },
 ];
 
 const postSeedData = [
