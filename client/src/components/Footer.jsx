@@ -6,9 +6,15 @@ const Footer = () => {
   return (
     <Container fluid className="footer-container fixed-bottom">
       <Row>
-        <Col href="#" className="footer-col">License</Col>
-        <Col href="#" className="footer-col">Socials</Col>
-        <Col href="#" className="footer-col">Developers</Col>
+      <Col className="footer-col">
+          <Link to="/license" className="footer-link">License</Link>
+        </Col>
+        <Col className="footer-col">
+          <Link to="/socials" className="footer-link">Socials</Link>
+        </Col>
+        <Col className="footer-col">
+          <Link to="/developers" className="footer-link">Developers</Link>
+        </Col>
       </Row>
     </Container>
   );
