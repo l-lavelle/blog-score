@@ -74,7 +74,7 @@ const Login = () => {
               Submit
             </Button>
             <Button className='d-flex justify-content-center btn-success text-center w-100 mt-4 p-1'>
-            <h3>Click to <span onClick={()=>window.location.assign("/signup")}>Signup</span></h3>
+            <span onClick={()=>window.location.assign("/signup")}><h3>Click to Signup</h3></span>
             </Button>
           </Form>
         </Card.Body>
