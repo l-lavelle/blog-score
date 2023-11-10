@@ -18,12 +18,14 @@ const NavBar = () => {
           <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
           {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
           <NavDropdown title="Admin" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/admin/posts">Create a post</NavDropdown.Item>
-              <NavDropdown.Item href="/admin/blog">
+              <NavDropdown.Item as={Link} to="/admin/posts">
+                Create a post
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/admin/blogs">
                 Manage Blog
               </NavDropdown.Item>
-              <NavDropdown.Item href="/admin/users">Manage Users</NavDropdown.Item>
-              <NavDropdown.Item href="/admin/profile">
+              <NavDropdown.Item as={Link} to="/admin/users">Manage Users</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/admin/profile">
                 Profile
               </NavDropdown.Item>
             </NavDropdown>
