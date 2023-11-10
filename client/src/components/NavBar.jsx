@@ -11,9 +11,9 @@ const NavBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end m-3" style={{ width: "100%" }}>
           <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#recent">Recent</Nav.Link>
-          <Nav.Link href="#favorites">Favorites</Nav.Link>
-          <Nav.Link href="#login">Login</Nav.Link>
+          <Nav.Link href="/recent">Recent</Nav.Link>
+          <Nav.Link href="/favorites">Favorites</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
