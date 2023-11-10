@@ -1,7 +1,13 @@
+import Auth from '../../utils/auth'
 const AdminProfile = () => {
+    const trialAuth= ()=>{
+    console.log(Auth.IsAdmin())
+  }
     return (
-      <h1>AdminManageUsers</h1>
+       <button onClick={trialAuth}>Auth trial</button>
     );
   };
   
   export default AdminProfile;
+
+
