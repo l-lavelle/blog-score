@@ -10,6 +10,7 @@ import './Login.css';
 
 const Login = () => {
   const [login, {error} ] = useMutation(LOGIN);
+  
   const [userLoginData, setUserLoginData] = useState({ username: '', password: '' });
 
   const updateData= async (event)=>{
@@ -33,7 +34,11 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-      
+    
+    setUserLoginData({
+      username: '',
+      password: '',
+    })
   };
 
   return (
