@@ -43,9 +43,9 @@ const Login = () => {
 
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <Card className="card-3d my-5" style={{ width: '18rem' }}>
+      <Card className="card-3d my-5" style={{ width: '22rem', padding: '20px' }}>
         <Card.Body>
-          <Card.Title className="text-center">Login</Card.Title>
+          <Card.Title className="text-center fw-bold">Login</Card.Title>
           
           <Form onSubmit={handleLogin}>
             <Form.Group controlId="formBasicEmail">
@@ -70,10 +70,12 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100 mt-4">
+            <Button variant="primary" type="submit" className="w-100 fw-bold mt-4">
               Submit
             </Button>
+            <Button className='d-flex justify-content-center btn-success text-center w-100 mt-4 p-1'>
             <h3>Click to <span onClick={()=>window.location.assign("/signup")}>Signup</span></h3>
+            </Button>
           </Form>
         </Card.Body>
       </Card>
