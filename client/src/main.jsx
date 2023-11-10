@@ -9,6 +9,7 @@ import MainContent from './components/MainContent';
 import Recent from "./components/Recent"
 import Favorites from './components/Favorites';
 import Login from './components/Login'
+import SignUp from './components/Signup';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/signup',
+        element: <SignUp />
       }
     ]
   },
