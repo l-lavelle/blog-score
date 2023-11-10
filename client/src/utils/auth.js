@@ -1,4 +1,3 @@
-// Change to session storage and see how working on front end
 import decode from "jwt-decode";
 
 class AuthService {
