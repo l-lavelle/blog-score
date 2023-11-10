@@ -1,6 +1,13 @@
+import Auth from '../../utils/auth';
+
 const AdminCreatePost = () => {
+  const trialAuth= ()=>{
+    console.log(Auth.IsAdmin().data.role)
+  }
+  
   return (
-    <h1>hi</h1>
+    
+    <button onClick={trialAuth}>sf</button>
   );
 };
 

@@ -9,6 +9,10 @@ class AuthService {
     const token = this.getToken();
     return token && !this.isTokenExpired(token) ? true : false;
   }
+  IsAdmin() {
+    const token = decode(this.getToken());
+    return token;
+  }
 
   isTokenExpired(token) {
     const decoded = decode(token);
