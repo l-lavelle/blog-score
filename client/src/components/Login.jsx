@@ -57,3 +57,45 @@ const Login = () => {
 };
 
 export default Login;
+
+
+// import Auth from '../utils/auth';
+
+// import { useMutation } from '@apollo/client';
+// import {ADD_USER} from '../utils/mutations'
+
+// const Login = () => {
+  
+//   const userinfo={username:"newUser2134",password:"12345",firstName:"tony", lastName:"denny" }
+
+//   const [addUser, {error} ] = useMutation(ADD_USER);
+
+//   const handleFormSubmit = async (event) => {
+//     event.preventDefault();
+
+//     try {
+//       const { data } = await addUser({
+//         variables: { user:userinfo},
+//       });
+//       console.log(data)
+//       Auth.login(data?.addUser?.token)
+
+//       if (error) {
+//         throw new Error('Unable create user');
+//       }
+
+//     } catch (error) {
+//       console.log(error);
+//     }
+
+//   };
+
+//     return (
+//       <div>
+//         <h1>Login Page- practicing signup</h1>
+//         <button onClick={handleFormSubmit}>create trial user</button>
+//       </div>
+//     );
+//   };
+  
+//   export default Login;
