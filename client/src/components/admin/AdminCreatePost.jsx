@@ -1,41 +1,49 @@
-// import Auth from '../../utils/auth';
-// import { useMutation } from '@apollo/client';
-// import { ADD_POST } from '../../utils/mutations';
+// TODO: tags curently seperated by comma will need to trim whitespace??
+import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_POST } from '../../utils/mutations';
 
 import  { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 
 const AdminCreatePost = () => {
-  // const [addPost, {error} ] = useMutation(ADD_POST);
+  const [addPost, {error} ] = useMutation(ADD_POST);
   
-  const [postData, setPostData] = useState({ postTitle: '', postText: '' , tags:[]});
+  const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
 
   const updateData = async (event)=>{
     const { name, value } = event.target;
+    if (name==="tags"){
+      const cleanTags= value.split(",")
+      setPostData({ ...postData, [name]: cleanTags });
+    }
+    else{
     setPostData({ ...postData, [name]: value });
+    }
   }
 
   const createPost = async (event) => {
     event.preventDefault();
-    // try {
-    //   const {data}  = await login({
-    //     variables: { username: userLoginData.username,
-    //     password: userLoginData.password},
-    //   });
-
+    try {
+      console.log(postData)
+      const {data}  = await addPost({
+        variables: {...postData },
+      });
+      
     //   Auth.login(data.login.token)
 
-    //   if (error) {
-    //     throw new Error('Unable login user');
-    //   }
+      if (error) {
+        throw new Error('Unable login user');
+      }
 
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    } catch (error) {
+      console.log(error);
+    }
     
     setPostData({
-      username: '',
-      password: '',
+      postTitle: '',
+      postText: '',
+      tags:[]
     })
   };
  
@@ -67,6 +75,17 @@ const AdminCreatePost = () => {
                 placeholder="Enter text"
                 name='postText'
                 value={postData.postText}
+                onChange={updateData}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label className='text-ad m-3'>Tags</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="add tags"
+                name='tags'
+                value={postData.tags}
                 onChange={updateData}
               />
             </Form.Group>
