@@ -1,4 +1,5 @@
 // import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import './NavBar.css';
 
@@ -10,10 +11,10 @@ const NavBar = () => {
       <div className="flex-grow-1"></div>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end m-3" style={{ width: "100%" }}>
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="/recent">Recent</Nav.Link>
-          <Nav.Link href="/favorites">Favorites</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link as={Link} to="/">Home</Nav.Link>
+          <Nav.Link as={Link} to="/recent">Recent</Nav.Link>
+          <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
+          <Nav.Link as={Link} to="/login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
