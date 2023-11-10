@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import './NavBar.css';
 
+import Auth from '../utils/auth';
+
 const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className='px-3'>
@@ -14,7 +16,7 @@ const NavBar = () => {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/recent">Recent</Nav.Link>
           <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
-          <Nav.Link as={Link} to="/login">Login</Nav.Link>
+          {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
