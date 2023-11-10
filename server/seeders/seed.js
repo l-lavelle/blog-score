@@ -10,6 +10,7 @@ const userSeedData = [
     username: "janesmith",
     password: "password127",
     friends: [],
+    role: "kshdf"
   },
 
   {
