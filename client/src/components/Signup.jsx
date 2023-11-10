@@ -1,6 +1,6 @@
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import {LOGIN} from '../utils/mutations'
+import {ADD_USER} from '../utils/mutations'
 
 import  { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
@@ -8,37 +8,32 @@ import './Login.css';
 
 
 
-const Login = () => {
-  const [login, {error} ] = useMutation(LOGIN);
-  
-  const [userLoginData, setUserLoginData] = useState({ username: '', password: '' });
+const SignUp = () => {
+  const [addUser, {error} ] = useMutation(ADD_USER);
+  const [userSignUpData, setUserSignUpData] = useState({ username: '', password: '' , firstName:'', lastName:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
-    setUserLoginData({ ...userLoginData, [name]: value });
+    setUserSignUpData({ ...userSignUpData, [name]: value });
   }
   const handleLogin = async (event) => {
     event.preventDefault();
+    
     try {
-      const {data}  = await login({
-        variables: { username: userLoginData.username,
-        password: userLoginData.password},
+      const { data } = await addUser({
+        variables: { user: userSignUpData},
       });
 
-      Auth.login(data.login.token)
+      Auth.login(data?.addUser?.token)
 
       if (error) {
-        throw new Error('Unable login user');
+        throw new Error('Unable to create user');
       }
 
     } catch (error) {
       console.log(error);
     }
-    
-    setUserLoginData({
-      username: '',
-      password: '',
-    })
+      
   };
 
   return (
@@ -48,13 +43,33 @@ const Login = () => {
           <Card.Title className="text-center">Login</Card.Title>
           
           <Form onSubmit={handleLogin}>
+            <Form.Group controlId="formBasicFirst">
+              <Form.Label className='text-ad m-3'>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter first name"
+                name='firstName'
+                value={userSignUpData.firstName}
+                onChange={updateData}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicLast">
+              <Form.Label className='text-ad m-3'>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter last name"
+                name='lastName'
+                value={userSignUpData.lastName}
+                onChange={updateData}
+              />
+            </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label className='text-ad m-3'>Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter username"
                 name='username'
-                value={userLoginData.username}
+                value={userSignUpData.username}
                 onChange={updateData}
               />
             </Form.Group>
@@ -65,7 +80,7 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 name='password'
-                value={userLoginData.password}
+                value={userSignUpData.password}
                 onChange={updateData}
               />
             </Form.Group>
@@ -80,10 +95,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
-
-
-
-
-
+export default SignUp;
