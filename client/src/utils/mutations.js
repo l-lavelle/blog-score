@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // Mutation to add a new user
 export const ADD_USER = gql`
@@ -16,7 +16,7 @@ export const LOGIN = gql`
       token
     }
   }
-`;/*
+`;
 
 // Mutation to update a user's information
 export const UPDATE_USER = gql`
@@ -47,7 +47,7 @@ export const ADMIN_DELETE_USER = gql`
   }
 `;
 
-// Mutation to add a new post
+//Mutation to add a new post
 export const ADD_POST = gql`
   mutation addPost($postTitle: String!, $postText: String!, $tags: [String]!) {
     addPost(postTitle: $postTitle, postText: $postText, tags: $tags) {
@@ -138,22 +138,22 @@ export const DOWNVOTE_POST = gql`
     }
   }
 `;
-*/
+
 // Export all mutations as a single object (optional)
 const mutations = {
   ADD_USER,
   LOGIN,
-//   UPDATE_USER,
-//   DELETE_USER,
-//   ADMIN_DELETE_USER,
-//   ADD_POST,
-//   UPDATE_POST,
-//   DELETE_POST,
-//   ADD_COMMENT,
-//   UPDATE_COMMENT,
-//   DELETE_COMMENT,
-//   UPVOTE_POST,
-//   DOWNVOTE_POST
+  //   UPDATE_USER,
+  //   DELETE_USER,
+  //   ADMIN_DELETE_USER,
+  ADD_POST,
+  //   UPDATE_POST,
+  //   DELETE_POST,
+  //   ADD_COMMENT,
+  //   UPDATE_COMMENT,
+  //   DELETE_COMMENT,
+  //   UPVOTE_POST,
+  //   DOWNVOTE_POST
 };
 
-export default mutations; 
+export default mutations;
