@@ -16,7 +16,7 @@ const NavBar = () => {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/recent">Recent</Nav.Link>
           <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
-          {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
+          {/* {Auth.IsAdmin()?( */}
           <NavDropdown title="Admin" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/admin/posts">
                 Create a post
@@ -29,6 +29,8 @@ const NavBar = () => {
                 Profile
               </NavDropdown.Item>
             </NavDropdown>
+            {/* ):([])} */}
+          {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

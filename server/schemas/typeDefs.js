@@ -44,6 +44,7 @@ const typeDefs = `#graphql
     lastName:String
     username:String
     password:String
+    role:String
   }
   type Auth {
     token: ID

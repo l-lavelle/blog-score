@@ -10,10 +10,18 @@ class AuthService {
     return token && !this.isTokenExpired(token) ? true : false;
   }
   IsAdmin() {
-    const token = decode(this.getToken());
-    return token;
+    try {
+      const token = decode(this.getToken());
+      if (token) {
+        const role = token.data.role;
+        return role === "admin" ? true : false;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      return false;
+    }
   }
-
   isTokenExpired(token) {
     const decoded = decode(token);
     if (decoded.exp < Date.now() / 1000) {
@@ -34,7 +42,7 @@ class AuthService {
 
   logout() {
     sessionStorage.removeItem("id_token");
-    window.location.reload();
+    window.location.assign("/");
   }
 }
 

@@ -1,5 +1,5 @@
 // TODO: tags curently seperated by comma will need to trim whitespace??
-import Auth from '../../utils/auth';
+// TODO: baby proof 
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
 
@@ -26,11 +26,9 @@ const AdminCreatePost = () => {
     event.preventDefault();
     try {
       console.log(postData)
-      const {data}  = await addPost({
+      await addPost({
         variables: {...postData },
       });
-      
-    //   Auth.login(data.login.token)
 
       if (error) {
         throw new Error('Unable login user');
@@ -105,8 +103,3 @@ const AdminCreatePost = () => {
 export default AdminCreatePost;
 
 
- // use to access auth role
-  // const trialAuth= ()=>{
-  //   console.log(Auth.IsAdmin().data.role)
-  // }
-  //<button onClick={trialAuth}>sf</button>
