@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 const NavBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className='px-3'>
+    <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className='px-3'>
       <Navbar.Brand href="#home" className='font-c color-c size-change'>BlogScore</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <div className="flex-grow-1"></div>
