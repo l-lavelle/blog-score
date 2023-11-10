@@ -1,0 +1,15 @@
+.text-ad {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.card-3d {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+  
+.card-3d:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
+}
+  
