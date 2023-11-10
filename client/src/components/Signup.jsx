@@ -40,7 +40,7 @@ const SignUp = () => {
     <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <Card className="card-3d my-5" style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title className="text-center">Login</Card.Title>
+          <Card.Title className="text-center fw-bold">Login</Card.Title>
           
           <Form onSubmit={handleLogin}>
             <Form.Group controlId="formBasicFirst">
@@ -85,10 +85,10 @@ const SignUp = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100 mt-4">
+            <Button variant="primary" type="submit" className="w-100 fw-bold mt-4">
               Submit
             </Button>
-            <h3>Already have an accout? <span onClick={()=>window.location.assign("/login")}>Login</span></h3>
+            <h4 className='mt-3'>Already have an accout? <Button className='btn-success'><span className='fw-bold' onClick={()=>window.location.assign("/login")}>Login</span></Button></h4>
           </Form>
         </Card.Body>
       </Card>

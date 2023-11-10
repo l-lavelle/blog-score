@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <Container fluid className="footer-container fixed-bottom">
+    <Container fluid className="footer-container fixed-bottom footer-rounded">
       <Row>
         <Col className="footer-col">
           <a href="#license" className="footer-link text-decoration-none text-reset fw-bold">License</a>
