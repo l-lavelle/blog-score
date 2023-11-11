@@ -1,4 +1,4 @@
-import ArticlePreview from '../ArticlePreview';
+import AdminPreview from './AdminPreview';
 // import { useState } from 'react';
 // import { useMutation } from '@apollo/client';
 // import { ADD_SKILL } from '../../utils/mutations';
@@ -9,7 +9,11 @@ const AdminManageBlog = () => {
   const { loading, data } = useQuery(GET_POSTS);
   const  postData = data?.posts || []
 
-  console.log("post data", postData)
+  const openModal = async (event) =>{
+    // event.preventDefault();
+    console.log(event.value)
+  }
+  // console.log("post data", postData)
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -18,7 +22,10 @@ const AdminManageBlog = () => {
       <h1>Manage Blog Posts </h1>
       <div className="main-content">
         {postData.map((article, index) => (
-          <ArticlePreview key={index} {...article} />
+          <div onClick={openModal} key={index}>
+             <AdminPreview {...article} />
+          </div>
+           
         ))}
       </div>
      </>

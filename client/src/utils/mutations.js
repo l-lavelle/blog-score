@@ -40,7 +40,7 @@ export const DELETE_USER = gql`
 
 // Mutation for an admin to delete any user account
 export const ADMIN_DELETE_USER = gql`
-  mutation adminDelete($userId: ID!) {
+  mutation adminDelete($userId: ID) {
     adminDelete(userId: $userId) {
       _id
     }
