@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // Query to get all users and their posts and comments
 export const GET_USERS = gql`
@@ -27,28 +27,37 @@ export const GET_USERS = gql`
   }
 `;
 
+// export const GET_POSTS = gql`
+//   query getPosts {
+//     posts {
+//       postTitle
+//       postText
+//     }
+//   }
+// `;
+
 // Query to get all posts with their comments and authors
 export const GET_POSTS = gql`
   query getPosts {
     posts {
-      _id
+      # _id
       postTitle
       postText
-      tags
-      upvotes
-      author {
-        _id
-        username
-      }
-      postComments {
-        _id
-        commentText
-        author {
-          _id
-          username
-        }
-        createdAt
-      }
+      # tags
+      # upvotes
+      # author {
+      #   _id
+      #   username
+      # }
+      # postComments {
+      #   _id
+      #   commentText
+      #   author {
+      #     _id
+      #     username
+      #   }
+      #   createdAt
+      # }
     }
   }
 `;
@@ -91,11 +100,11 @@ export const GET_RECOMMENDED_POSTS = gql`
 // `;
 
 // Export all queries as a single object (optional)
-const queries = {
-  GET_USERS,
-  GET_POSTS,
-  GET_RECOMMENDED_POSTS,
- // GET_COMMENTS
-};
+// const queries = {
+//   GET_USERS,
+//   GET_POSTS,
+//   GET_RECOMMENDED_POSTS,
+// GET_COMMENTS
+// };
 
-export default queries;
+// export default queries;
