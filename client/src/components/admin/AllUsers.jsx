@@ -9,15 +9,14 @@ const AllUsers = ({ users }) => {
   ]});
 
   const deleteProfile = async(userId)=>{
-    console.log(userId)
    try { 
-    await adminDelete({
-      variables: { userId },
-    });
+      await adminDelete({
+        variables: { userId },
+      });
 
-    if (error) {
-      throw new Error('unable to delete user');
-    }
+      if (error) {
+        throw new Error('unable to delete user');
+      }
 
     } catch (err) {
     console.error(err);
