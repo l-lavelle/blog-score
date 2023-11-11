@@ -8,12 +8,14 @@ import {GET_POSTS} from '../../utils/queries'
 
 const AdminManageBlog = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [modalData, setModalData] = useState({blogTitle:"hi" , blogText: "bye", tags:[]})
-  const { loading, data } = useQuery(GET_POSTS);
+  const [modalData, setModalData] = useState({postId: "", blogTitle:"" , blogText: "", tags:[]})
+  const { loading, data } = useQuery(GET_POSTS,  {
+    fetchPolicy: 'cache-and-network',
+  });
   const  postData = data?.posts || []
 
-  const openModal = async (postId, blogTitle, blogText) =>{
-    await setModalData({blogTitle:blogTitle, blogText: blogText})
+  const openModal = async (_id, blogTitle, blogText) =>{
+    await setModalData({postId:_id, blogTitle:blogTitle, blogText: blogText})
     setModalShow(true)
   }
 
@@ -32,6 +34,7 @@ const AdminManageBlog = () => {
       <EditPostModal
         show={modalShow}
         onHide={() => setModalShow(false)}
+        postId={modalData.postId}
         text={modalData.blogText}
         title={modalData.blogTitle}
       />
