@@ -20,7 +20,7 @@ export const LOGIN = gql`
 
 // Mutation to update a user's information
 export const UPDATE_USER = gql`
-  mutation updateUser($criteria: UserUpdateInput!) {
+  mutation updateUser($criteria: UserUpdateInput) {
     updateUser(criteria: $criteria) {
       _id
       username
@@ -40,7 +40,7 @@ export const DELETE_USER = gql`
 
 // Mutation for an admin to delete any user account
 export const ADMIN_DELETE_USER = gql`
-  mutation adminDelete($userId: ID!) {
+  mutation adminDelete($userId: ID) {
     adminDelete(userId: $userId) {
       _id
     }
@@ -66,7 +66,7 @@ export const ADD_POST = gql`
 
 // Mutation to update a post
 export const UPDATE_POST = gql`
-  mutation updatePost($criteria: PostUpdateInput!, $postId: ID!) {
+  mutation updatePost($criteria: PostInput, $postId: ID) {
     updatePost(criteria: $criteria, postId: $postId) {
       _id
       postTitle
@@ -79,7 +79,7 @@ export const UPDATE_POST = gql`
 
 // Mutation to delete a post
 export const DELETE_POST = gql`
-  mutation deletePost($postId: ID!) {
+  mutation deletePost($postId: ID) {
     deletePost(postId: $postId) {
       _id
     }

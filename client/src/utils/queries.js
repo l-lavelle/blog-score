@@ -26,7 +26,14 @@ export const GET_USERS = gql`
     }
   }
 `;
-
+export const GET_ROLE_USER = gql`
+  query basicUser {
+    basicUser {
+      username
+      _id
+    }
+  }
+`;
 // export const GET_POSTS = gql`
 //   query getPosts {
 //     posts {
@@ -40,24 +47,24 @@ export const GET_USERS = gql`
 export const GET_POSTS = gql`
   query getPosts {
     posts {
-      # _id
+      _id
       postTitle
       postText
-      # tags
-      # upvotes
-      # author {
-      #   _id
-      #   username
-      # }
-      # postComments {
-      #   _id
-      #   commentText
-      #   author {
-      #     _id
-      #     username
-      #   }
-      #   createdAt
-      # }
+      tags
+      upvotes
+      author {
+        _id
+        username
+      }
+      postComments {
+        _id
+        commentText
+        author {
+          _id
+          username
+        }
+        createdAt
+      }
     }
   }
 `;

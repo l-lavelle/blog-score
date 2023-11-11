@@ -51,6 +51,7 @@ const typeDefs = `#graphql
   }
   type Query {
     users: [User]
+    basicUser:[User]
     posts: [Post]
     comments:[Comment]
     getRecommendedPosts: [Post]

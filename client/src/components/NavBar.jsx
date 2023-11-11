@@ -15,8 +15,8 @@ const NavBar = () => {
         <Nav className="justify-content-end m-3" style={{ width: "100%" }}>
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/recent">Recent</Nav.Link>
-          <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>
-          {/* {Auth.IsAdmin()?( */}
+          {Auth.loggedIn()?( <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>):(<Nav.Link as={Link} to="/login">Favorites</Nav.Link>)}
+          {/* {Auth.IsAdmin()?(  */}
           <NavDropdown title="Admin" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/admin/posts">
                 Create a post
@@ -29,7 +29,7 @@ const NavBar = () => {
                 Profile
               </NavDropdown.Item>
             </NavDropdown>
-            {/* ):([])} */}
+             {/* ):([])}  */}
           {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>
