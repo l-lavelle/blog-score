@@ -1,12 +1,12 @@
-import React from 'react';
+// import React from 'react';
 import { Card } from 'react-bootstrap';
 
-const ArticlePreview = ({ title, summary }) => {
+const ArticlePreview = ({ postTitle, postText }) => {
   return (
     <Card className="mb-3">
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{summary}</Card.Text>
+        <Card.Title>{postTitle}</Card.Title>
+        <Card.Text>{postText}</Card.Text>
         {/* anything else we want */}
       </Card.Body>
     </Card>
