@@ -1,11 +1,8 @@
-// import React from 'react';
+
 import { Card } from 'react-bootstrap';
 
 const AdminPreview = ({ postTitle, postText }) => {
-// const ModalOpen = async (event) =>{
-//     // event.preventDefault();
-//     console.log(event.value)
-//     }
+
 
   return (
     <div >
