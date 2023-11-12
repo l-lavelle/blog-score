@@ -121,7 +121,7 @@ const resolvers = {
     },
     // working with auth: admin
     addPost: async (parent, { postTitle, postText, tags }, context) => {
-      if (context.user) {
+      if (context.user.role === "admin") {
         const post = await Post.create({
           postTitle,
           postText,
