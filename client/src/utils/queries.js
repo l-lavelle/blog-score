@@ -101,6 +101,15 @@ export const RECENT_POSTS_QUERY = gql`
   }
 `;
 
+export const USER_LIKED_POSTS = gql`
+  query userLikedPost {
+    userLikedPost {
+      likedPost {
+        _id
+      }
+    }
+  }
+`;
 // Query to get all comments with their authors
 // export const GET_COMMENTS = gql`
 //   query getComments {
