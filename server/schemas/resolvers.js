@@ -40,6 +40,17 @@ const resolvers = {
         },
       ]);
     },
+    userLikedPost: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate([
+          {
+            path: "likedPost",
+            model: "Post",
+          },
+        ]);
+        return user;
+      }
+    },
     posts: async () => {
       return await Post.find({}).populate([
         {
@@ -206,6 +217,11 @@ const resolvers = {
         { new: true }
       ).populate("tags");
 
+      const userLikes = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { likedPost: postId } },
+        { new: true }
+      );
       if (!post) {
         throw new Error("Post not found.");
       }

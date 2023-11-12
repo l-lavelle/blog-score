@@ -5,6 +5,7 @@ const typeDefs = `#graphql
     lastName: String
     username: String
     role:String
+    likedPost:[Post]
     posts: [Post]
     comments: [Comment]
     likedKeywords: [KeywordCount] # Define it as an array of KeywordCount
@@ -51,6 +52,7 @@ const typeDefs = `#graphql
   }
   type Query {
     users: [User]
+    userLikedPost:User
     basicUser:[User]
     posts: [Post]
     comments:[Comment]
@@ -69,7 +71,7 @@ const typeDefs = `#graphql
     addComment(commentText:String, postId:ID):Comment
     updateComment(commentId:ID, commentText:String):Comment
     deleteComment(commentId:ID):Comment
-    upvotePost(postId:ID): User
+    upvotePost(postId:ID): Post
     downvotePost(postId:ID):Post
   }
 `;

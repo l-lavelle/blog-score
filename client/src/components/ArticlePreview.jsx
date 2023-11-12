@@ -6,15 +6,16 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import {ADD_COMMENT} from '../utils/mutations'
+import {ADD_COMMENT, UPVOTE_POST } from '../utils/mutations'
 import {GET_POSTS} from '../utils/queries'
 
-const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
+const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
   const [addComment, {error}] = useMutation(ADD_COMMENT, {refetchQueries:[
     GET_POSTS
   ]});
+  const [upvotePost] = useMutation(UPVOTE_POST)
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
@@ -36,6 +37,25 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
       console.error(err)
     }
   }
+
+  const upvote = async (postId) => {
+    console.log(postId)
+    try{
+      await upvotePost({
+        variables: { postId:postId }
+      })
+      if (error) {
+        throw new Error('Unable to update post');
+      }
+    }catch (err){
+      console.error(err)
+    }
+  };
+
+  const downvote = () => {
+    console.log(3)
+  };
+
 
   const truncateText = (text, wordLimit) => {
     const words = text.split(' ');
@@ -62,6 +82,11 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
         {/* anything else we want */}
         {isExpanded?
         <div>
+          <Button onClick={()=>upvote(_id)} variant="primary"> Upvote
+          </Button>
+          <p>{upvotes}</p>
+          <Button onClick={downvote} variant="primary"> Downvote
+          </Button>
           {postComments.map((posts, index) => (
           <li>{posts.commentText}</li>
         

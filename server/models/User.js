@@ -51,6 +51,12 @@ const userSchema = new Schema(
       of: Number,
       default: {},
     },
+    likedPost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   {
     toJSON: {
