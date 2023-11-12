@@ -33,7 +33,6 @@ const MainContent = () => {
     <div className="main-content">
       {postData.map((article, index) => (
         <ArticlePreview key={index} {...article} />
-       
       ))}
     </div>
   );

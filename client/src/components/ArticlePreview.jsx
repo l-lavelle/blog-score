@@ -60,6 +60,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
           {isExpanded ? 'Show Less' : 'Show More'}
         </Button>
         {/* anything else we want */}
+        {isExpanded?
         <div>
           {postComments.map((posts, index) => (
           <li>{posts.commentText}</li>
@@ -67,16 +68,16 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
         ))}
           {Auth.loggedIn()?
           <>
-          <InputGroup>
-          <Form.Control 
-            name='commentText'
-            onChange={updateData}
-            value={updatedData.commentText}
-            /> 
-        </InputGroup>
-        <button onClick={()=>commentPost(_id)}>Post Comment</button>
-        </>:[]}
-      </div>
+            <InputGroup>
+            <Form.Control 
+              name='commentText'
+              onChange={updateData}
+              value={updatedData.commentText}
+              /> 
+            </InputGroup>
+            <button onClick={()=>commentPost(_id)}>Post Comment</button>
+          </>:[]}
+      </div>:<></>}
       </Card.Body>
     </Card>
     
