@@ -88,7 +88,7 @@ const SignUp = () => {
             <Button variant="primary" type="submit" className="w-100 fw-bold mt-4">
               Submit
             </Button>
-            <h4 className='mt-3'>Already have an accout? <Button className='btn-success'><span className='fw-bold' onClick={()=>window.location.assign("/login")}>Login</span></Button></h4>
+            <h4 className='mt-3'>Already have an account? <Button className='btn-success'><span className='fw-bold' onClick={()=>window.location.assign("/login")}>Login here</span></Button></h4>
           </Form>
         </Card.Body>
       </Card>

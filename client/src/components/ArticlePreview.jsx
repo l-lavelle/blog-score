@@ -1,5 +1,6 @@
+
 // import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import Auth from '../utils/auth'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
@@ -9,6 +10,7 @@ import {ADD_COMMENT} from '../utils/mutations'
 import {GET_POSTS} from '../utils/queries'
 
 const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
   const [addComment, {error}] = useMutation(ADD_COMMENT, {refetchQueries:[
     GET_POSTS
@@ -34,11 +36,29 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments }) => {
       console.error(err)
     }
   }
+
+  const truncateText = (text, wordLimit) => {
+    const words = text.split(' ');
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return text;
+  };
+
+  const toggleText = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <Card className="mb-3">
       <Card.Body>
         <Card.Title>{postTitle}</Card.Title>
-        <Card.Text>{postText}</Card.Text>
+        <Card.Text>
+          {isExpanded ? postText : truncateText(postText, 20)}
+        </Card.Text>
+        <Button onClick={toggleText} variant="primary">
+          {isExpanded ? 'Show Less' : 'Show More'}
+        </Button>
         {/* anything else we want */}
         <div>
           {postComments.map((posts, index) => (

@@ -71,6 +71,9 @@ const resolvers = {
     comments: async () => {
       return await Comment.find({}).populate("author");
     },
+    recentPosts: async () => {
+      return await Post.find({}).sort({ createdAt: -1 }).limit(5);
+    },
   },
   Mutation: {
     //working with auth: all
