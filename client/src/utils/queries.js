@@ -91,6 +91,16 @@ export const GET_RECOMMENDED_POSTS = gql`
   }
 `;
 
+export const RECENT_POSTS_QUERY = gql`
+  query recentPosts {
+    recentPosts {
+      _id
+      postTitle
+      postText
+    }
+  }
+`;
+
 // Query to get all comments with their authors
 // export const GET_COMMENTS = gql`
 //   query getComments {
