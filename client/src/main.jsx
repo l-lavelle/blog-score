@@ -13,7 +13,6 @@ import SignUp from './components/Signup';
 import AdminCreatePost from './components/admin/AdminCreatePost';
 import AdminManageBlog from './components/admin/AdminManageBlog';
 import AdminManageUsers from './components/admin/AdminManageUsers';
-import AdminProfile from './components/admin/AdminProfile';
 
 const router = createBrowserRouter([
   {
@@ -52,10 +51,7 @@ const router = createBrowserRouter([
         path: '/admin/users',
         element: <AdminManageUsers />
       },
-      {
-        path: '/admin/profile',
-        element: <AdminProfile />
-      }
+      
     ]
   },
 ]);

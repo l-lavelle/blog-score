@@ -49,7 +49,7 @@ export const ADMIN_DELETE_USER = gql`
 
 //Mutation to add a new post
 export const ADD_POST = gql`
-  mutation addPost($postTitle: String!, $postText: String!, $tags: [String]!) {
+  mutation addPost($postTitle: String, $postText: String, $tags: [String]) {
     addPost(postTitle: $postTitle, postText: $postText, tags: $tags) {
       _id
       postTitle
@@ -88,7 +88,7 @@ export const DELETE_POST = gql`
 
 // Mutation to add a comment to a post
 export const ADD_COMMENT = gql`
-  mutation addComment($commentText: String!, $postId: ID!) {
+  mutation addComment($commentText: String, $postId: ID) {
     addComment(commentText: $commentText, postId: $postId) {
       _id
       commentText

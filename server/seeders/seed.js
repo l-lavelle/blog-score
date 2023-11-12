@@ -16,47 +16,44 @@ const userSeedData = [
     firstName: "John",
     lastName: "Doe",
     username: "johndoe",
-    // Assuming password would be hashed during the User creation process
     password: "password126",
-    friends: [], // This will be an array of references to other User documents
+    role: "admin", // This will be an array of references to other User documents
   },
   {
     firstName: "Sean",
     lastName: "Connor",
     username: "Redbull-boi",
     password: "password123",
-    friends: [],
+    role: "admin",
   },
 
   {
     firstName: "Alex",
     lastName: "Tester",
     username: "Horahed-2-hard",
-
     password: "password124",
-    friends: [],
+    role: "admin",
   },
   {
     firstName: "Scott",
     lastName: "Keller",
     username: "Tonga-till-u-bl33d",
     password: "password125",
-    friends: [],
+    role: "admin",
   },
   {
     firstName: "Matt",
     lastName: "Hamilton",
     username: "Zucced-a-apple",
     password: "password125",
-    friends: [],
+    role: "admin",
   },
   {
     firstName: "Lauren",
     lastName: "Lavelle",
     username: "Cat-lady-withthe-cats",
-
     password: "password8940",
-    friends: [],
+    role: "admin",
   },
 ];
 
