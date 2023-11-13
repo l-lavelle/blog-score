@@ -40,6 +40,28 @@ const resolvers = {
         },
       ]);
     },
+    userLikedPost: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate([
+          {
+            path: "likedPost",
+            model: "Post",
+          },
+        ]);
+        return user;
+      }
+    },
+    userUnlikedPost: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate([
+          {
+            path: "unlikedPost",
+            model: "Post",
+          },
+        ]);
+        return user;
+      }
+    },
     posts: async () => {
       return await Post.find({}).populate([
         {
@@ -121,7 +143,7 @@ const resolvers = {
     },
     // working with auth: admin
     addPost: async (parent, { postTitle, postText, tags }, context) => {
-      if (context.user) {
+      if (context.user.role === "admin") {
         const post = await Post.create({
           postTitle,
           postText,
@@ -206,6 +228,11 @@ const resolvers = {
         { new: true }
       ).populate("tags");
 
+      const userLikes = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { likedPost: postId } },
+        { new: true }
+      );
       if (!post) {
         throw new Error("Post not found.");
       }
@@ -228,12 +255,18 @@ const resolvers = {
     },
     downvotePost: async (parent, { postId }, context) => {
       if (context.user) {
-        return await Post.findOneAndUpdate(
+        const post = await Post.findOneAndUpdate(
           { _id: postId },
           { $inc: { downvotes: 1 } },
           { new: true, runValidators: true }
         );
       }
+      const userdislikes = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { unlikedPost: postId } },
+        { new: true }
+      );
+      return userdislikes;
     },
   },
 };

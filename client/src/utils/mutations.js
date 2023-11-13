@@ -121,7 +121,7 @@ export const DELETE_COMMENT = gql`
 
 // Mutation to upvote a post
 export const UPVOTE_POST = gql`
-  mutation upvotePost($postId: ID!) {
+  mutation upvotePost($postId: ID) {
     upvotePost(postId: $postId) {
       _id
       upvotes
@@ -131,7 +131,7 @@ export const UPVOTE_POST = gql`
 
 // Mutation to downvote a post
 export const DOWNVOTE_POST = gql`
-  mutation downvotePost($postId: ID!) {
+  mutation downvotePost($postId: ID) {
     downvotePost(postId: $postId) {
       _id
       downvotes
@@ -152,8 +152,8 @@ const mutations = {
   //   ADD_COMMENT,
   //   UPDATE_COMMENT,
   //   DELETE_COMMENT,
-  //   UPVOTE_POST,
-  //   DOWNVOTE_POST
+    UPVOTE_POST,
+    DOWNVOTE_POST
 };
 
 export default mutations;

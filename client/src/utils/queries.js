@@ -52,6 +52,7 @@ export const GET_POSTS = gql`
       postText
       tags
       upvotes
+      downvotes
       author {
         _id
         username
@@ -101,6 +102,25 @@ export const RECENT_POSTS_QUERY = gql`
   }
 `;
 
+export const USER_LIKED_POSTS = gql`
+  query userLikedPost {
+    userLikedPost {
+      likedPost {
+        _id
+      }
+    }
+  }
+`;
+
+export const USER_UNLIKED_POSTS = gql`
+  query userUnlikedPost {
+    userUnlikedPost {
+      unlikedPost {
+        _id
+      }
+    }
+  }
+`;
 // Query to get all comments with their authors
 // export const GET_COMMENTS = gql`
 //   query getComments {
