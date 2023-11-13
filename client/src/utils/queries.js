@@ -114,7 +114,7 @@ export const USER_LIKED_POSTS = gql`
 
 export const USER_UNLIKED_POSTS = gql`
   query userUnlikedPost {
-    userLikedPost {
+    userUnlikedPost {
       unlikedPost {
         _id
       }

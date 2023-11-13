@@ -107,7 +107,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
           {likedPostData.forEach((likedPosts) => {
                 if (likedPosts._id ===_id) {
                   btnTest = "danger";
-                  likePost=''
+                  likePost=() => void likePost
               } 
           })}
 

@@ -55,7 +55,7 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id).populate([
           {
-            path: "likedPost",
+            path: "unlikedPost",
             model: "Post",
           },
         ]);
@@ -255,12 +255,18 @@ const resolvers = {
     },
     downvotePost: async (parent, { postId }, context) => {
       if (context.user) {
-        return await Post.findOneAndUpdate(
+        const post = await Post.findOneAndUpdate(
           { _id: postId },
           { $inc: { downvotes: 1 } },
           { new: true, runValidators: true }
         );
       }
+      const userdislikes = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { unlikedPost: postId } },
+        { new: true }
+      );
+      return userdislikes;
     },
   },
 };
