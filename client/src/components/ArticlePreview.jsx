@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../utils/mutations'
-import {GET_POSTS,USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../utils/queries'
+import {GET_POSTS,GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../utils/queries'
 import './ArticlePreview.css'; 
 
 const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downvotes}) => {
@@ -14,7 +14,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
   const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
   
   const [addComment, {error}] = useMutation(ADD_COMMENT, {refetchQueries:[
-    GET_POSTS
+    GET_RECOMMENDED_POSTS
   ]});
   const [downvotePost] = useMutation(DOWNVOTE_POST, {refetchQueries:[
     USER_UNLIKED_POSTS
