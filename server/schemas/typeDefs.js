@@ -6,6 +6,7 @@ const typeDefs = `#graphql
     username: String
     role:String
     likedPost:[Post]
+    unlikedPost:[Post]
     posts: [Post]
     comments: [Comment]
     likedKeywords: [KeywordCount] # Define it as an array of KeywordCount
@@ -53,6 +54,7 @@ const typeDefs = `#graphql
   type Query {
     users: [User]
     userLikedPost:User
+    userUnlikedPost:User
     basicUser:[User]
     posts: [Post]
     comments:[Comment]

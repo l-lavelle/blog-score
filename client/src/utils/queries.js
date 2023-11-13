@@ -52,6 +52,7 @@ export const GET_POSTS = gql`
       postText
       tags
       upvotes
+      downvotes
       author {
         _id
         username
@@ -105,6 +106,16 @@ export const USER_LIKED_POSTS = gql`
   query userLikedPost {
     userLikedPost {
       likedPost {
+        _id
+      }
+    }
+  }
+`;
+
+export const USER_UNLIKED_POSTS = gql`
+  query userUnlikedPost {
+    userLikedPost {
+      unlikedPost {
         _id
       }
     }

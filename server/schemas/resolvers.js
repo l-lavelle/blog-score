@@ -51,6 +51,17 @@ const resolvers = {
         return user;
       }
     },
+    userUnlikedPost: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate([
+          {
+            path: "likedPost",
+            model: "Post",
+          },
+        ]);
+        return user;
+      }
+    },
     posts: async () => {
       return await Post.find({}).populate([
         {

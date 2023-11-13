@@ -13,7 +13,6 @@ const MainContent = () => {
   });
 
   const  postData = data?.posts || []
-  console.log(postData)
   // Create mock articles or an empty array if loading need to test
   if (loading) {
     return (

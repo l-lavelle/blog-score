@@ -57,6 +57,12 @@ const userSchema = new Schema(
         ref: "Post",
       },
     ],
+    unlikedPost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   {
     toJSON: {
