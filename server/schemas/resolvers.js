@@ -79,15 +79,24 @@ const resolvers = {
         // Get the user's liked keywords
         const user = await User.findById(context.user._id);
         const likedKeywords = Array.from(user.likedKeywords.keys());
-    
+
         // Fetch all posts
-        let allPosts = await Post.find({}).populate('tags');
-    
+        let allPosts = await Post.find({}).populate([
+          {
+            path: "postComments",
+            model: "Comment",
+          },
+          {
+            path: "author",
+            model: "User",
+          },
+        ]);
+
         // Sort posts based on whether they match the user's liked keywords and their upvotes
         allPosts.sort((a, b) => {
-          const aMatches = a.tags.some(tag => likedKeywords.includes(tag));
-          const bMatches = b.tags.some(tag => likedKeywords.includes(tag));
-    
+          const aMatches = a.tags.some((tag) => likedKeywords.includes(tag));
+          const bMatches = b.tags.some((tag) => likedKeywords.includes(tag));
+
           if (aMatches && !bMatches) {
             return -1; // a has priority
           } else if (!aMatches && bMatches) {
@@ -97,14 +106,13 @@ const resolvers = {
             return b.upvotes - a.upvotes;
           }
         });
-    
+
         return allPosts;
       } else {
         throw new Error("You must be logged in to get recommendations");
       }
     },
-    
-    
+
     comments: async () => {
       return await Comment.find({}).populate("author");
     },
