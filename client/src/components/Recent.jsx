@@ -4,7 +4,9 @@ import { RECENT_POSTS_QUERY } from '../utils/queries';
 import Card from 'react-bootstrap/Card';
 
 function RecentlyViewedPosts() {
-  const { loading, error, data } = useQuery(RECENT_POSTS_QUERY);
+  const { loading, error, data } = useQuery(RECENT_POSTS_QUERY, {
+    fetchPolicy: 'cache-and-network',
+  });
   console.log(data)
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
