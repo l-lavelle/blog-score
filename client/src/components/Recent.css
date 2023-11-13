@@ -1,0 +1,16 @@
+.card-body {
+
+    color: #212529;
+    background-color: lightgray;
+    border-left-style: groove;
+    border-bottom-style: groove;
+    border-right-style: groove;
+
+}
+
+.card-header {
+
+    color: #14e956;
+    background-color: rgb(33 37 41);
+
+}

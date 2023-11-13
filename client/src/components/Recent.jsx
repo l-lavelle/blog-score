@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY } from '../utils/queries';
 
@@ -21,3 +21,63 @@ const Recent = () => {
 };
 
 export default Recent;
+*/
+import React from 'react';
+import Card from 'react-bootstrap/Card';
+
+function RecentlyViewedPosts() {
+  // Define your list of recently viewed articles
+  const recentlyViewedArticles = [
+    {
+      title: 'Article 1',
+      content: 'This is the content of Article 1.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    {
+      title: 'Article 2',
+      content: 'This is the content of Article 2.',
+    },
+    
+    // Add more articles as needed
+  ];
+
+  return (
+    <div className="container">
+      <Card>
+        <Card.Header>Recently Viewed Posts</Card.Header>
+        <Card.Body>
+          {recentlyViewedArticles.map((article, index) => (
+            <Card key={index} className="mb-3">
+              <Card.Header>Your recently viewed {index + 1}</Card.Header>
+              <Card.Body>
+                <h5>{article.title}</h5>
+                <p>{article.content}</p>
+              </Card.Body>
+            </Card>
+          ))}
+        </Card.Body>
+      </Card>
+    </div>
+  );
+}
+
+export default RecentlyViewedPosts;
