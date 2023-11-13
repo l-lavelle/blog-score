@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top" className='px-3 rounded-navbar'>
-      <Navbar.Brand href="/" className='font-c color-c size-change'>BlogScore</Navbar.Brand>
+      <Navbar.Brand href="/" className='font-c color-c size-change'>B|S</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <div className="flex-grow-1"></div>
       <Navbar.Collapse id="basic-navbar-nav">
