@@ -133,7 +133,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
         
           <p>{downvotes}</p>
           {postComments.map((posts, index) => (
-          <li>{posts.commentText}</li>
+          <li key={index}>{posts.commentText}</li>
         
         ))}
           {Auth.loggedIn()?
