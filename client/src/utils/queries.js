@@ -79,6 +79,7 @@ export const GET_RECOMMENDED_POSTS = gql`
       postText
       tags
       upvotes
+      downvotes
       author {
         _id
         username
@@ -86,7 +87,11 @@ export const GET_RECOMMENDED_POSTS = gql`
       postComments {
         _id
         commentText
-        createdAt
+        author {
+            _id
+            username
+          }
+          createdAt
       }
     }
   }

@@ -277,19 +277,35 @@ const resolvers = {
       return post; // If you want to return the updated post instead of user
     },
     downvotePost: async (parent, { postId }, context) => {
-      if (context.user) {
-        const post = await Post.findOneAndUpdate(
-          { _id: postId },
-          { $inc: { downvotes: 1 } },
-          { new: true, runValidators: true }
-        );
+      if (!context.user) {
+        throw new Error("You must be logged in to upvote a post.");
       }
+
+      // Find the post and increment upvotes
+      const post = await Post.findOneAndUpdate(
+        { _id: postId },
+        { $inc: { downvotes: 1 } },
+        { new: true, runValidators: true }
+      );
+
+      if (!post) {
+        throw new Error("Post not found.");
+      }
+
+      // Find the user and update likedKeywords
+      const user = await User.findById(context.user._id);
+
+      if (!user) {
+        throw new Error("User not found.");
+      }
+
       const userdislikes = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $addToSet: { unlikedPost: postId } },
         { new: true }
       );
-      return userdislikes;
+
+      return post;
     },
   },
 };
