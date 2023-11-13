@@ -107,6 +107,8 @@ export const USER_LIKED_POSTS = gql`
     userLikedPost {
       likedPost {
         _id
+        postTitle
+        postText
       }
     }
   }
