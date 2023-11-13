@@ -16,8 +16,13 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
   const [addComment, {error}] = useMutation(ADD_COMMENT, {refetchQueries:[
     GET_POSTS
   ]});
-  const [upvotePost] = useMutation(UPVOTE_POST)
-  const [downvotePost] = useMutation(DOWNVOTE_POST)
+  const [downvotePost] = useMutation(DOWNVOTE_POST, {refetchQueries:[
+    USER_UNLIKED_POSTS
+ ]})
+  const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
+    USER_LIKED_POSTS
+  ]})
+  
 
   const {  data:likeData } = useQuery(USER_LIKED_POSTS);
   const  likedPostData = likeData?.userLikedPost?.likedPost || []
