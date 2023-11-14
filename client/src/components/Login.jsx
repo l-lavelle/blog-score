@@ -30,7 +30,7 @@ const Login = () => {
       if (error) {
         throw new Error('Unable login user');
       }
-
+      window.location.assign("/home")
     } catch (error) {
       console.log(error);
     }

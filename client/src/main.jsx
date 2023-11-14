@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MainContent />
+        element: <Login />
       },
       {
         path: '/recent',
@@ -32,12 +32,16 @@ const router = createBrowserRouter([
         element: <Favorites />
       },
       {
-        path: '/login',
-        element: <Login />
+        path: '/home',
+        element: <MainContent />
       },
       {
         path: '/signup',
         element: <SignUp />
+      },
+      {
+        path: '/login',
+        element: <Login />
       },
       {
         path: '/admin/posts',
