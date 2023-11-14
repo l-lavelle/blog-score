@@ -6,7 +6,8 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../utils/mutations'
-import {GET_POSTS,GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../utils/queries'
+import {GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../utils/queries'
+import Accordion from 'react-bootstrap/Accordion'
 import './ArticlePreview.css'; 
 
 const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downvotes}) => {
@@ -94,19 +95,20 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
   let btnTest2 = "primary";
   let likePost =()=>upvote(_id)
   let unlikePost = ()=>downvote(_id)
+  let eventKey = -1
 
   return (
-    <Card className="mb-3">
-      <Card.Body>
-        <Card.Title>{postTitle}</Card.Title>
-        <Card.Text>
-          {isExpanded ? postText : truncateText(postText, 20)}
-        </Card.Text>
-        <Button onClick={toggleText} variant="primary">
-          {isExpanded ? 'Show Less' : 'Show More'}
-        </Button>
-
-        {isExpanded?
+    <>
+    <Accordion className="mb-4" defaultActiveKey="0"  >
+    <Accordion.Item eventKey={eventKey+1} >
+      <Accordion.Header onClick={toggleText}>
+      <div className="mb-3 postTitle"> {postTitle}</div>
+      <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
+      </Accordion.Header>
+      
+      <Accordion.Body>
+      {postText}
+       
         <div>
           {/* <Button onClick={()=>upvote(_id)} variant={()=>findLikedPost(_id)}> Upvote */}
           {likedPostData.forEach((likedPosts) => {
@@ -140,12 +142,13 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
             <p>{downvotes}</p>
           </>
           :[]}
+          <h5>Comments:</h5>
           {postComments.map((posts, index) => (
           <li key={index}>{posts.commentText}</li>
         ))}
           {Auth.loggedIn()?
           <>
-            <InputGroup>
+            <InputGroup className="mt-3">
             <Form.Control 
               name='commentText'
               onChange={updateData}
@@ -154,11 +157,14 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
             </InputGroup>
             <button onClick={()=>commentPost(_id)}>Post Comment</button>
           </>:[]}
-      </div>:<></>}
-      </Card.Body>
-    </Card>
+      </div>
+      </Accordion.Body>
+    </Accordion.Item>
+  </Accordion>
     
+    </>
   );
 };
 
 export default ArticlePreview;
+
