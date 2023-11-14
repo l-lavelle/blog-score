@@ -29,7 +29,7 @@ const SignUp = () => {
       if (error) {
         throw new Error('Unable to create user');
       }
-
+      window.location.assign("/home")
     } catch (error) {
       console.log(error);
     }

@@ -13,9 +13,9 @@ const NavBar = () => {
       <div className="flex-grow-1"></div>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="justify-content-end m-3" style={{ width: "100%" }}>
-          <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/recent">Recent</Nav.Link>
-          {Auth.loggedIn()?( <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>):(<Nav.Link as={Link} to="/login">Favorites</Nav.Link>)}
+          {Auth.loggedIn()?( <Nav.Link as={Link} to="/home">Home</Nav.Link>):(<Nav.Link as={Link} to="/">Home</Nav.Link>)}
+          {Auth.loggedIn()?( <Nav.Link as={Link} to="/recent">Recent</Nav.Link>):(<Nav.Link as={Link} to="/">Recent</Nav.Link>)}
+          {Auth.loggedIn()?( <Nav.Link as={Link} to="/favorites">Favorites</Nav.Link>):(<Nav.Link as={Link} to="/">Favorites</Nav.Link>)}
           {Auth.IsAdmin()?( 
           <NavDropdown title="Admin" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/admin/posts">
@@ -27,7 +27,7 @@ const NavBar = () => {
               <NavDropdown.Item as={Link} to="/admin/users">Manage Users</NavDropdown.Item>
             </NavDropdown>
               ):([])}  
-          {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/login">Login</Nav.Link>)}
+          {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link as={Link} to="/">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
