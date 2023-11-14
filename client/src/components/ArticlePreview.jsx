@@ -155,7 +155,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
               value={updatedData.commentText}
               /> 
             </InputGroup>
-            <button onClick={()=>commentPost(_id)}>Post Comment</button>
+            <Button onClick={()=>commentPost(_id)}>Post Comment</Button>
           </>:[]}
       </div>
       </Accordion.Body>
