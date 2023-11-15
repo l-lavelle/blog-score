@@ -24,7 +24,7 @@ const AdminManageBlog = () => {
   }
     return (
       <>
-      <h1>Manage Blog Posts </h1>
+      <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Blog Posts </h1>
       <div className="main-content">
         {postData.map((article) => (
           <div onClick={()=>openModal(article._id, article.postTitle, article.postText)} key={article._id}>

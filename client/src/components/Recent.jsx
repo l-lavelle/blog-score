@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY } from '../utils/queries';
 import Accordion from 'react-bootstrap/Accordion'
+import './Recent.css'
 
 function RecentlyViewedPosts() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -26,7 +27,7 @@ function RecentlyViewedPosts() {
 
   return (
     <>
-    <h1>Recently Posts</h1>
+    <h1 className="text-center fw-bold fs-2 recentTitle">Recent Posts</h1>
     {data.recentPosts.map((post, index) => (
       <Accordion  key={post._id} className="mb-4" defaultActiveKey="0" >
         <Accordion.Item eventKey={index} >

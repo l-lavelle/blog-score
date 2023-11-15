@@ -1,27 +1,21 @@
-.card-body {
-
-    color: #212529;
-    background-color: lightgray;
-    border-left-style: groove;
-    border-bottom-style: groove;
-    border-right-style: groove;
-
+.recentTitle {
+  color: white;
+}
+/* .card-body {
+  color: #212529;
+  background-color: lightgray;
+  border-left-style: groove;
+  border-bottom-style: groove;
+  border-right-style: groove;
 }
 
 .card-header {
-
-    color: #14e956;
-    background-color: rgb(33 37 41);
-
+  color: #14e956;
+  background-color: rgb(33 37 41);
 }
 .mb-3.card-header {
-
-    background-color: #212529;
-    color:#14e956;
-
+  background-color: #212529;
+  color: #14e956;
 }
 .mb-3.card-body {
-
-
-
-}
+} */
