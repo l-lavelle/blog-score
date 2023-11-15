@@ -54,7 +54,7 @@
 
  # The journey with Blog-Score doesn't end here. Looking ahead, we envision an even more dynamic platform with upcoming developments and features. Our roadmap includes enhanced personalization algorithms, expanded content categories, and integrations with emerging technologies. We're dedicated to staying at the forefront of technological advancements to continually elevate the user experience. As we evolve, your feedback and suggestions will play a crucial role in shaping the future of Blog-Score.
 
-## But Blog-Score isn't just about content; it's about community and engagement. Our developers have recently introduced an exciting, new upcoming feature – a "Support the Creators" button linked to a tip jar powered by Stripe. Now, users can directly support their favorite creators, fostering a sense of community and appreciation for the incredible content on our platform. This innovation reflects our commitment to user engagement and the success of the creators who contribute to the Blog-Score community.
+## But Blog-Score isn't just about content; it's about community and engagement. Our developers have recently introduced an exciting, new upcoming feature – a "Support the Creators" button linked to a tip jar powered by Stripe. Soon users will be able to directly support their favorite creators, fostering a sense of community and appreciation for the incredible content on our platform. This innovation reflects our commitment to user engagement and the success of the creators who contribute to the Blog-Score community.
 
   ## FileNavigation
   ``````
