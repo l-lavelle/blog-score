@@ -15,7 +15,7 @@ if (loading) {
 
 return (
       <>
-        <h1>Manage Users</h1>
+        <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Users</h1>
         <AllUsers users={users}/>
       </>
     );

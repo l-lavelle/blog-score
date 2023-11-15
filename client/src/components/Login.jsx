@@ -6,8 +6,6 @@ import  { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import './Login.css';
 
-
-
 const Login = () => {
   const [login, {error} ] = useMutation(LOGIN);
   

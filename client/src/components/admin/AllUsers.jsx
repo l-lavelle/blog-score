@@ -28,10 +28,11 @@ const AllUsers = ({ users }) => {
           {users &&
             users.map((user) => (
                 <div key={user._id} className="card mb-3">
-                  <h4 className="card-header bg-dark text-light p-2 m-0">
+                  <h4 className="card-header bg-dark text-light p-2 mb-1">
                     {user.username} <br />
+                    <Button className="mt-2" onClick={() => deleteProfile(user._id)} variant="danger">Delete User</Button>
                   </h4>
-                  <Button onClick={() => deleteProfile(user._id)} variant="danger">Delete User</Button>
+                 
                 </div>
             ))}
       </div>

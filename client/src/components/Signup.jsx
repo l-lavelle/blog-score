@@ -6,8 +6,6 @@ import  { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import './Login.css';
 
-
-
 const SignUp = () => {
   const [addUser, {error} ] = useMutation(ADD_USER);
   const [userSignUpData, setUserSignUpData] = useState({ username: '', password: '' , firstName:'', lastName:''});

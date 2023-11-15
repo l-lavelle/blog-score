@@ -1,20 +1,20 @@
-// TODO: tags curently seperated by comma will need to trim whitespace??
-// TODO: baby proof 
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
-
 import  { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 
 const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
-  
+  const [message, setMesage]=useState('')
   const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
 
   const updateData = async (event)=>{
     const { name, value } = event.target;
     if (name==="tags"){
-      const cleanTags= value.split(",")
+      const cleanTags= value.split(",").map(function(tag) {
+        return tag.trim();
+      });
+      console.log(cleanTags)
       setPostData({ ...postData, [name]: cleanTags });
     }
     else{
@@ -25,19 +25,19 @@ const AdminCreatePost = () => {
   const createPost = async (event) => {
     event.preventDefault();
     try {
-      console.log(postData)
       await addPost({
         variables: {...postData },
       });
-
       if (error) {
-        throw new Error('Unable login user');
+        throw new Error('Unable post');
       }
 
     } catch (error) {
       console.log(error);
     }
-    
+    console.log(message)
+
+    setMesage( "success" );
     setPostData({
       postTitle: '',
       postText: '',
@@ -48,13 +48,12 @@ const AdminCreatePost = () => {
   
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <Card className="card-3d my-5" style={{ width: '22rem', padding: '20px' }}>
+      <Card className="card-3d my-5" style={{ minWidth: '80vw',  padding: '5px' }}>
         <Card.Body>
-          <Card.Title className="text-center fw-bold">Create New Blog Post</Card.Title>
-          
-          <Form onSubmit={createPost}>
+          <Card.Title className="text-center fw-bold fs-2">Create New Blog Post</Card.Title>
+          <Form onSubmit={createPost} onClick={()=>{setMesage('')}}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label className='text-ad m-3'>Blog Text</Form.Label>
+              <Form.Label className='text-ad m-3'>Blog Title</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Blog Title"
@@ -79,6 +78,7 @@ const AdminCreatePost = () => {
 
             <Form.Group controlId="formBasicEmail">
               <Form.Label className='text-ad m-3'>Tags</Form.Label>
+              <p>Please seperate multiple tags with comma</p>
               <Form.Control
                 type="text"
                 placeholder="add tags"
@@ -87,16 +87,17 @@ const AdminCreatePost = () => {
                 onChange={updateData}
               />
             </Form.Group>
-
-            <Button variant="primary" type="submit" className="w-100 fw-bold mt-4">
+            <div className="text-center">
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} disabled={!(postData.postTitle && postData.postText)} variant="primary" type="submit" className="w-100 fw-bold mt-4">
               Submit
             </Button>
+            </div>
+            {message==="success"? <p className='text-center'>Post was created</p>: null}
+            {message==='error'? <p>Unable to create post</p>: null}
           </Form>
         </Card.Body>
       </Card>
-    </Container>
-    
-    
+    </Container>    
   );
 };
 

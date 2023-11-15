@@ -67,7 +67,7 @@ const EditPostModal = (props) => {
           centered
         >
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
               <InputGroup>
                 <Form.Control 
                   name='postTitle'
@@ -81,7 +81,7 @@ const EditPostModal = (props) => {
           <InputGroup>
             <Form.Control 
             as="textarea" 
-            rows={10} 
+            rows={12} 
             aria-label="With textarea"  
             defaultValue={props.text}
             name='postText'
@@ -90,9 +90,9 @@ const EditPostModal = (props) => {
           </InputGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
-            <Button onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
-            <Button onClick={props.onHide}>Close</Button>
+            <Button style={{ border: "#14e956", background:"black"}} onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
+            <Button style={{ border: "#14e956", background:"black"}} onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
+            <Button style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
           </Modal.Footer>
         </Modal>
       );
