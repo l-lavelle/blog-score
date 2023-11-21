@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../../utils/mutations'
-import {GET_SINGLE_POST, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../../utils/queries'
+import {ADD_COMMENT } from '../../utils/mutations'
+import {GET_SINGLE_POST} from '../../utils/queries'
 // import dayjs from 'dayjs'
 
 const HomeComment = ({ postId}) => {

@@ -1,19 +1,13 @@
-import { Button, Card  } from 'react-bootstrap';
+import { Button  } from 'react-bootstrap';
 import Auth from '../../utils/auth'
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../../utils/mutations'
-import {GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../../utils/queries'
-import Accordion from 'react-bootstrap/Accordion'
+import { UPVOTE_POST } from '../../utils/mutations'
+import { USER_LIKED_POSTS} from '../../utils/queries'
 
 
-const HomeUpVote = ({ _id, postTitle, postText, postComments, upvotes, downvotes}) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
-  
+
+const HomeUpVote = ({ _id, upvotes, }) => {
   const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
   ]})
@@ -36,9 +30,8 @@ const HomeUpVote = ({ _id, postTitle, postText, postComments, upvotes, downvotes
 
 
   let btnTest = "primary";
-//   let btnTest2 = "primary";
   let likePost =()=>upvote(_id)
-//   let unlikePost = ()=>downvote(_id)
+
 
   return (
     <>
