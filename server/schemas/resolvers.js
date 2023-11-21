@@ -40,6 +40,25 @@ const resolvers = {
         },
       ]);
     },
+    getSinglePost: async (parent, { postId }) => {
+      return await Post.findOne({ _id: postId }).populate([
+        {
+          path: "postComments",
+          model: "Comment",
+        },
+        {
+          path: "postComments",
+          populate: {
+            path: "author",
+            model: "User",
+          },
+        },
+        {
+          path: "author",
+          model: "User",
+        },
+      ]);
+    },
     userLikedPost: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate([

@@ -34,6 +34,21 @@ export const GET_ROLE_USER = gql`
     }
   }
 `;
+
+export const GET_SINGLE_POST = gql`
+  query getSinglePost($postId: ID) {
+    getSinglePost(postId: $postId) {
+      postComments {
+        commentText
+        createdAt
+        author {
+          username
+        }
+      }
+    }
+  }
+`;
+
 // export const GET_POSTS = gql`
 //   query getPosts {
 //     posts {
@@ -88,10 +103,10 @@ export const GET_RECOMMENDED_POSTS = gql`
         _id
         commentText
         author {
-            _id
-            username
-          }
-          createdAt
+          _id
+          username
+        }
+        createdAt
       }
     }
   }

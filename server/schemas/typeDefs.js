@@ -60,6 +60,7 @@ const typeDefs = `#graphql
     comments:[Comment]
     getRecommendedPosts: [Post]
     recentPosts: [Post]
+    getSinglePost(postId:ID):Post
   }
   type Mutation {
     addUser(user:UserInput): Auth

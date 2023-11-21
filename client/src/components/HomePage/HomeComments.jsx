@@ -1,20 +1,26 @@
 // find post by id 
 import { Button, Card  } from 'react-bootstrap';
-import Auth from '../utils/auth'
+import Auth from '../../utils/auth'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../utils/mutations'
-import {GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../utils/queries'
-import './ArticlePreview.css'; 
+import {ADD_COMMENT, UPVOTE_POST, DOWNVOTE_POST } from '../../utils/mutations'
+import {GET_SINGLE_POST, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../../utils/queries'
+// import dayjs from 'dayjs'
 
-const HomeComment = ({ _id, postTitle, postText, postComments, upvotes, downvotes}) => {
+const HomeComment = ({ postId}) => {
+  const { loading, data } = useQuery(GET_SINGLE_POST,{
+    variables: { postId: postId },
+    fetchPolicy: 'cache-and-network',
+  });
+  const  postData = data?.getSinglePost || []
+  console.log("postData",postData.postComments)
   const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
   
   const [addComment, {error}] = useMutation(ADD_COMMENT, {
-    refetchQueries: [],
+    refetchQueries: [GET_SINGLE_POST],
   });
 
   const updateData= async (event)=>{
@@ -38,15 +44,30 @@ const HomeComment = ({ _id, postTitle, postText, postComments, upvotes, downvote
     }
   }
 
+  if (loading) {
+    return (
+    <>
+      <h1>Loading...</h1>
+      {/* {Array.from({ length: 5 }, (_, index) => ({
+        title: 'Loading Article ' + (index + 1),
+        content: 'Loading content...',
+      }))} */}
+    </>
+    )
+    
+  }
+
   return (
     <>
         <h5>Comments:</h5>
-        {postComments.length  ?  
+        {postData.postComments.length  ?  
         <>
-        {postComments.map((posts, index) => (
+        {postData.postComments.map((posts, index) => (
             <Card key={index}  className="mb-4">
             <Card.Body>
             <Card.Text>{posts.commentText}</Card.Text>
+            <Card.Text>{posts.createdAt}</Card.Text>
+            <Card.Text>{posts.author.username}</Card.Text>
             </Card.Body>
         </Card>
         ))}
@@ -56,6 +77,7 @@ const HomeComment = ({ _id, postTitle, postText, postComments, upvotes, downvote
           <Card.Text>No Comments Yet</Card.Text>
         </Card.Body>
         </Card>}
+        
           {Auth.loggedIn()?
           <>
             <h4 className="mt-4">Add a Comment:</h4>
@@ -67,7 +89,7 @@ const HomeComment = ({ _id, postTitle, postText, postComments, upvotes, downvote
               value={updatedData.commentText}
               /> 
             </InputGroup>
-            <Button style={{ background: "#14e956" , border: "black", color:"black"}} onClick={()=>commentPost(_id)}>Post Comment</Button>
+            <Button style={{ background: "#14e956" , border: "black", color:"black"}} onClick={()=>commentPost(postId)}>Post Comment</Button>
           </>:[]}
     </>
   );

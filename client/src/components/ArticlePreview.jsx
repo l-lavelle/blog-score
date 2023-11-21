@@ -11,6 +11,7 @@ import {GET_RECOMMENDED_POSTS, USER_LIKED_POSTS, USER_UNLIKED_POSTS} from '../ut
 import Accordion from 'react-bootstrap/Accordion'
 import './ArticlePreview.css'; 
 import HomeUpVote from './HomePage/HomeUpvote'
+import HomeComments from './HomePage/HomeComments'
 
 const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downvotes}) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,12 +24,12 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
   const [downvotePost] = useMutation(DOWNVOTE_POST, {refetchQueries:[
     USER_UNLIKED_POSTS
  ]})
-  const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
-    USER_LIKED_POSTS
-  ]})
+  // const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
+  //   USER_LIKED_POSTS
+  // ]})
   
-  const {  data:likeData } = useQuery(USER_LIKED_POSTS);
-  const  likedPostData = likeData?.userLikedPost?.likedPost || []
+  // const {  data:likeData } = useQuery(USER_LIKED_POSTS);
+  // const  likedPostData = likeData?.userLikedPost?.likedPost || []
   const { data:dislikeData } = useQuery(USER_UNLIKED_POSTS);
   const  unlikedPostData = dislikeData?.userUnlikedPost?.unlikedPost || []
 
@@ -53,18 +54,18 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
     }
   }
 
-  const upvote = async (postId) => {
-    try{
-      await upvotePost({
-        variables: { postId:postId }
-      })
-      if (error) {
-        throw new Error('Unable to upvote post');
-      }
-    }catch (err){
-      console.error(err)
-    }
-  };
+  // const upvote = async (postId) => {
+  //   try{
+  //     await upvotePost({
+  //       variables: { postId:postId }
+  //     })
+  //     if (error) {
+  //       throw new Error('Unable to upvote post');
+  //     }
+  //   }catch (err){
+  //     console.error(err)
+  //   }
+  // };
 
   const downvote = async(postId) => {
     try{
@@ -91,9 +92,9 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
     setIsExpanded(!isExpanded);
   };
 
-  let btnTest = "primary";
+  // let btnTest = "primary";
   let btnTest2 = "primary";
-  let likePost =()=>upvote(_id)
+  // let likePost =()=>upvote(_id)
   let unlikePost = ()=>downvote(_id)
   let eventKey = -1
 
@@ -108,12 +109,12 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
       <Accordion.Body>
       {postText}
         <div>
-          {likedPostData.forEach((likedPosts) => {
+          {/* {likedPostData.forEach((likedPosts) => {
                 if (likedPosts._id ===_id) {
                   btnTest = "success";
                   likePost=() => void likePost
               } 
-          })}
+          })} */}
 
           {unlikedPostData.forEach((unlikedPosts) => {
                 if (unlikedPosts._id ===_id) {
@@ -142,7 +143,8 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
             </div>
           </div>
           :[]}
-          <h5>Comments:</h5>
+          <HomeComments postId={_id}/>
+          {/* <h5>Comments:</h5>
           {postComments.length  ?  
           <>
             {postComments.map((posts, index) => (
@@ -170,7 +172,7 @@ const ArticlePreview = ({ _id, postTitle, postText, postComments, upvotes, downv
               /> 
             </InputGroup>
             <Button style={{ background: "#14e956" , border: "black", color:"black"}} onClick={()=>commentPost(_id)}>Post Comment</Button>
-          </>:[]}
+          </>:[]} */}
       </div>
       </Accordion.Body>
     </Accordion.Item>
