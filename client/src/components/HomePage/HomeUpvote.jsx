@@ -3,7 +3,7 @@ import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations'
-import { USER_LIKED_POSTS, } from '../../utils/queries'
+import { USER_LIKED_POSTS } from '../../utils/queries'
 
 const HomeUpVote = ({ _id, upvotes, }) => {
   const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
