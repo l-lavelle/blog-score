@@ -6,7 +6,7 @@ import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations'
 import { USER_LIKED_POSTS } from '../../utils/queries'
 
 const HomeUpVote = ({ _id, upvotes, }) => {
-  const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
+  const [upvotePost, {error}] = useMutation(UPVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
   ]})
   

@@ -5,7 +5,7 @@ import './ArticlePreview.css';
 import HomeUpVote from './HomePage/HomeUpvote'
 import HomeComments from './HomePage/HomeComments'
 
-const ArticlePreview = ({ _id, postTitle, postText, upvotes, downvotes}) => {
+const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
 
