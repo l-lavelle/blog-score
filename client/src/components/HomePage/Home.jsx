@@ -1,13 +1,13 @@
-import ArticlePreview from './ArticlePreview';
+import ArticlePreview from '../ArticlePreview';
 import { useQuery } from '@apollo/client';
-import {GET_RECOMMENDED_POSTS} from '../utils/queries'
+import {GET_POSTS} from '../../utils/queries'
 
-const MainContent = () => {
-  const { loading, data } = useQuery(GET_RECOMMENDED_POSTS,{
+const Home = () => {
+  const { loading, data } = useQuery(GET_POSTS,{
     fetchPolicy: 'cache-and-network',
   });
 
-  const  postData = data?.getRecommendedPosts || []
+  const  postData = data?.posts || []
 
   if (loading) {
     return (
@@ -31,4 +31,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default Home;

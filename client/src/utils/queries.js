@@ -60,7 +60,7 @@ export const GET_SINGLE_POST = gql`
 
 // Query to get all posts with their comments and authors
 export const GET_POSTS = gql`
-  query getPosts {
+  query posts {
     posts {
       _id
       postTitle

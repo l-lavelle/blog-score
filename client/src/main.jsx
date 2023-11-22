@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import MainContent from './components/MainContent';
 import Recent from "./components/Recent"
+import Home from './components/HomePage/Home'
 import Favorites from './components/Favorites';
 import Login from './components/Login'
 import SignUp from './components/Signup';
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Login />
+        element: <Home />
       },
       {
         path: '/recent',

@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import {ADD_COMMENT } from '../../utils/mutations'
 import {GET_SINGLE_POST} from '../../utils/queries'
-// import dayjs from 'dayjs'
+import dayjs from 'dayjs'
 
 const HomeComment = ({ postId}) => {
   const { loading, data } = useQuery(GET_SINGLE_POST,{
@@ -66,7 +66,7 @@ const HomeComment = ({ postId}) => {
             <Card key={index}  className="mb-4">
             <Card.Body>
             <Card.Text>{posts.commentText}</Card.Text>
-            <Card.Text>{posts.createdAt}</Card.Text>
+            <Card.Text>{dayjs(posts.createdAt).format('MM/DD/YYYY') }</Card.Text>
             <Card.Text>{posts.author.username}</Card.Text>
             </Card.Body>
         </Card>
@@ -77,7 +77,6 @@ const HomeComment = ({ postId}) => {
           <Card.Text>No Comments Yet</Card.Text>
         </Card.Body>
         </Card>}
-        
           {Auth.loggedIn()?
           <>
             <h4 className="mt-4">Add a Comment:</h4>
