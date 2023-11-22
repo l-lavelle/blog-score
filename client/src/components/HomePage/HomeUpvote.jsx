@@ -2,14 +2,18 @@ import { Button  } from 'react-bootstrap';
 import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import { UPVOTE_POST } from '../../utils/mutations'
-import { USER_LIKED_POSTS} from '../../utils/queries'
+import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations'
+import { USER_LIKED_POSTS, } from '../../utils/queries'
 
 const HomeUpVote = ({ _id, upvotes, }) => {
   const [upvotePost] = useMutation(UPVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
   ]})
   
+  const [downvotePost] = useMutation(DOWNVOTE_POST, {refetchQueries:[
+    USER_LIKED_POSTS
+ ]})
+
   const {  data:likeData } = useQuery(USER_LIKED_POSTS);
   const  likedPostData = likeData?.userLikedPost?.likedPost || []
 
@@ -26,17 +30,29 @@ const HomeUpVote = ({ _id, upvotes, }) => {
     }
   };
 
+  const downvote = async(postId) => {
+    try{
+      await downvotePost({
+        variables: { postId:postId }
+      })
+      if (error) {
+        throw new Error('Unable to downvote post');
+      }
+    }catch (err){
+      console.error(err)
+    }
+  };
 
   let btnTest = "primary";
   let likePost =()=>upvote(_id)
-
+  let unlikePost=()=>downvote(_id)
 
   return (
     <>
           {likedPostData.forEach((likedPosts) => {
                 if (likedPosts._id ===_id) {
                   btnTest = "success";
-                  likePost=() => void likePost
+                  likePost=() => unlikePost()
               } 
           })}
           {Auth.loggedIn()?

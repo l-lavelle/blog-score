@@ -134,7 +134,7 @@ export const DOWNVOTE_POST = gql`
   mutation downvotePost($postId: ID) {
     downvotePost(postId: $postId) {
       _id
-      downvotes
+      upvotes
     }
   }
 `;
@@ -152,8 +152,8 @@ const mutations = {
   //   ADD_COMMENT,
   //   UPDATE_COMMENT,
   //   DELETE_COMMENT,
-    UPVOTE_POST,
-    DOWNVOTE_POST
+  UPVOTE_POST,
+  DOWNVOTE_POST,
 };
 
 export default mutations;

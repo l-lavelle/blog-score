@@ -297,13 +297,13 @@ const resolvers = {
     },
     downvotePost: async (parent, { postId }, context) => {
       if (!context.user) {
-        throw new Error("You must be logged in to upvote a post.");
+        throw new Error("You must be logged in to unlike a post.");
       }
 
       // Find the post and increment upvotes
       const post = await Post.findOneAndUpdate(
         { _id: postId },
-        { $inc: { downvotes: 1 } },
+        { $inc: { upvotes: -1 } },
         { new: true, runValidators: true }
       );
 
@@ -318,14 +318,51 @@ const resolvers = {
         throw new Error("User not found.");
       }
 
-      const userdislikes = await User.findOneAndUpdate(
+      await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { unlikedPost: postId } },
+        { $pull: { likedPost: postId } },
         { new: true }
       );
 
+      post.tags.forEach((tag) => {
+        user.likedKeywords.set(tag, (user.likedKeywords.get(tag) || 0) - 1);
+      });
+
+      await user.save();
+
       return post;
     },
+    // downvotePost: async (parent, { postId }, context) => {
+    //   if (!context.user) {
+    //     throw new Error("You must be logged in to upvote a post.");
+    //   }
+
+    //   // Find the post and increment upvotes
+    //   const post = await Post.findOneAndUpdate(
+    //     { _id: postId },
+    //     { $inc: { downvotes: 1 } },
+    //     { new: true, runValidators: true }
+    //   );
+
+    //   if (!post) {
+    //     throw new Error("Post not found.");
+    //   }
+
+    //   // Find the user and update likedKeywords
+    //   const user = await User.findById(context.user._id);
+
+    //   if (!user) {
+    //     throw new Error("User not found.");
+    //   }
+
+    //   const userdislikes = await User.findOneAndUpdate(
+    //     { _id: context.user._id },
+    //     { $addToSet: { unlikedPost: postId } },
+    //     { new: true }
+    //   );
+
+    //   return post;
+    // },
   },
 };
 
