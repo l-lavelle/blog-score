@@ -37,6 +37,7 @@ const HomeComment = ({ postId}) => {
           postId:postId
           }
       })
+      setUpdatedData({commentText:""})
       if (error) {
         throw new Error('Unable to update post');
       }
@@ -45,9 +46,6 @@ const HomeComment = ({ postId}) => {
     }
   }
 
-  const date = async(commentDate)=>{
-    return new Date(commentDate *1000)
-  }
   if (loading) {
     return (
     <>
