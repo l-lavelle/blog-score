@@ -70,7 +70,7 @@ const HomeComment = ({ postId}) => {
             <Card key={index}  className="mb-4">
             <Card.Body>
             <Card.Text>{posts.commentText}</Card.Text>
-            <Card.Text>{posts.createdAt}</Card.Text>
+            <Card.Text>{new Date(parseInt(posts.createdAt)).toLocaleDateString()}</Card.Text>
             <Card.Text>{posts.author.username}</Card.Text>
             </Card.Body>
         </Card>
