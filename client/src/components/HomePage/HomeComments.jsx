@@ -1,4 +1,3 @@
-// find post by id 
 import { Button, Card  } from 'react-bootstrap';
 import Auth from '../../utils/auth'
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -8,16 +7,14 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import {ADD_COMMENT } from '../../utils/mutations'
 import {GET_SINGLE_POST} from '../../utils/queries'
-import dayjs from 'dayjs'
-dayjs().format()
 
 const HomeComment = ({ postId}) => {
   const { loading, data } = useQuery(GET_SINGLE_POST,{
     variables: { postId: postId },
     fetchPolicy: 'cache-and-network',
   });
+
   const  postData = data?.getSinglePost || []
-  console.log("postData",postData.postComments)
   const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
   
   const [addComment, {error}] = useMutation(ADD_COMMENT, {
