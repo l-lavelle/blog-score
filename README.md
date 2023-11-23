@@ -30,7 +30,7 @@
 
 # OurMission
 
-## Welcome to Blog-Score, your go-to platform for curated content that perfectly aligns with your interests! At the heart of our service is a powerful custom recommendation engine designed to understand and anticipate user preferences. The meticulously organized file structure ensures the seamless integration of our recommendation engine, making it the backbone of a user-friendly experience!
+Welcome to Blog-Score, your go-to platform for curated content that perfectly aligns with your interests! At the heart of our service is a powerful custom recommendation engine designed to understand and anticipate user preferences. The meticulously organized file structure ensures the seamless integration of our recommendation engine, making it the backbone of a user-friendly experience!
 
 ## Table of Contents
 
@@ -50,23 +50,23 @@ Mobile application is currently deployed to Heroku
 
 # WhyBlogScore?
 
-# Intelligent Content Curation
+### Intelligent Content Curation
 
-## Blog-Score stands out by leveraging cutting-edge technology to provide intelligent content curation. Nestled within the 'client' folder is our frontend architecture, housing components and utility functions. The 'src' directory encapsulates the dynamic duo - 'main.jsx' and 'app.jsx,' orchestrating an engaging user interface. Meanwhile, the 'utils' folder contains the brains behind the operation – 'auth.js,' 'mutations.js,' and 'queries.js,' all working in harmony to tailor content suggestions based on individual user behaviors.
+Blog-Score stands out by leveraging cutting-edge technology to provide intelligent content curation. Nestled within the 'client' folder is our frontend architecture, housing components and utility functions. The 'src' directory encapsulates the dynamic duo - 'main.jsx' and 'app.jsx,' orchestrating an engaging user interface. Meanwhile, the 'utils' folder contains the brains behind the operation – 'auth.js,' 'mutations.js,' and 'queries.js,' all working in harmony to tailor content suggestions based on individual user behaviors.
 
-# Robust Backend Architecture
+### Robust Backend Architecture
 
-## Behind the scenes, the 'server' folder boasts a robust backend architecture. From 'config' to 'models' and 'schemas,' every element is meticulously structured. 'connection.js' in 'config' ensures a stable link to our database, while the 'models' directory stores essential data models like 'Comments.js,' 'Posts.js,' and 'User.js.' 'schemas' orchestrates GraphQL functionality through 'typeDef.js' and 'resolvers.js,' providing a seamless communication channel for our recommendation engine.
+Behind the scenes, the 'server' folder boasts a robust backend architecture. From 'config' to 'models' and 'schemas,' every element is meticulously structured. 'connection.js' in 'config' ensures a stable link to our database, while the 'models' directory stores essential data models like 'Comments.js,' 'Posts.js,' and 'User.js.' 'schemas' orchestrates GraphQL functionality through 'typeDef.js' and 'resolvers.js,' providing a seamless communication channel for our recommendation engine.
 
-# Reliability and Scalability
+### Reliability and Scalability
 
-## Blog-Score isn't just about today; it's designed for the future. With a 'seeders' directory for initial data setup and 'utils' for essential functionalities like 'auth.js,' our backend is not just reliable but scalable. The entire system is neatly organized, facilitating easy maintenance and future enhancements. The carefully curated file structure isn't just for developers; it's a testament to our commitment to delivering a reliable, scalable, and continuously evolving platform for users who crave content that truly resonates with their interests.
+Blog-Score isn't just about today; it's designed for the future. With a 'seeders' directory for initial data setup and 'utils' for essential functionalities like 'auth.js,' our backend is not just reliable but scalable. The entire system is neatly organized, facilitating easy maintenance and future enhancements. The carefully curated file structure isn't just for developers; it's a testament to our commitment to delivering a reliable, scalable, and continuously evolving platform for users who crave content that truly resonates with their interests.
 
-# Future Developments and Features
+### Future Developments and Features
 
-# The journey with Blog-Score doesn't end here. Looking ahead, we envision an even more dynamic platform with upcoming developments and features. Our roadmap includes enhanced personalization algorithms, expanded content categories, and integrations with emerging technologies. We're dedicated to staying at the forefront of technological advancements to continually elevate the user experience. As we evolve, your feedback and suggestions will play a crucial role in shaping the future of Blog-Score.
+The journey with Blog-Score doesn't end here. Looking ahead, we envision an even more dynamic platform with upcoming developments and features. Our roadmap includes enhanced personalization algorithms, expanded content categories, and integrations with emerging technologies. We're dedicated to staying at the forefront of technological advancements to continually elevate the user experience. As we evolve, your feedback and suggestions will play a crucial role in shaping the future of Blog-Score.
 
-## But Blog-Score isn't just about content; it's about community and engagement. Our developers have recently introduced an exciting, new upcoming feature – a "Support the Creators" button linked to a tip jar powered by Stripe. Soon users will be able to directly support their favorite creators, fostering a sense of community and appreciation for the incredible content on our platform. This innovation reflects our commitment to user engagement and the success of the creators who contribute to the Blog-Score community.
+But Blog-Score isn't just about content; it's about community and engagement. Our developers have recently introduced an exciting, new upcoming feature – a "Support the Creators" button linked to a tip jar powered by Stripe. Soon users will be able to directly support their favorite creators, fostering a sense of community and appreciation for the incredible content on our platform. This innovation reflects our commitment to user engagement and the success of the creators who contribute to the Blog-Score community.
 
 ## FileNavigation
 

@@ -26,7 +26,6 @@ const startApolloServer = async () => {
   //   return { _id: "6547a867a92091ba8ecc8021" };
   // };
 
-  // TODO: will need to add in context
   app.use("/graphql", expressMiddleware(server, { context: authMiddleware }));
 
   if (process.env.NODE_ENV === "production") {

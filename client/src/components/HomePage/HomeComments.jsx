@@ -88,7 +88,7 @@ const HomeComment = ({ postId}) => {
               value={updatedData.commentText}
               /> 
             </InputGroup>
-            <Button style={{ background: "#14e956" , border: "black", color:"black"}} onClick={()=>commentPost(postId)}>Post Comment</Button>
+            <Button style={{ background: "#14e956" , border: "black", color:"black"}} disabled={!(updatedData.commentText)} onClick={()=>commentPost(postId)}>Post Comment</Button>
           </>:[]}
     </>
   );
