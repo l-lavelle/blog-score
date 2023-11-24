@@ -9,8 +9,8 @@ import MainContent from './components/MainContent';
 import Recent from "./components/Recent"
 import Home from './components/HomePage/Home'
 import Favorites from './components/Favorites';
-import Login from './components/Login'
-import SignUp from './components/Signup';
+import Login from './components/Login/Login'
+import SignUp from './components/Signup/Signup';
 import AdminCreatePost from './components/admin/AdminCreatePost';
 import AdminManageBlog from './components/admin/AdminManageBlog';
 import AdminManageUsers from './components/admin/AdminManageUsers';
