@@ -15,19 +15,17 @@ const SignUp = () => {
     const { name, value } = event.target;
     setUserSignUpData({ ...userSignUpData, [name]: value });
   }
+
   const handleLogin = async (event) => {
     event.preventDefault();
     
     if (userSignUpData.password.length<5){
       setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
-    }else if 
-      (userSignUpData.password != userSignUpData.confirmPassword){
+    } else if (userSignUpData.password != userSignUpData.confirmPassword) {
         setMesage({message:'Passwords do not match', status:'error'})
-    }else if 
-    (userSignUpData.username.length<4){
+    } else if (userSignUpData.username.length<4) {
       setMesage({message:'Username must be longer than 4 characters', status:'error'})
-    } 
-    else{
+    } else{
     try {
       const { data } = await addUser({
         variables: { user: 
@@ -43,10 +41,11 @@ const SignUp = () => {
         throw new Error('Unable to create user');
       }
       window.location.assign("/home")
+
     } catch (error) {
       if(error.message===`E11000 duplicate key error collection: blog-score.users index: username_1 dup key: { username: "${userSignUpData.username}" }`){
         setMesage({message:'Username already exists', status:'error'})
-      } else{
+      } else {
       setMesage({message:'Unable to create user', status:'error'})
       console.log(error.message);
       }
@@ -117,7 +116,7 @@ const SignUp = () => {
             </Form.Group>
             {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
             <Button variant="primary" 
-            disabled={!(userSignUpData.password&&userSignUpData.username&&userSignUpData.lastName&&userSignUpData.firstName)} 
+            disabled={!(userSignUpData.password && userSignUpData.username && userSignUpData.lastName && userSignUpData.firstName)} 
             type="submit" className="w-100 fw-bold mt-3">
               Submit
             </Button>
