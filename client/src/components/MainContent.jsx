@@ -6,9 +6,9 @@ const MainContent = () => {
   const { loading, data } = useQuery(GET_RECOMMENDED_POSTS,{
     fetchPolicy: 'cache-and-network',
   });
-
+  console.log("data", data)
   const  postData = data?.getRecommendedPosts || []
-
+  console.log("postData",postData)
   if (loading) {
     return (
     <>

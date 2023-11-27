@@ -1,6 +1,7 @@
 // TODO: throw errors
 // routes to add: get blog post by tag with comments
 // add me route to find self
+// Problem with get recommended routes 
 const { User, Post, Comment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
@@ -110,7 +111,7 @@ const resolvers = {
             model: "User",
           },
         ]);
-
+        return allPosts;
         // Sort posts based on whether they match the user's liked keywords and their upvotes
         allPosts.sort((a, b) => {
           const aMatches = a.tags.some((tag) => likedKeywords.includes(tag));
