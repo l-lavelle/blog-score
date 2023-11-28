@@ -1,6 +1,7 @@
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {USER_LIKED_POSTS} from '../utils/queries'
+import HomeUpVote from './HomePage/HomeUpvote'
 import './Favorites.css'
 
 const Favorites = () => {
@@ -17,6 +18,7 @@ const Favorites = () => {
             <Card key={article._id}  className="mb-4">
               <Card.Body>
                 <Card.Title>{article.postTitle}</Card.Title>
+                <HomeUpVote upvotes={article.upvotes} _id={article._id}/>
                 <Card.Text>{article.postText}</Card.Text>
               </Card.Body>
             </Card>

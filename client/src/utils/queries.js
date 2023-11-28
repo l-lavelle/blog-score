@@ -38,10 +38,23 @@ export const GET_ROLE_USER = gql`
 export const GET_SINGLE_POST = gql`
   query getSinglePost($postId: ID) {
     getSinglePost(postId: $postId) {
+      _id
+      postTitle
+      postText
+      tags
+      upvotes
+      downvotes
+      createdAt
+      author {
+        _id
+        username
+      }
       postComments {
+        _id
         commentText
         createdAt
         author {
+          _id
           username
         }
       }

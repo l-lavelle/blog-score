@@ -1,6 +1,12 @@
 .recentTitle {
   color: white;
 }
+.laptop-container {
+  display: flex;
+}
+.laptop-posts {
+  flex-direction: column;
+}
 /* .card-body {
   color: #212529;
   background-color: lightgray;
