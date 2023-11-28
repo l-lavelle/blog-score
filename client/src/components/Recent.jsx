@@ -1,7 +1,7 @@
 // way to pass default value
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY} from '../utils/queries';
-import { useEffect , useState} from 'react';
+import { useEffect , useState, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import './Recent.css'
 import ArticlePreview from './ArticlePreview';
@@ -10,6 +10,7 @@ import SinglePostPreview from './SinglePostPreview'
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
+  const [defaultPost, setDefaultPost] = useState('');
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
@@ -29,7 +30,8 @@ function RecentlyViewedPosts() {
     console.log(postId)
     setSinglePost(postId)
   }
-
+  
+  const indexdefault = useRef(0);
   if (width > breakpoint) {
     return (
       <div>
@@ -38,6 +40,7 @@ function RecentlyViewedPosts() {
         <div className="laptop-container">
           <div className="laptop-posts">
             {postData.map((article, index) => (
+              // {index===indexdefault? setDefaultPost(article._id):[]}
               <Card key={index}  className="mb-4" onClick={()=>getSinglePost(article._id)}>
               <Card.Body>
                 <Card.Title>{article.postTitle}</Card.Title>
