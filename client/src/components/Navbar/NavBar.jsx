@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './NavBar.css';
 
-import Auth from '../utils/auth';
+import Auth from '../../utils/auth';
 
 const NavBar = () => {
   return (
