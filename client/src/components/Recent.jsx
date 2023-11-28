@@ -1,4 +1,3 @@
-// way to pass default value
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY} from '../utils/queries';
 import { useEffect , useState, useRef } from 'react';
@@ -14,54 +13,76 @@ function RecentlyViewedPosts() {
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
-
   const  postData = recentData?.recentPosts || []
   
-  const breakpoint = 700;
-  useEffect(() => {
-   const handleResizeWindow = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResizeWindow);
-    return () => {
-      window.removeEventListener("resize", handleResizeWindow);
-    };
-  }, []);
+  const isInitialMount = useRef(true);
 
-  const getSinglePost = async (postId)=>{
-    console.log(postId)
-    setSinglePost(postId)
-  }
-  
-  const indexdefault = useRef(0);
-  if (width > breakpoint) {
-    return (
-      <div>
-        <h3>Component 1</h3>
-        <p>Current width is {width} px</p>
-        <div className="laptop-container">
-          <div className="laptop-posts">
-            {postData.map((article, index) => (
-              // {index===indexdefault? setDefaultPost(article._id):[]}
-              <Card key={index}  className="mb-4" onClick={()=>getSinglePost(article._id)}>
-              <Card.Body>
-                <Card.Title>{article.postTitle}</Card.Title>
-                {/* <HomeUpVote upvotes={article.upvotes} _id={article._id}/> */}
-                <Card.Text>{article.postText}</Card.Text>
-              </Card.Body>
-              </Card>
-            ))}
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      const  postData = recentData?.recentPosts || []
+        const defaultId= postData[0]._id
+        setDefaultPost(defaultId)
+    }
+  },[recentData?.recentPosts]);
+
+    const breakpoint = 700;
+    useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+      window.addEventListener("resize", handleResizeWindow);
+      return () => {
+        window.removeEventListener("resize", handleResizeWindow);
+      };
+    }, []);
+
+    const getSinglePost = async (postId)=>{
+      setSinglePost(postId)
+    }
+
+
+    if (loading) {
+      return (
+      <>
+        <h1>Loading...</h1>
+        {/* {Array.from({ length: 5 }, (_, index) => ({
+          title: 'Loading Article ' + (index + 1),
+          content: 'Loading content...',
+        }))} */}
+      </>
+      )
+      
+    }
+    if (width > breakpoint) {
+      return (
+        <div>
+          <h3>Component 1</h3>
+          <p>Current width is {width} px</p>
+          <div className="laptop-container">
+            <div className="laptop-posts">
+              {postData.map((article, index) => (
+                <Card key={index} className="mb-4" onClick={()=>getSinglePost(article._id)}>
+                <Card.Body>
+                  <Card.Title>{article.postTitle}</Card.Title>
+                  {/* <HomeUpVote upvotes={article.upvotes} _id={article._id}/> */}
+                  <Card.Text>{article.postText}</Card.Text>
+                </Card.Body>
+                </Card>
+              ))}
+              {Card.key===0? setDefaultPost(Card.id):[]}
+            </div>
+              { singlePost ? <SinglePostPreview postId={singlePost} /> :<SinglePostPreview postId={defaultPost} />}
           </div>
-            { singlePost ? <SinglePostPreview postId={singlePost} /> :[]}
         </div>
-      </div>
+      );
+    }
+    return (
+      <div className="main-content">
+      {postData.map((article, index) => (
+        <ArticlePreview key={index} {...article} />
+      ))}
+    </div>
     );
-  }
-  return (
-    <div className="main-content">
-    {postData.map((article, index) => (
-      <ArticlePreview key={index} {...article} />
-    ))}
-  </div>
-  );
 }
 
 export default RecentlyViewedPosts;
