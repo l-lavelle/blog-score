@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY} from '../utils/queries';
-import { useEffect , useState, useRef } from 'react';
+import { useEffect , useState } from 'react';
 import { Card } from 'react-bootstrap';
 import './Recent.css'
 import ArticlePreview from './ArticlePreview';
@@ -10,6 +10,7 @@ function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
+  
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
@@ -36,6 +37,7 @@ function RecentlyViewedPosts() {
 
     const getSinglePost = async (postId)=>{
       setSinglePost(postId)
+
     }
 
     
