@@ -29,9 +29,9 @@ if (loading) {
   return (
     <>  
     <Card>
-    <Card.Title>{singlePostData.postTitle}</Card.Title>
+    <Card.Title className="mt-3 text-center">{singlePostData.postTitle}</Card.Title>
     <Card.Body>
-      {singlePostData.postText}
+      <p className='mb-3'>{singlePostData.postText}</p>
         <div>
           {Auth.loggedIn()?
           <div className=" mt-2 vote-btns">

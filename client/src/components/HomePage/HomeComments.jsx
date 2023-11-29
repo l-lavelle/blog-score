@@ -42,7 +42,7 @@ const HomeComment = ({ postId}) => {
       console.error(err)
     }
   }
-
+  console.log('comments', postData.postComments)
   if (loading) {
     return (
     <>
@@ -59,7 +59,7 @@ const HomeComment = ({ postId}) => {
   return (
     <>
         <h5>Comments:</h5>
-        {postData.postComments.length  ?  
+        {postData.postComments.length ?  
         <>
         {postData.postComments.map((posts, index) => (
             <Card key={index}  className="mb-4">

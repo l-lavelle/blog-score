@@ -6,6 +6,10 @@
 }
 .laptop-posts {
   flex-direction: column;
+  width: 40%;
+}
+#post-preview {
+  width: 60%;
 }
 /* .card-body {
   color: #212529;

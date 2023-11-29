@@ -11,7 +11,7 @@ const Favorites = () => {
 
   return (
     <Container>
-    <h1 id="favorite-title">Favorites</h1>
+    <h1 id="favorite-title" >Favorites</h1>
     {likedPostData.length  ?  
     <>
         {likedPostData.map((article) => (

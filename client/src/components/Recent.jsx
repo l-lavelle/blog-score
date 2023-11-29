@@ -9,23 +9,21 @@ import SinglePostPreview from './SinglePostPreview'
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
-  const [defaultPost, setDefaultPost] = useState('');
+  const [defaultPost, setDefaultPost] = useState(null);
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
   const  postData = recentData?.recentPosts || []
   
-  const isInitialMount = useRef(true);
-
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
+    if (loading) {
+      null
     } else {
       const  postData = recentData?.recentPosts || []
         const defaultId= postData[0]._id
         setDefaultPost(defaultId)
     }
-  },[recentData?.recentPosts]);
+  },[recentData?.recentPosts, loading]);
 
     const breakpoint = 700;
     useEffect(() => {
@@ -40,6 +38,14 @@ function RecentlyViewedPosts() {
       setSinglePost(postId)
     }
 
+    
+    const truncateText =  (text, wordLimit) => {
+      const words = text.split(' ');
+      if (words.length > wordLimit) {
+        return words.slice(0, wordLimit).join(' ') + '...';
+      }
+      return text;
+    };
 
     if (loading) {
       return (
@@ -56,22 +62,23 @@ function RecentlyViewedPosts() {
     if (width > breakpoint) {
       return (
         <div>
-          <h3>Component 1</h3>
-          <p>Current width is {width} px</p>
+          <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
           <div className="laptop-container">
             <div className="laptop-posts">
               {postData.map((article, index) => (
-                <Card key={index} className="mb-4" onClick={()=>getSinglePost(article._id)}>
+                <Card key={index} className="mb-4 class-card" onClick={()=>getSinglePost(article._id)}>
                 <Card.Body>
-                  <Card.Title>{article.postTitle}</Card.Title>
-                  {/* <HomeUpVote upvotes={article.upvotes} _id={article._id}/> */}
-                  <Card.Text>{article.postText}</Card.Text>
+                  <Card.Title className="mb-3">{article.postTitle}</Card.Title>
+                  <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
                 </Card.Body>
                 </Card>
               ))}
               {Card.key===0? setDefaultPost(Card.id):[]}
             </div>
-              { singlePost ? <SinglePostPreview postId={singlePost} /> :<SinglePostPreview postId={defaultPost} />}
+            <div id="post-preview" className="ms-5">
+              {defaultPost && !singlePost? <SinglePostPreview postId={defaultPost}/>:[]}
+              { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
+              </div>
           </div>
         </div>
       );
