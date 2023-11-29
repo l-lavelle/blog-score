@@ -10,7 +10,7 @@ function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
-  
+  // console.log(server)
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
