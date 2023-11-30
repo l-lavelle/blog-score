@@ -2,10 +2,10 @@ import { useQuery } from '@apollo/client';
 import { useEffect , useState } from 'react';
 import {GET_RECOMMENDED_POSTS} from '../utils/queries'
 import { Card } from 'react-bootstrap';
-import ArticlePreview from './ArticlePreview';
+import ArticlePreview from './ArticlePreview/ArticlePreview';
 import SinglePostPreview from './SinglePostPreview'
 import {truncateText} from '../utils/helper'
-import './Recent.css'
+import './Recent/Recent.css'
 
 const MainContent = () => {
   const [width, setWidth] = useState(window.innerWidth);

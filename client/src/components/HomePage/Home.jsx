@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client';
 import {GET_POSTS} from '../../utils/queries';
 import { useEffect , useState } from 'react';
 import { Card } from 'react-bootstrap';
-import '../Recent.css'
-import ArticlePreview from '../ArticlePreview';
+import '../Recent/Recent.css'
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import SinglePostPreview from '../SinglePostPreview'
 import {truncateText} from '../../utils/helper'
 

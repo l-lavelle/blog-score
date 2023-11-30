@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client';
-import { RECENT_POSTS_QUERY} from '../utils/queries';
+import { RECENT_POSTS_QUERY} from '../../utils/queries';
 import { useEffect , useState } from 'react';
 import { Card } from 'react-bootstrap';
 import './Recent.css'
-import ArticlePreview from './ArticlePreview';
-import SinglePostPreview from './SinglePostPreview'
-import {truncateText} from '../utils/helper'
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
+import SinglePostPreview from '../SinglePostPreview'
+import {truncateText} from '../../utils/helper'
 
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);

@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import App from './App'
 import MainContent from './components/MainContent';
-import Recent from "./components/Recent"
+import Recent from "./components/Recent/Recent"
 import Home from './components/HomePage/Home'
-import Favorites from './components/Favorites';
+import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login'
 import SignUp from './components/Signup/Signup';
 import AdminCreatePost from './components/admin/AdminCreatePost';

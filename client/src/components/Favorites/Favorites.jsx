@@ -1,11 +1,11 @@
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import {USER_LIKED_POSTS} from '../utils/queries'
-import HomeUpVote from './HomePage/HomeUpvote'
+import {USER_LIKED_POSTS} from '../../utils/queries'
+import HomeUpVote from '../HomePage/HomeUpvote'
 import './Favorites.css'
 import { useEffect , useState } from 'react';
-import {truncateText} from '../utils/helper'
-import SinglePostPreview from './SinglePostPreview'
+import {truncateText} from '../../utils/helper'
+import SinglePostPreview from '../SinglePostPreview'
 
 const Favorites = () => {
   const [width, setWidth] = useState(window.innerWidth);
