@@ -64,9 +64,12 @@ const HomeComment = ({ postId}) => {
         {postData.postComments.map((posts, index) => (
             <Card key={index}  className="mb-4">
             <Card.Body>
-            <Card.Text>{posts.commentText}</Card.Text>
-            <Card.Text>{new Date(parseInt(posts.createdAt)).toLocaleDateString()}</Card.Text>
-            <Card.Text>{posts.author.username}</Card.Text>
+              <p>
+                {posts.author.username}{' - '}  
+                 {new Date(parseInt(posts.createdAt)).toLocaleDateString()}
+                </p>
+                {posts.commentText}
+
             </Card.Body>
         </Card>
         ))}

@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button';
+import { Button, Card  } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
@@ -30,6 +30,7 @@ const UsersModal = (props) => {
     }
   }
 
+console.log(props.comments)
     return (
         <Modal 
           {...props}
@@ -39,16 +40,26 @@ const UsersModal = (props) => {
         >
           <Modal.Header closeButton>
             <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
-              Manage User 
+               {props.username}&apos;s Comments
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            insert modal comments
+            {props.comments.length >0 ? 
+            props.comments.map((comment, index) => (
+              <Card key={index} className="mb-2">
+                <Card.Body >
+                {comment.commentText}
+                </Card.Body>                
+                </Card>
+            )):[]}
           </Modal.Body>
           <Modal.Footer>
-            <Button style={{ border: "#14e956", background:"black"}} onClick={()=>userDelete(props.userId, props.onHide)}>Delete</Button>
-            <Button style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
+            <Button style={{ border: "#14e956", background:"red"}} onClick={()=>userDelete(props.userId, props.onHide)}>Delete User</Button>
+            <div className="text-left">
+            <Button  style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
+            </div>
           </Modal.Footer>
+      
         </Modal>
       );
 };

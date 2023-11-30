@@ -5,6 +5,7 @@ import { Card } from 'react-bootstrap';
 import './Recent.css'
 import ArticlePreview from './ArticlePreview';
 import SinglePostPreview from './SinglePostPreview'
+import {truncateText} from '../utils/helper'
 
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -37,17 +38,7 @@ function RecentlyViewedPosts() {
 
     const getSinglePost = async (postId)=>{
       setSinglePost(postId)
-
     }
-
-    
-    const truncateText =  (text, wordLimit) => {
-      const words = text.split(' ');
-      if (words.length > wordLimit) {
-        return words.slice(0, wordLimit).join(' ') + '...';
-      }
-      return text;
-    };
 
     if (loading) {
       return (
@@ -59,8 +50,8 @@ function RecentlyViewedPosts() {
         }))} */}
       </>
       )
-      
     }
+
     if (width > breakpoint) {
       return (
         <div>

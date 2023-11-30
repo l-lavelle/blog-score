@@ -3,15 +3,81 @@ import { useQuery } from '@apollo/client';
 import {USER_LIKED_POSTS} from '../utils/queries'
 import HomeUpVote from './HomePage/HomeUpvote'
 import './Favorites.css'
+import { useEffect , useState } from 'react';
+import {truncateText} from '../utils/helper'
+import SinglePostPreview from './SinglePostPreview'
 
 const Favorites = () => {
-  
-  const {  data } = useQuery(USER_LIKED_POSTS);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [singlePost, setSinglePost] = useState('');
+  const [defaultPost, setDefaultPost] = useState(null);
+
+  const {  loading, data } = useQuery(USER_LIKED_POSTS);
   const  likedPostData = data?.userLikedPost?.likedPost || []
+
+  useEffect(() => {
+    if (loading) {
+      null
+    } else {
+      const  likedPostData = data?.userLikedPost?.likedPost || []
+        const defaultId= likedPostData[0]._id
+        setDefaultPost(defaultId)
+    }
+  },[data?.userLikedPost?.likedPost, loading]);
+
+  const breakpoint = 700;
+  useEffect(() => {
+  const handleResizeWindow = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
+  const getSinglePost = async (postId)=>{
+    setSinglePost(postId)
+  }
+
+  if (loading) {
+    return (
+    <>
+      <h1>Loading...</h1>
+      {/* {Array.from({ length: 5 }, (_, index) => ({
+        title: 'Loading Article ' + (index + 1),
+        content: 'Loading content...',
+      }))} */}
+    </>
+    )
+  }
+
+  if (width > breakpoint) {
+    return (
+      <div>
+      <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+        <div className="laptop-container">
+          <div className="laptop-posts">
+            {likedPostData.map((article, index) => (
+              <Card key={index} className="mb-4 class-card" onClick={()=>getSinglePost(article._id)}>
+              <Card.Body>
+                <Card.Title className="mb-3">{article.postTitle}</Card.Title>
+                <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
+              </Card.Body>
+              </Card>
+            ))}
+            {Card.key===0? setDefaultPost(Card.id):[]}
+          </div>
+          <div id="post-preview" className="ms-5">
+            {defaultPost && !singlePost? <SinglePostPreview postId={defaultPost}/>:[]}
+            { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
+            </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Container>
-    <h1 id="favorite-title" >Favorites</h1>
+    <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
     {likedPostData.length  ?  
     <>
         {likedPostData.map((article) => (

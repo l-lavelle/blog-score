@@ -31,6 +31,9 @@ export const GET_ROLE_USER = gql`
     basicUser {
       username
       _id
+      comments {
+        commentText
+      }
     }
   }
 `;

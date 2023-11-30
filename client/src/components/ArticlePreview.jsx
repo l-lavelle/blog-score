@@ -4,18 +4,10 @@ import Accordion from 'react-bootstrap/Accordion'
 import './ArticlePreview.css'; 
 import HomeUpVote from './HomePage/HomeUpvote'
 import HomeComments from './HomePage/HomeComments'
+import {truncateText} from '../utils/helper'
 
 const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
-
-  const truncateText = (text, wordLimit) => {
-    const words = text.split(' ');
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(' ') + '...';
-    }
-    return text;
-  };
 
   const toggleText = () => {
     setIsExpanded(!isExpanded);

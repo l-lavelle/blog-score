@@ -7,13 +7,13 @@ import UsersModal from './UsersModal'
 
 const AllUsers = ({ users }) => {
   const [modalShow, setModalShow] = useState(false);
-  const [modalData, setModalData] = useState({userId:''})
+  const [modalData, setModalData] = useState({userId:'', username:'', comments:[]})
   const [adminDelete, { error }] = useMutation(ADMIN_DELETE_USER, {refetchQueries:[
     GET_ROLE_USER,
   ]});
 
-  const openModal = async (_id) =>{
-    await setModalData({userId:_id})
+  const openModal = async (_id, username, comments) =>{
+    await setModalData({userId:_id, username: username, comments:comments})
     setModalShow(true)
   }
 
@@ -32,18 +32,21 @@ const AllUsers = ({ users }) => {
     }
 
   }
+  console.log("users",users)
     return (
       <div>
           {users &&
             users.map((user) => (
                 <div key={user._id} className="card mb-3">
-                  <h4 onClick={() => openModal(user._id)} className="card-header bg-dark text-light p-2 mb-1">
+                  <h4 onClick={() => openModal(user._id, user.username, user.comments)} className="card-header bg-dark text-light p-2 mb-1">
                     {user.username} <br />
                   </h4>
                   <UsersModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                     userId={modalData.userId}
+                    username={modalData.username}
+                    comments={modalData.comments}
                   />
                 </div>
             ))}

@@ -4,6 +4,7 @@ import {GET_RECOMMENDED_POSTS} from '../utils/queries'
 import { Card } from 'react-bootstrap';
 import ArticlePreview from './ArticlePreview';
 import SinglePostPreview from './SinglePostPreview'
+import {truncateText} from '../utils/helper'
 import './Recent.css'
 
 const MainContent = () => {
@@ -40,13 +41,6 @@ const MainContent = () => {
     setSinglePost(postId)
   }
 
-  const truncateText =  (text, wordLimit) => {
-    const words = text.split(' ');
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(' ') + '...';
-    }
-    return text;
-  };
 
   if (loading) {
     return (

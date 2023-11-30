@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations'
 import { USER_LIKED_POSTS } from '../../utils/queries'
 
-const HomeUpVote = ({ _id, upvotes, }) => {
+const HomeUpVote = ({ _id, upvotes}) => {
   const [upvotePost, {error}] = useMutation(UPVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
   ]})
@@ -64,7 +64,6 @@ const HomeUpVote = ({ _id, upvotes, }) => {
                 </svg>
             </Button>
             <p>{upvotes}</p>
-            <p>{_id}</p>
             </div>
           </div>
           :[]}
