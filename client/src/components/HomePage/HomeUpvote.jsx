@@ -1,21 +1,21 @@
 import { Button  } from 'react-bootstrap';
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations'
-import { USER_LIKED_POSTS } from '../../utils/queries'
+import { UPVOTE_POST,DOWNVOTE_POST } from '../../utils/mutations';
+import { USER_LIKED_POSTS } from '../../utils/queries';
 
 const HomeUpVote = ({ _id, upvotes}) => {
   const [upvotePost, {error}] = useMutation(UPVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
-  ]})
+  ]});
   
   const [downvotePost] = useMutation(DOWNVOTE_POST, {refetchQueries:[
     USER_LIKED_POSTS
- ]})
+ ]});
 
   const {  data:likeData } = useQuery(USER_LIKED_POSTS);
-  const  likedPostData = likeData?.userLikedPost?.likedPost || []
+  const  likedPostData = likeData?.userLikedPost?.likedPost || [];
 
   const upvote = async (postId) => {
     try{
@@ -44,8 +44,8 @@ const HomeUpVote = ({ _id, upvotes}) => {
   };
 
   let btnTest = "primary";
-  let likePost =()=>upvote(_id)
-  let unlikePost=()=>downvote(_id)
+  let likePost =()=>upvote(_id);
+  let unlikePost=()=>downvote(_id);
 
   return (
     <>

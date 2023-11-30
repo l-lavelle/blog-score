@@ -5,7 +5,7 @@ import { Container, Form, Button, Card } from 'react-bootstrap';
 
 const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
-  const [message, setMesage]=useState('')
+  const [message, setMesage]=useState('');
   const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
 
   const updateData = async (event)=>{
@@ -20,7 +20,7 @@ const AdminCreatePost = () => {
     else{
     setPostData({ ...postData, [name]: value });
     }
-  }
+  };
 
   const createPost = async (event) => {
     event.preventDefault();
@@ -35,8 +35,6 @@ const AdminCreatePost = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log(message)
-
     setMesage( "success" );
     setPostData({
       postTitle: '',

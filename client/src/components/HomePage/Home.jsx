@@ -2,10 +2,10 @@ import { useQuery } from '@apollo/client';
 import {GET_POSTS} from '../../utils/queries';
 import { useEffect , useState } from 'react';
 import { Card } from 'react-bootstrap';
-import '../Recent/Recent.css'
+import '../Recent/Recent.css';
 import ArticlePreview from '../ArticlePreview/ArticlePreview';
-import SinglePostPreview from '../SinglePostPreview'
-import {truncateText} from '../../utils/helper'
+import SinglePostPreview from '../SinglePostPreview';
+import {truncateText} from '../../utils/helper';
 
 const Home = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -16,7 +16,7 @@ const Home = () => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const  postData = data?.posts || []
+  const  postData = data?.posts || [];
 
   useEffect(() => {
     if (loading) {
@@ -39,7 +39,7 @@ const Home = () => {
 
   const getSinglePost = async (postId)=>{
     setSinglePost(postId)
-  }
+  };
 
   if (loading) {
     return (
@@ -59,7 +59,7 @@ const Home = () => {
           <div className="laptop-container">
             <div className="laptop-posts">
               {postData.map((article, index) => (
-                <Card key={index} className="mb-4 class-card" onClick={()=>getSinglePost(article._id)}>
+                <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight" : "mb-4 class-card"} onClick={()=>getSinglePost(article._id)}>
                 <Card.Body>
                   <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                   <Card.Text >{truncateText(article.postText, 20)}</Card.Text>

@@ -1,11 +1,11 @@
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import {USER_LIKED_POSTS} from '../../utils/queries'
-import HomeUpVote from '../HomePage/HomeUpvote'
-import './Favorites.css'
+import {USER_LIKED_POSTS} from '../../utils/queries';
+import HomeUpVote from '../HomePage/HomeUpvote';
+import '../Recent/Recent.css';
 import { useEffect , useState } from 'react';
-import {truncateText} from '../../utils/helper'
-import SinglePostPreview from '../SinglePostPreview'
+import {truncateText} from '../../utils/helper';
+import SinglePostPreview from '../SinglePostPreview';
 
 const Favorites = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -13,7 +13,7 @@ const Favorites = () => {
   const [defaultPost, setDefaultPost] = useState(null);
 
   const {  loading, data } = useQuery(USER_LIKED_POSTS);
-  const  likedPostData = data?.userLikedPost?.likedPost || []
+  const  likedPostData = data?.userLikedPost?.likedPost || [];
 
   useEffect(() => {
     if (loading) {
@@ -36,7 +36,7 @@ const Favorites = () => {
 
   const getSinglePost = async (postId)=>{
     setSinglePost(postId)
-  }
+  };
 
   if (loading) {
     return (
@@ -57,7 +57,7 @@ const Favorites = () => {
         <div className="laptop-container">
           <div className="laptop-posts">
             {likedPostData.map((article, index) => (
-              <Card key={index} className="mb-4 class-card" onClick={()=>getSinglePost(article._id)}>
+              <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight" : "mb-4 class-card"} onClick={()=>getSinglePost(article._id)}>
               <Card.Body>
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                 <Card.Text >{truncateText(article.postText, 20)}</Card.Text>

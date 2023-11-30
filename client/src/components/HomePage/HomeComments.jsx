@@ -1,12 +1,12 @@
 import { Button, Card  } from 'react-bootstrap';
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-import {ADD_COMMENT } from '../../utils/mutations'
-import {GET_SINGLE_POST} from '../../utils/queries'
+import {ADD_COMMENT } from '../../utils/mutations';
+import {GET_SINGLE_POST} from '../../utils/queries';
 
 const HomeComment = ({ postId}) => {
   const { loading, data } = useQuery(GET_SINGLE_POST,{
@@ -14,8 +14,8 @@ const HomeComment = ({ postId}) => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const  postData = data?.getSinglePost || []
-  const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" })
+  const  postData = data?.getSinglePost || [];
+  const [updatedData, setUpdatedData] = useState({userId: "", commentText: "" });
   
   const [addComment, {error}] = useMutation(ADD_COMMENT, {
     refetchQueries: [GET_SINGLE_POST],
@@ -24,7 +24,7 @@ const HomeComment = ({ postId}) => {
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUpdatedData({ ...updatedData, [name]: value });
-  }
+  };
 
   const commentPost = async(postId)=>{
     try{
@@ -41,8 +41,8 @@ const HomeComment = ({ postId}) => {
     }catch (err){
       console.error(err)
     }
-  }
-  console.log('comments', postData.postComments)
+  };
+  
   if (loading) {
     return (
     <>

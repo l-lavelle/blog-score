@@ -41,7 +41,6 @@ const MainContent = () => {
     setSinglePost(postId)
   }
 
-
   if (loading) {
     return (
     <>
@@ -60,7 +59,7 @@ const MainContent = () => {
         <div className="laptop-container">
           <div className="laptop-posts">
             {postData.map((article, index) => (
-              <Card key={index} className="mb-4 class-card" onClick={()=>getSinglePost(article._id)}>
+              <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight" : "mb-4 class-card"} onClick={()=>getSinglePost(article._id)}>
               <Card.Body>
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                 <Card.Text >{truncateText(article.postText, 20)}</Card.Text>

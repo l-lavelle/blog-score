@@ -3,17 +3,18 @@ import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { useMutation } from '@apollo/client';
-import {UPDATE_POST} from '../../utils/mutations'
-import {DELETE_POST} from '../../utils/mutations'
+import {UPDATE_POST} from '../../utils/mutations';
+import {DELETE_POST} from '../../utils/mutations';
 import { useState } from 'react';
-import {GET_POSTS} from '../../utils/queries'
+import {GET_POSTS} from '../../utils/queries';
 
 
 const EditPostModal = (props) => {
-  const [updatedData, setUpdatedData] = useState({postId: "", postTitle: props.postTitle , postText: props.postText, tags:[]})
+  const [updatedData, setUpdatedData] = useState({postId: "", postTitle: props.postTitle , postText: props.postText, tags:[]});
   const [updatePost, { error }] = useMutation(UPDATE_POST, {refetchQueries:[
     GET_POSTS
   ]});
+
   const [deletePost] = useMutation(DELETE_POST, {refetchQueries:[
     GET_POSTS
   ]});
@@ -22,7 +23,7 @@ const EditPostModal = (props) => {
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUpdatedData({ ...updatedData, [name]: value });
-  }
+  };
 
   // update post 
   const postUpdate= async (postId, onHide)=>{
@@ -42,7 +43,7 @@ const EditPostModal = (props) => {
     }catch (err){
       console.error(err)
     }
-  }
+  };
 
 // Delete the post 
   const postDelete = async (postId, onHide)=>{
@@ -57,7 +58,7 @@ const EditPostModal = (props) => {
     }catch (err){
       console.error(err)
     }
-  }
+  };
 
     return (
         <Modal 

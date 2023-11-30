@@ -1,6 +1,6 @@
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
-import {ADD_USER} from '../../utils/mutations'
+import {ADD_USER} from '../../utils/mutations';
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Button, Card } from 'react-bootstrap';
@@ -8,13 +8,13 @@ import '../Login/Login.css';
 
 const SignUp = () => {
   const [addUser, {error} ] = useMutation(ADD_USER);
-  const [message, setMesage]=useState({message:'', status:''})
+  const [message, setMesage]=useState({message:'', status:''});
   const [userSignUpData, setUserSignUpData] = useState({ username: '', password: '' , firstName:'', lastName:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUserSignUpData({ ...userSignUpData, [name]: value });
-  }
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const SignUp = () => {
         setMesage({message:'Passwords do not match', status:'error'})
     } else if (userSignUpData.username.length<4) {
       setMesage({message:'Username must be longer than 4 characters', status:'error'})
-    } else{
+    } else {
     try {
       const { data } = await addUser({
         variables: { user: 

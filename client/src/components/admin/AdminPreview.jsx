@@ -1,9 +1,6 @@
-
 import { Card } from 'react-bootstrap';
 
 const AdminPreview = ({ postTitle, postText, _id }) => {
-
-
   return (
     <div >
     <Card className="mb-3" id={_id}>

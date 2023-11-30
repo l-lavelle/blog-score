@@ -1,10 +1,10 @@
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 import { useState } from 'react';
-import Accordion from 'react-bootstrap/Accordion'
+import Accordion from 'react-bootstrap/Accordion';
 import './ArticlePreview.css'; 
-import HomeUpVote from '../HomePage/HomeUpvote'
-import HomeComments from '../HomePage/HomeComments'
-import {truncateText} from '../../utils/helper'
+import HomeUpVote from '../HomePage/HomeUpvote';
+import HomeComments from '../HomePage/HomeComments';
+import {truncateText} from '../../utils/helper';
 
 const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
   const [isExpanded, setIsExpanded] = useState(false);

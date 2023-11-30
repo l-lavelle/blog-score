@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import {GET_ROLE_USER} from '../../utils/queries'
+import {GET_ROLE_USER} from '../../utils/queries';
 import AllUsers from './AllUsers';
 
 const AdminManageUsers = () => {
@@ -7,7 +7,7 @@ const AdminManageUsers = () => {
 const { loading, data } = useQuery(GET_ROLE_USER, {
   fetchPolicy: 'cache-and-network',
 });
-const  users = data?.basicUser || []
+const  users = data?.basicUser || [];
 
 if (loading) {
   return <div>Loading...</div>;

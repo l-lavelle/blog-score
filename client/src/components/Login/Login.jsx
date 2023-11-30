@@ -1,7 +1,7 @@
 // responsiveness error
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
-import {LOGIN} from '../../utils/mutations'
+import {LOGIN} from '../../utils/mutations';
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Button, Card } from 'react-bootstrap';
@@ -9,13 +9,13 @@ import './Login.css';
 
 const Login = () => {
   const [login, {error} ] = useMutation(LOGIN);
-  const [message, setMesage]=useState({message:'', status:''})
+  const [message, setMesage]=useState({message:'', status:''});
   const [userLoginData, setUserLoginData] = useState({ username: '', password: '' });
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUserLoginData({ ...userLoginData, [name]: value });
-  }
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();

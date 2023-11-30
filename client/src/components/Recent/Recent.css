@@ -11,6 +11,10 @@
 #post-preview {
   width: 60%;
 }
+.card-highlight {
+  box-shadow: 0 0 7px 7px #14e956;
+}
+
 /* .card-body {
   color: #212529;
   background-color: lightgray;

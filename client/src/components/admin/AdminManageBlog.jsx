@@ -3,21 +3,21 @@ import EditPostModal from './EditPostModal';
 import { useState } from 'react';
 
 import { useQuery } from '@apollo/client';
-import {GET_POSTS} from '../../utils/queries'
+import {GET_POSTS} from '../../utils/queries';
 
 
 const AdminManageBlog = () => {
   const [modalShow, setModalShow] = useState(false);
-  const [modalData, setModalData] = useState({postId: "", blogTitle:"" , blogText: "", tags:[]})
+  const [modalData, setModalData] = useState({postId: "", blogTitle:"" , blogText: "", tags:[]});
   const { loading, data } = useQuery(GET_POSTS,  {
     fetchPolicy: 'cache-and-network',
   });
-  const  postData = data?.posts || []
+  const  postData = data?.posts || [];
 
   const openModal = async (_id, blogTitle, blogText) =>{
     await setModalData({postId:_id, blogTitle:blogTitle, blogText: blogText})
     setModalShow(true)
-  }
+  };
 
   if (loading) {
     return <div>Loading...</div>;

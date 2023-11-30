@@ -1,16 +1,11 @@
 import { Button, Card  } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
 import { useMutation } from '@apollo/client';
 import {ADMIN_DELETE_USER} from '../../utils/mutations'
 import {GET_ROLE_USER} from '../../utils/queries'
-import { useState } from 'react';
 
 const UsersModal = (props) => {
-  const [deletePost] = useMutation(ADMIN_DELETE_USER, {refetchQueries:[
-    GET_ROLE_USER
-  ]});
+
   const [adminDelete, { error }] = useMutation(ADMIN_DELETE_USER, {refetchQueries:[
     GET_ROLE_USER,
   ]});
@@ -28,9 +23,8 @@ const UsersModal = (props) => {
     }catch (err){
       console.error(err)
     }
-  }
+  };
 
-console.log(props.comments)
     return (
         <Modal 
           {...props}
@@ -59,7 +53,6 @@ console.log(props.comments)
             <Button  style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
             </div>
           </Modal.Footer>
-      
         </Modal>
       );
 };
