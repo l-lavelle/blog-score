@@ -1,6 +1,5 @@
 import Auth from '../utils/auth';
 import { Card } from 'react-bootstrap';
-import './ArticlePreview/Articlepreview.css'; 
 import HomeUpVote from './HomePage/HomeUpvote';
 import HomeComments from './HomePage/HomeComments';
 import { GET_SINGLE_POST} from '../utils/queries';

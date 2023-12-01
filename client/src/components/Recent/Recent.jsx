@@ -1,11 +1,12 @@
 import { useQuery } from '@apollo/client';
 import { RECENT_POSTS_QUERY} from '../../utils/queries';
 import { useEffect , useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card,Container, Row, Col } from 'react-bootstrap';
 import './Recent.css';
 import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import SinglePostPreview from '../SinglePostPreview';
 import {truncateText} from '../../utils/helper';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -54,26 +55,38 @@ function RecentlyViewedPosts() {
 
     if (width > breakpoint) {
       return (
+        <Container float> 
+         <Row> 
+         <Col> 
         <div>
+         
           <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+      
           <div className="laptop-container">
+          
             <div className="laptop-posts">
+            <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
               {postData.map((article, index) => (
-                <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight" : "mb-4 class-card"} onClick={()=>getSinglePost(article._id)}>
-                <Card.Body>
+                <div  key={index} className={article._id=== singlePost ? "mb-4 card class-card card-highlight new" : "mb-4 card class-card new"} onClick={()=>getSinglePost(article._id)}>
+                <Card.Body className="post-card">
                   <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                   <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
                 </Card.Body>
-                </Card>
+                </div>
               ))}
               {Card.key===0? setDefaultPost(Card.id):[]}
-            </div>
-            <div id="post-preview" className="ms-5">
+              </Scrollbars>
+           </div>
+          
+            <div id="post-preview" >
               {defaultPost && !singlePost? <SinglePostPreview postId={defaultPost}/>:[]}
               { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
               </div>
           </div>
         </div>
+        </Col>
+        </Row> 
+        </Container> 
       );
     }
     return (
@@ -82,7 +95,7 @@ function RecentlyViewedPosts() {
         <ArticlePreview key={index} {...article} />
       ))}
     </div>
-    );
+    ); 
 }
 
 export default RecentlyViewedPosts;

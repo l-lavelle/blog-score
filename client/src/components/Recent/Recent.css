@@ -1,8 +1,12 @@
 .recentTitle {
   color: white;
 }
+body {
+  outline: 2px white solid;
+}
 .laptop-container {
   display: flex;
+  outline: 2px red solid;
 }
 .laptop-posts {
   flex-direction: column;
@@ -10,26 +14,26 @@
 }
 #post-preview {
   width: 60%;
+  margin-left: 3%;
+}
+.new {
+  margin: 5%;
 }
 .card-highlight {
   box-shadow: 0 0 7px 7px #14e956;
 }
 
-/* .card-body {
-  color: #212529;
-  background-color: lightgray;
-  border-left-style: groove;
-  border-bottom-style: groove;
-  border-right-style: groove;
+@media (min-width: 700px) and (max-width: 1199.98px) {
+  .laptop-container {
+    display: flex;
+    width: 80vw;
+    /* outline: 2px red solid; */
+  }
+  .laptop-posts {
+    flex-direction: column;
+    width: 40%;
+  }
+  #post-preview {
+    width: 57%;
+  }
 }
-
-.card-header {
-  color: #14e956;
-  background-color: rgb(33 37 41);
-}
-.mb-3.card-header {
-  background-color: #212529;
-  color: #14e956;
-}
-.mb-3.card-body {
-} */
