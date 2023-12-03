@@ -7,6 +7,8 @@ import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import SinglePostPreview from '../SinglePostPreview';
 import {truncateText} from '../../utils/helper';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -44,11 +46,8 @@ function RecentlyViewedPosts() {
     if (loading) {
       return (
       <>
-        <h1>Loading...</h1>
-        {/* {Array.from({ length: 5 }, (_, index) => ({
-          title: 'Loading Article ' + (index + 1),
-          content: 'Loading content...',
-        }))} */}
+        <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
       </>
       )
     }
@@ -88,6 +87,7 @@ function RecentlyViewedPosts() {
     }
     return (
       <div className="main-content">
+      <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
       {postData.map((article, index) => (
         <ArticlePreview key={index} {...article} />
       ))}
