@@ -12,6 +12,9 @@ import SignUp from './components/Signup/Signup';
 import AdminCreatePost from './components/admin/AdminCreatePost';
 import AdminManageBlog from './components/admin/AdminManageBlog';
 import AdminManageUsers from './components/admin/AdminManageUsers';
+import About from './components/Footer/About'
+import Guidelines from './components/Footer/Rules';
+import Contact from './components/Footer/Contact'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +56,18 @@ const router = createBrowserRouter([
       {
         path: '/admin/users',
         element: <AdminManageUsers />
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+      {
+        path: '/guidelines',
+        element: <Guidelines />
+      },
+      {
+        path: '/contact',
+        element: <Contact />
       },
       
     ]

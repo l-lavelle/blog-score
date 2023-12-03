@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './Footer.css'; 
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const stripeButtonRef = useRef(null);
@@ -27,10 +28,14 @@ const Footer = () => {
   return (
     <Container fluid className="footer-container fixed-bottom footer-rounded">
       <Row>
+
         {/* Other footer columns */}
         <Col className="footer-col"> 
-          {/* Container for Stripe Button */}
+        <p>
+          <Link to='/about' className='footer-link'>About </Link>/
+          <Link to='/guidelines' className='footer-link'> Guidelines</Link>
           <div ref={stripeButtonRef}></div>
+        </p>
         </Col>
       </Row>
     </Container>
