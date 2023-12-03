@@ -64,7 +64,9 @@ const Login = () => {
                 name='password'
                 value={userLoginData.password}
                 onChange={updateData}
+                
               />
+              <i className="bi bi-eye"></i>
             </Form.Group>
             {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
             <Button variant="primary" type="submit" className="w-100 fw-bold mt-3"

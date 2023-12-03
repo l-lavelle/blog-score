@@ -5,6 +5,7 @@ import { Card } from 'react-bootstrap';
 import ArticlePreview from './ArticlePreview/ArticlePreview';
 import SinglePostPreview from './SinglePostPreview'
 import {truncateText} from '../utils/helper'
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import './Recent/Recent.css'
 
 const MainContent = () => {
@@ -58,15 +59,17 @@ const MainContent = () => {
       <div>
         <div className="laptop-container">
           <div className="laptop-posts">
+          <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
             {postData.map((article, index) => (
-              <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight" : "mb-4 class-card"} onClick={()=>getSinglePost(article._id)}>
-              <Card.Body>
+              <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight scroll-m" : "mb-4 class-card scroll-m"} onClick={()=>getSinglePost(article._id)}>
+              <Card.Body className="post-card">
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                 <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
               </Card.Body>
               </Card>
             ))}
             {Card.key===0? setDefaultPost(Card.id):[]}
+            </Scrollbars>
           </div>
           <div id="post-preview" className="ms-5">
             {defaultPost && !singlePost? <SinglePostPreview postId={defaultPost}/>:[]}

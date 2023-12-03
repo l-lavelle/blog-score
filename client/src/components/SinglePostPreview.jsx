@@ -27,7 +27,7 @@ const SinglePostPreview = ({postId}) => {
     
   return (
     <>  
-    <Card>
+    <Card className="mt-3">
     <Card.Title className="mt-3 text-center">{singlePostData.postTitle}</Card.Title>
     <Card.Body>
       <p className='mb-3'>{singlePostData.postText}</p>

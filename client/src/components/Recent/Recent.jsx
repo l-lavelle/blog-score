@@ -59,15 +59,12 @@ function RecentlyViewedPosts() {
          <Row> 
          <Col> 
         <div>
-         
           <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
-      
           <div className="laptop-container">
-          
             <div className="laptop-posts">
             <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
               {postData.map((article, index) => (
-                <div  key={index} className={article._id=== singlePost ? "mb-4 card class-card card-highlight new" : "mb-4 card class-card new"} onClick={()=>getSinglePost(article._id)}>
+                <div  key={index} className={article._id=== singlePost ? "mb-4 card class-card card-highlight scroll-m" : "mb-4 card class-card scroll-m"} onClick={()=>getSinglePost(article._id)}>
                 <Card.Body className="post-card">
                   <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                   <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
