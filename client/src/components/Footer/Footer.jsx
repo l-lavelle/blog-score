@@ -33,8 +33,10 @@ const Footer = () => {
         <Col className="footer-col"> 
         <p>
           <Link to='/about' className='footer-link'>About </Link>/
-          <Link to='/guidelines' className='footer-link'> Guidelines</Link>
-          <div ref={stripeButtonRef}></div>
+          <Link to='/guidelines' className='footer-link'> Guidelines </Link>/
+          <Link to='/contact' className='footer-link'> Contact Us </Link>
+          {/* <p  ref={stripeButtonRef} className='footer-link'> Tips </p>
+          <div ref={stripeButtonRef}></div> */}
         </p>
         </Col>
       </Row>

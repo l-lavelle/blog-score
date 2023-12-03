@@ -46,15 +46,15 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: '/admin/posts',
+        path: '/adminPosts',
         element: <AdminCreatePost />
       },
       {
-        path: '/admin/blogs',
+        path: '/adminBlogs',
         element: <AdminManageBlog />
       },
       {
-        path: '/admin/users',
+        path: '/adminUsers',
         element: <AdminManageUsers />
       },
       {
