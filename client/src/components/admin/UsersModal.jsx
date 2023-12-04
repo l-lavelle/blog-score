@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useMutation } from '@apollo/client';
 import {ADMIN_DELETE_USER} from '../../utils/mutations'
 import {GET_ROLE_USER} from '../../utils/queries'
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 const UsersModal = (props) => {
 
@@ -38,14 +39,16 @@ const UsersModal = (props) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
+          <Scrollbars style={{ width: "100%", height: 300 }}>
             {props.comments.length >0 ? 
             props.comments.map((comment, index) => (
               <Card key={index} className="mb-2">
-                <Card.Body >
+                <Card.Body className="post-card">
                 {comment.commentText}
-                </Card.Body>                
+                </Card.Body>         
                 </Card>
             )):[]}
+            </Scrollbars>  
           </Modal.Body>
           <Modal.Footer>
             <Button style={{ border: "#14e956", background:"red"}} onClick={()=>userDelete(props.userId, props.onHide)}>Delete User</Button>
