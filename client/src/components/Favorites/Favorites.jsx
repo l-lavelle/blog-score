@@ -7,6 +7,8 @@ import { useEffect , useState } from 'react';
 import {truncateText} from '../../utils/helper';
 import SinglePostPreview from '../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Favorites = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -40,13 +42,25 @@ const Favorites = () => {
   };
 
   if (loading) {
+    if (width > breakpoint){
     return (
     <>
-      <h1>Loading...</h1>
-      {/* {Array.from({ length: 5 }, (_, index) => ({
-        title: 'Loading Article ' + (index + 1),
-        content: 'Loading content...',
-      }))} */}
+    <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+    <div className='laptop-container'>
+       <div className="laptop-posts">
+      <Skeleton className="mb-4" animation="wave" height={120} count={6} />
+      </div>
+      <div id="post-preview">
+      <Skeleton style={{marginBottom:"20px"}} animation="wave" height={420} count={1} />
+      </div>
+    </div>
+    </>
+    )
+    }
+    return (
+      <>
+      <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+      <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
     </>
     )
   }
