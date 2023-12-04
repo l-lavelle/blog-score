@@ -90,11 +90,11 @@ const EditPostModal = (props) => {
             value={updatedData.postText}/>  
           </InputGroup>
           </Modal.Body>
-          <Modal.Footer>
-            <Button style={{ border: "#14e956", background:"black"}} onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
-            <Button style={{ border: "#14e956", background:"black"}} onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
-            <Button style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
-          </Modal.Footer>
+          <div>
+            <Button style={{ border: "#14e956", background:"red", float:"left", margin:10}} onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
+            <Button style={{ border: "#14e956", background:"black",float: "right", margin:10}} onClick={props.onHide}>Close</Button>
+            <Button style={{ border: "#14e956", background:"#696969",float: "right", margin:10}} onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
+          </div>
         </Modal>
       );
 };

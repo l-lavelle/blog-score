@@ -33,6 +33,7 @@ export const GET_ROLE_USER = gql`
       _id
       comments {
         commentText
+        _id
       }
     }
   }

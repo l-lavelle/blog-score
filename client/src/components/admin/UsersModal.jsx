@@ -1,12 +1,14 @@
 import { Button, Card  } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import { useMutation } from '@apollo/client';
+import { useState } from 'react';
 import {ADMIN_DELETE_USER} from '../../utils/mutations'
 import {GET_ROLE_USER} from '../../utils/queries'
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import './UsersModal.css';
 
 const UsersModal = (props) => {
-
+  const [singlePost, setSinglePost] = useState('');
   const [adminDelete, { error }] = useMutation(ADMIN_DELETE_USER, {refetchQueries:[
     GET_ROLE_USER,
   ]});
@@ -26,6 +28,14 @@ const UsersModal = (props) => {
     }
   };
 
+  const getSinglePost = async (commentId)=>{
+    setSinglePost(commentId)
+  };
+
+  const deleteComment=()=>{
+
+  }
+
     return (
         <Modal 
           {...props}
@@ -43,19 +53,18 @@ const UsersModal = (props) => {
             {props.comments.length >0 ? 
             props.comments.map((comment, index) => (
               <Card key={index} className="mb-2">
-                <Card.Body className="post-card">
+                <Card.Body onClick={()=>getSinglePost(comment._id)} >
                 {comment.commentText}
-                </Card.Body>         
+                </Card.Body>  
+                {/* <Button onClick={deleteComment} className={comment._id=== singlePost ? "post-card" : "post-card commentBtn-hide"}>Delete Comment</Button>        */}
                 </Card>
             )):[]}
             </Scrollbars>  
           </Modal.Body>
-          <Modal.Footer>
-            <Button style={{ border: "#14e956", background:"red"}} onClick={()=>userDelete(props.userId, props.onHide)}>Delete User</Button>
-            <div className="text-left">
-            <Button  style={{ border: "#14e956", background:"black"}} onClick={props.onHide}>Close</Button>
-            </div>
-          </Modal.Footer>
+          <div>
+            <Button  style={{ border: "#14e956", background:"red", float:"left", margin:10}} onClick={()=>userDelete(props.userId, props.onHide)}>Delete User</Button>
+            <Button  style={{ border: "#14e956", background:"black", float: "right", margin:10}} onClick={props.onHide}>Close</Button>
+          </div>
         </Modal>
       );
 };
