@@ -11,6 +11,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const MainContent = () => {
+  
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);

@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
 import  { useState } from 'react';
-import { Container, Form, Button, Card } from 'react-bootstrap';
+import { Container, Form, Button, Card, Col, Row } from 'react-bootstrap';
+import './AdminCreatePost.css'
 
 const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
@@ -45,8 +46,10 @@ const AdminCreatePost = () => {
  
   
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <Card className="card-3d my-5" style={{ minWidth: '80vw',  padding: '5px' }}>
+    <Container fluid={true}>
+      <Row>
+      <Col>
+      <Card className="card-3d " style={{ padding: '5px' }}>
         <Card.Body>
           <Card.Title className="text-center fw-bold fs-2">Create New Blog Post</Card.Title>
           <Form onSubmit={createPost} onClick={()=>{setMesage('')}}>
@@ -86,7 +89,7 @@ const AdminCreatePost = () => {
               />
             </Form.Group>
             <div className="text-center">
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} disabled={!(postData.postTitle && postData.postText)} variant="primary" type="submit" className="w-100 fw-bold mt-4">
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} disabled={!(postData.postTitle && postData.postText && postData.tags.length>0)} variant="primary" type="submit" className="w-100 fw-bold mt-4">
               Submit
             </Button>
             </div>
@@ -95,6 +98,8 @@ const AdminCreatePost = () => {
           </Form>
         </Card.Body>
       </Card>
+      </Col>
+      </Row>
     </Container>    
   );
 };
