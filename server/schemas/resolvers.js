@@ -29,6 +29,23 @@ const resolvers = {
         },
       ]);
     },
+    singleUserComments: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOne({ _id: context.user._id }).populate([
+          {
+            path: "comments",
+            model: "Comment",
+          },
+          {
+            path: "comments",
+            populate: {
+              path: "postId",
+              model: "Post",
+            },
+          },
+        ]);
+      }
+    },
     basicUser: async () => {
       return await User.find({ role: "user" }).populate([
         {
@@ -221,6 +238,7 @@ const resolvers = {
         const comment = await Comment.create({
           commentText,
           author: context.user._id,
+          postId: postId,
         });
         const commentId = comment._id;
         try {

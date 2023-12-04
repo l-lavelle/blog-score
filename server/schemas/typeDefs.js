@@ -33,6 +33,7 @@ const typeDefs = `#graphql
     commentText: String
     author: User
     createdAt:String
+    postId:Post
   }
   input PostInput{
     postTitle:String
@@ -53,6 +54,7 @@ const typeDefs = `#graphql
   }
   type Query {
     users: [User]
+    singleUserComments:User
     userLikedPost:User
     userUnlikedPost:User
     basicUser:[User]
