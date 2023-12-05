@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
+    "@emailjs/browser": "^3.11.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "email-js": "^2.0.2",
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",

@@ -32,9 +32,8 @@ const Footer = () => {
         <p>
           <Link to='/about' className='footer-link'>About |</Link>
           <Link to='/guidelines' className='footer-link'> Guidelines |</Link>
-          <Link to='/contact' className='footer-link'> Contact Us </Link>
-          {/* <p  ref={stripeButtonRef} className='footer-link'> Tips </p>
-          <div ref={stripeButtonRef}></div> */}
+          <Link to='/contact' className='footer-link'> Contact Us |</Link>
+          <a className="footer-link" href="https://buy.stripe.com/bIYaFFbMs7Xe8A87ss"> Tips</a>
         </p>
         </Col>
       </Row>
