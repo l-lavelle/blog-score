@@ -90,7 +90,7 @@ const EditCommentModal = (props) => {
                 //   value={updatedData.commentText}
                  /> 
               </InputGroup>
-              {props.commentText}
+             
         {/* <InputGroup>
             <Form.Control 
             as="textarea" 

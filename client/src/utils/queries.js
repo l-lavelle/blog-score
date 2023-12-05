@@ -161,6 +161,16 @@ export const USER_UNLIKED_POSTS = gql`
   }
 `;
 
+export const SINGLE_USER = gql`
+  query singleUser {
+    singleUser {
+      firstName
+      lastName
+      username
+    }
+  }
+`;
+
 export const SINGLE_USER_COMMENTS = gql`
   query singleUserComments {
     singleUserComments {

@@ -19,6 +19,9 @@ const NavBar = () => {
           {Auth.loggedIn()?( <Nav.Link href="/favorites">Favorites</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
           {Auth.loggedIn()?( 
           <NavDropdown title="Profile" id="collapsible-nav-dropdown">
+            <NavDropdown.Item href="/profile">
+                Profile
+              </NavDropdown.Item>
               <NavDropdown.Item href="/userComments">
                 Manage Comments
               </NavDropdown.Item>

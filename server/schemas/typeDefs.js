@@ -54,6 +54,7 @@ const typeDefs = `#graphql
   }
   type Query {
     users: [User]
+    singleUser:User
     singleUserComments:User
     userLikedPost:User
     userUnlikedPost:User

@@ -1,3 +1,4 @@
+// if no favorites breaking 
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {USER_LIKED_POSTS} from '../../utils/queries';
@@ -17,14 +18,15 @@ const Favorites = () => {
 
   const {  loading, data } = useQuery(USER_LIKED_POSTS);
   const  likedPostData = data?.userLikedPost?.likedPost || [];
-
+  console.log(likedPostData.length)
   useEffect(() => {
     if (loading) {
       null
     } else {
       const  likedPostData = data?.userLikedPost?.likedPost || []
-        const defaultId= likedPostData[0]._id
-        setDefaultPost(defaultId)
+      if (likedPostData.length>0){
+        const defaultId= likedPostData[0]._id 
+        setDefaultPost(defaultId)}
     }
   },[data?.userLikedPost?.likedPost, loading]);
 
@@ -69,6 +71,7 @@ const Favorites = () => {
     return (
       <div>
       <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+      {likedPostData.length>0?  
         <div className="laptop-container">
           <div className="laptop-posts">
           <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
@@ -87,7 +90,13 @@ const Favorites = () => {
             {defaultPost && !singlePost? <SinglePostPreview postId={defaultPost}/>:[]}
             { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
             </div>
-        </div>
+        </div>:
+        <Card>
+        <Card.Body>
+          <Card.Title>No Favorites Yet</Card.Title>
+          <Card.Text>Check out blog posts and like to save to favorites</Card.Text>
+        </Card.Body>
+      </Card>}
       </div>
     );
   }
@@ -95,7 +104,7 @@ const Favorites = () => {
   return (
     <Container>
     <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
-    {likedPostData.length  ?  
+    {likedPostData.length>0? 
     <>
         {likedPostData.map((article) => (
             <Card key={article._id}  className="mb-4">
@@ -106,7 +115,13 @@ const Favorites = () => {
               </Card.Body>
             </Card>
         ))}
-      </>:<h4 id="favorite-error">No Favorited Posts</h4>}
+      </>:
+       <Card>
+       <Card.Body>
+         <Card.Title>No Favorites Yet</Card.Title>
+         <Card.Text>Check out blog posts and like to save to favorites</Card.Text>
+       </Card.Body>
+     </Card>}
     </Container>
   );
 };
