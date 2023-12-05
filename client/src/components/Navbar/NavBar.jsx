@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
 import './NavBar.css';
 
 import Auth from '../../utils/auth';
@@ -20,29 +18,28 @@ const NavBar = () => {
           {Auth.loggedIn()?( 
           <NavDropdown title="Profile" id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/profile">
-                Profile
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/userComments">
-                Manage Comments
-              </NavDropdown.Item>
+              Profile
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/userComments">
+              Manage Comments
+            </NavDropdown.Item>
             </NavDropdown>
               ):([])}  
           {Auth.IsAdmin()?( 
           <NavDropdown title="Admin" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="/adminPosts">
-                Create a post
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/adminBlogs">
-                Manage Blog
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/adminUsers">Manage Users</NavDropdown.Item>
-            </NavDropdown>
-              ):([])}  
+            <NavDropdown.Item href="/adminPosts">
+              Create a post
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/adminBlogs">
+              Manage Blog
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/adminUsers">Manage Users</NavDropdown.Item>
+          </NavDropdown>):([])}  
           {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link href="/login">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    </>
+   </>
   );
 };
 

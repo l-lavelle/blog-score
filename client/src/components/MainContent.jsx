@@ -49,23 +49,23 @@ const MainContent = () => {
     if (width > breakpoint){
     return (
     <>
-    <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
-    <div className='laptop-container'>
-       <div className="laptop-posts">
-      <Skeleton className="mb-4" animation="wave" height={120} count={6} />
+      <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+      <div className='laptop-container'>
+        <div className="laptop-posts">
+          <Skeleton className="mb-4" animation="wave" height={120} count={6} />
+        </div>
+        <div id="post-preview">
+          <Skeleton style={{marginBottom:"20px"}} animation="wave" height={420} count={1} />
+        </div>
       </div>
-      <div id="post-preview">
-      <Skeleton style={{marginBottom:"20px"}} animation="wave" height={420} count={1} />
-      </div>
-    </div>
     </>
     )
-    }
+  }
     return (
       <>
-      <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
-      <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
-    </>
+        <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
+      </>
     )
   }
 

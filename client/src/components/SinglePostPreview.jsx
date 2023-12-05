@@ -7,23 +7,19 @@ import { useQuery } from '@apollo/client';
 
 const SinglePostPreview = ({postId}) => {
 
-    const { data:onePost, loading } = useQuery(GET_SINGLE_POST, {
-    variables: { postId: postId },
-    fetchPolicy: 'cache-and-network',
-    });
-    const  singlePostData = onePost?.getSinglePost || [];
+  const { data:onePost, loading } = useQuery(GET_SINGLE_POST, {
+  variables: { postId: postId },
+  fetchPolicy: 'cache-and-network',
+  });
+  const  singlePostData = onePost?.getSinglePost || [];
 
-    if (loading) {
-      return (
-      <>
-        <h1>Loading...</h1>
-        {/* {Array.from({ length: 5 }, (_, index) => ({
-          title: 'Loading Article ' + (index + 1),
-          content: 'Loading content...',
-        }))} */}
-      </>
-      )
-    }
+  if (loading) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>
+    )
+  }
     
   return (
     <>  
@@ -40,9 +36,9 @@ const SinglePostPreview = ({postId}) => {
           </div>
           :[]}
           <HomeComments postId={singlePostData._id}/>
-      </div>
-      </Card.Body>
-      </Card>
+        </div>
+    </Card.Body>
+    </Card>
     </>
   );
 };

@@ -38,7 +38,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
       </Accordion.Body>
     </Accordion.Item>
   </Accordion>
-    </>
+  </>
   );
 };
 

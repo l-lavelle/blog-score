@@ -8,7 +8,6 @@ import {DELETE_POST} from '../../utils/mutations';
 import { useState } from 'react';
 import {GET_POSTS} from '../../utils/queries';
 
-
 const EditPostModal = (props) => {
   const [updatedData, setUpdatedData] = useState({postId: "", postTitle: props.postTitle , postText: props.postText, tags:[]});
   const [updatePost, { error }] = useMutation(UPDATE_POST, {refetchQueries:[
@@ -60,43 +59,43 @@ const EditPostModal = (props) => {
     }
   };
 
-    return (
-        <Modal 
-          {...props}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
-              <InputGroup>
-                <Form.Control 
-                  name='postTitle'
-                  onChange={updateData}
-                  value={updatedData.postTitle}
-                  defaultValue= {props.title}/> 
-              </InputGroup>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-          <InputGroup>
-            <Form.Control 
-            as="textarea" 
-            rows={12} 
-            aria-label="With textarea"  
-            defaultValue={props.text}
-            name='postText'
-            onChange={updateData}
-            value={updatedData.postText}/>  
-          </InputGroup>
-          </Modal.Body>
-          <div>
-            <Button style={{ border: "#14e956", background:"red", float:"left", margin:10}} onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
-            <Button style={{ border: "#14e956", background:"black",float: "right", margin:10}} onClick={props.onHide}>Close</Button>
-            <Button style={{ border: "#14e956", background:"#696969",float: "right", margin:10}} onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
-          </div>
-        </Modal>
-      );
+  return (
+    <Modal 
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+    <Modal.Header closeButton>
+      <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
+        <InputGroup>
+        <Form.Control 
+          name='postTitle'
+          onChange={updateData}
+          value={updatedData.postTitle}
+          defaultValue= {props.title}/> 
+        </InputGroup>
+      </Modal.Title>
+    </Modal.Header>
+      <Modal.Body>
+        <InputGroup>
+          <Form.Control 
+          as="textarea" 
+          rows={12} 
+          aria-label="With textarea"  
+          defaultValue={props.text}
+          name='postText'
+          onChange={updateData}
+          value={updatedData.postText}/>  
+        </InputGroup>
+      </Modal.Body>
+      <div>
+        <Button style={{ border: "#14e956", background:"red", float:"left", margin:10}} onClick={()=>postDelete(props.postId, props.onHide)}>Delete</Button>
+        <Button style={{ border: "#14e956", background:"black",float: "right", margin:10}} onClick={props.onHide}>Close</Button>
+        <Button style={{ border: "#14e956", background:"#696969",float: "right", margin:10}} onClick={()=>postUpdate(props.postId, props.onHide)}>Update</Button>
+      </div>
+    </Modal>
+  );
 };
     
   export default EditPostModal;

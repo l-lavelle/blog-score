@@ -14,11 +14,11 @@ if (loading) {
 }
 
 return (
-      <>
-        <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Users</h1>
-        <AllUsers users={users}/>
-      </>
-    );
-  };
+    <>
+      <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Users</h1>
+      <AllUsers users={users}/>
+    </>
+  );
+};
   
-  export default AdminManageUsers;
+export default AdminManageUsers;

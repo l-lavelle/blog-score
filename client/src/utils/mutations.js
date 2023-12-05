@@ -112,7 +112,7 @@ export const UPDATE_COMMENT = gql`
 
 // Mutation to delete a comment
 export const DELETE_COMMENT = gql`
-  mutation deleteComment($commentId: ID!) {
+  mutation deleteComment($commentId: ID) {
     deleteComment(commentId: $commentId) {
       _id
     }

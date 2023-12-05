@@ -1,4 +1,3 @@
-// responsiveness error
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import {LOGIN} from '../../utils/mutations';

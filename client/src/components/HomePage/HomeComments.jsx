@@ -47,52 +47,46 @@ const HomeComment = ({ postId}) => {
     return (
     <>
       <h1>Loading...</h1>
-      {/* {Array.from({ length: 5 }, (_, index) => ({
-        title: 'Loading Article ' + (index + 1),
-        content: 'Loading content...',
-      }))} */}
     </>
     )
-    
   }
 
   return (
     <>
-        <h5>Comments:</h5>
-        {postData.postComments.length ?  
-        <>
+      <h5>Comments:</h5>
+      {postData.postComments.length ?  
+      <>
         {postData.postComments.map((posts, index) => (
-            <Card key={index}  className="mb-4">
+          <Card key={index}  className="mb-4">
             <Card.Body>
               <p>
                 {posts.author.username}{' - '}  
-                 {new Date(parseInt(posts.createdAt)).toLocaleDateString()}
-                </p>
+                {new Date(parseInt(posts.createdAt)).toLocaleDateString()}
+              </p>
                 {posts.commentText}
-
             </Card.Body>
-        </Card>
+          </Card>
         ))}
         </> : 
         <Card >
-         <Card.Body>
-          <Card.Text>No Comments Yet</Card.Text>
-        </Card.Body>
+          <Card.Body>
+            <Card.Text>No Comments Yet</Card.Text>
+          </Card.Body>
         </Card>}
         
-          {Auth.loggedIn()?
-          <>
-            <h4 className="mt-4">Add a Comment:</h4>
-            <InputGroup className="mt-2">
-            <Form.Control
-              className="mb-2"
-              name='commentText'
-              onChange={updateData}
-              value={updatedData.commentText}
-              /> 
-            </InputGroup>
-            <Button style={{ background: "#14e956" , border: "black", color:"black"}} disabled={!(updatedData.commentText)} onClick={()=>commentPost(postId)}>Post Comment</Button>
-          </>:[]}
+        {Auth.loggedIn()?
+        <>
+          <h4 className="mt-4">Add a Comment:</h4>
+          <InputGroup className="mt-2">
+          <Form.Control
+            className="mb-2"
+            name='commentText'
+            onChange={updateData}
+            value={updatedData.commentText}
+            /> 
+          </InputGroup>
+          <Button style={{ background: "#14e956" , border: "black", color:"black"}} disabled={!(updatedData.commentText)} onClick={()=>commentPost(postId)}>Post Comment</Button>
+        </>:[]}
     </>
   );
 };
