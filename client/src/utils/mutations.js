@@ -102,7 +102,7 @@ export const ADD_COMMENT = gql`
 
 // Mutation to update a comment
 export const UPDATE_COMMENT = gql`
-  mutation updateComment($commentId: ID!, $commentText: String!) {
+  mutation updateComment($commentId: ID, $commentText: String) {
     updateComment(commentId: $commentId, commentText: $commentText) {
       _id
       commentText
@@ -150,8 +150,8 @@ const mutations = {
   //   UPDATE_POST,
   //   DELETE_POST,
   //   ADD_COMMENT,
-  //   UPDATE_COMMENT,
-  //   DELETE_COMMENT,
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
   UPVOTE_POST,
   DOWNVOTE_POST,
 };

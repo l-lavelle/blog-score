@@ -15,6 +15,7 @@ import AdminManageUsers from './components/admin/AdminManageUsers';
 import About from './components/Footer/About'
 import Guidelines from './components/Footer/Rules';
 import Contact from './components/Footer/Contact'
+import UserComments from './components/Profile/UserComments'
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />
+      },
+      {
+        path: '/userComments',
+        element: <UserComments />
       },
       
     ]

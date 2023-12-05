@@ -160,6 +160,22 @@ export const USER_UNLIKED_POSTS = gql`
     }
   }
 `;
+
+export const SINGLE_USER_COMMENTS = gql`
+  query singleUserComments {
+    singleUserComments {
+      comments {
+        commentText
+        createdAt
+        _id
+        postId {
+          postText
+          postTitle
+        }
+      }
+    }
+  }
+`;
 // Query to get all comments with their authors
 // export const GET_COMMENTS = gql`
 //   query getComments {

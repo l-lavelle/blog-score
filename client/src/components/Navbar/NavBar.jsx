@@ -17,6 +17,13 @@ const NavBar = () => {
          {Auth.loggedIn()?( <Nav.Link href="home">Home</Nav.Link>):(<Nav.Link href="/">Home</Nav.Link>)}
           <Nav.Link href="recent">Recent</Nav.Link>
           {Auth.loggedIn()?( <Nav.Link href="/favorites">Favorites</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
+          {Auth.loggedIn()?( 
+          <NavDropdown title="Profile" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/userComments">
+                Manage Comments
+              </NavDropdown.Item>
+            </NavDropdown>
+              ):([])}  
           {Auth.IsAdmin()?( 
           <NavDropdown title="Admin" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/adminPosts">

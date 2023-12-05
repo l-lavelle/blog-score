@@ -1,85 +1,61 @@
-import { useMutation } from '@apollo/client';
-import {LOGIN} from '../../utils/mutations';
-import  { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useMutation } from '@apollo/client';
+// import {LOGIN} from '../../utils/mutations';
+// import  { useState } from 'react';
+// import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 import { Container, Form, Button, Card } from 'react-bootstrap';
-import './Login.css';
+import {SINGLE_USER_COMMENTS} from '../../utils/queries'
+import {truncateText} from '../../utils/helper'
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import InputGroup from 'react-bootstrap/InputGroup';
+// import './Login.css';
 import Auth from '../../utils/auth';
+import EditCommentModal from './EditCommentModal'
 
-const Profile = () => {
-  console.log(Auth.getProfile().data._id)
-  const [login, {error} ] = useMutation(LOGIN);
-  const [message, setMesage]=useState({message:'', status:''});
-  const [userLoginData, setUserLoginData] = useState({ username: '', password: '' });
+const UserComments = () => {
+  // const userId= Auth.getProfile().data._id
+  const [modalShow, setModalShow] = useState(false);
+  const [modalData, setModalData] = useState({commentId: "", postTitle:"" , postText: "", commentText:""});
 
-  const updateData= async (event)=>{
-    const { name, value } = event.target;
-    setUserLoginData({ ...userLoginData, [name]: value });
-  };
+  const { loading, data } = useQuery(SINGLE_USER_COMMENTS,{
+    fetchPolicy: 'cache-and-network',
+  });
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    try {
-      const {data}  = await login({
-        variables: { username: userLoginData.username,
-        password: userLoginData.password},
-      });
-
-      Auth.login(data.login.token)
-
-      if (error) {
-        throw new Error('Unable login user');
-      }
-      window.location.assign("/home")
-
-    } catch (error) {
-      setMesage({message:'Username or password incorrect', status:'error'})
-      console.log(error);
-    }
+  const commentData=data?.singleUserComments?.comments || []
+ 
+  const openModal = async (commentId, postTitle, postText, commentText) =>{
+    await setModalData({commentId, postTitle, postText, commentText})
+    setModalShow(true)
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-      <Card className="card-3d my-5" style={{ width: '40rem', padding: '20px' }}>
-        <Card.Body>
-          <Card.Title className="text-center fw-bold fs-2">Login</Card.Title>
-          
-          <Form onSubmit={handleLogin}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label className='text-ad mb-2 mt-3'>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter username"
-                name='username'
-                value={userLoginData.username}
-                onChange={updateData}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label className='text-ad mb-2 mt-3'>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name='password'
-                value={userLoginData.password}
-                onChange={updateData}
-                
-              />
-              <i className="bi bi-eye"></i>
-            </Form.Group>
-            {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
-            <Button variant="primary" type="submit" className="w-100 fw-bold mt-3"
-            disabled={!(userLoginData.username && userLoginData.password)}>
-              Submit
-            </Button>
-            <h4 className='mt-3 text-center'>Don&apos;t have an account? </h4>
-            <Link to="/signup" className="btn btn-success w-100 fw-bold">Signup here</Link>
-          </Form>
-        </Card.Body>
+    <>
+    <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+   {commentData.map((article, index) => (
+      <Card key={index} className="mb-3" onClick={()=>openModal(article._id, article.postId.postTitle, article.postId.postText, article.commentText)}>
+      <Card.Header>
+        <Card.Title className="mb-3">{article.postId.postTitle}</Card.Title>
+        <p className="mb-3">{truncateText(article.postId.postText, 20)}</p>
+        {/* {article.postId.postText !=null ?<Card.Text>{truncateText(article.postId.postText, 20)}</Card.Text>:[]} */}
+      </Card.Header>
+      <Card.Body>
+        <Card.Text>
+        {article.commentText}
+        </Card.Text>
+      </Card.Body>
       </Card>
-    </Container>
+    ))}
+    <EditCommentModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        commentId={modalData.commentId}
+        postTitle={modalData.postTitle}
+        postText={modalData.postText}
+        commentText={modalData.commentText}
+      />
+    </>
   );
 };
 
-export default Profile;
+export default UserComments;
