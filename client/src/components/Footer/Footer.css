@@ -24,6 +24,15 @@
   font-size: 1.2rem;
   font-family: "Helvetica-Neue", sans-serif;
 }
+
 .footer-link:hover {
   color: #14e956;
+}
+.contact-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+.contact-link:hover {
+  color: #15c54d;
 }

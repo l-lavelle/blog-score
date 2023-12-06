@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import './Footer.css'; 
 const Guidelines=()=>{
 
     return(
@@ -9,7 +11,7 @@ const Guidelines=()=>{
             <p>Encouraged Blog Site Usage:
                 <li>Use of constructive and kind language </li> 
                 <li>Post questions and start discussions relevant to blog post information</li>
-                <li>If you see any content not following the below guidelines Contact US (link) and we will review</li>
+                <li>If you see any content not following the below guidelines <Link to="/contact" className="contact-link">Contact Us</Link> and we will review</li>
             </p>
             <p>Restrictions:
                 <li>Spam</li>

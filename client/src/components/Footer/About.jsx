@@ -14,7 +14,7 @@ const AboutSite=()=>{
         </p>
         <h3>Technology Stack</h3>
         <p>Are curious to see what technologies were used to build this site? This application was created using the MERN (Mongo, Express, React, Node) stack. 
-Looking at backend, data is stored using the NoSQL database MongoDb using Mongoose an object data modeling library to create model schemas. GraphQL, a query language, is used to get data from the database. Authentication and authorization is setup using JSON (JWT) Web Tokens. The front end of the application is comprised of components written using React. If you are interested in learning more about how the website was created check out the Contact Us(link) page for information!
+Looking at backend, data is stored using the NoSQL database MongoDb using Mongoose an object data modeling library to create model schemas. GraphQL, a query language, is used to get data from the database. Authentication and authorization is setup using JSON (JWT) Web Tokens. The front end of the application is comprised of components written using React. If you are interested in learning more about how the website was created check out <a className="contact-link" href="https://github.com/l-lavelle/blog-score">GitHub Page</a> to see all the code!
 </p>
     </div>
     )
