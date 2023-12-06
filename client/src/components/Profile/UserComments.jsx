@@ -21,7 +21,7 @@ const UserComments = () => {
   };
 
   return (
-    <div className="p-3" style={{background:"white"}}>
+    <div className="p-3" style={{background:"white", borderRadius:"25px"}}>
     
     <div className="p-1 mb-3" style={{background:"white"}}>
     <h3 className='text-center mb-3'>Comment Dashboard</h3>

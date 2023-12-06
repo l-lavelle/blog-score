@@ -9,18 +9,22 @@ const Profile = () => {
   });
 
   const userData = data?.singleUser
-
+  console.log(userData)
 if(loading){
   return <h1>loading...</h1>
 }
 
   return (
-      <div className="card-3d my-5" style={{ padding: '20px' , background:"white"}}>
+      <div className="card-3d my-5" style={{ padding: '20px' , background:"white", borderRadius:"25px"}}>
           <h1 className="text-center fw-bold fs-2 mb-4">{userData.username}&apos;s Profile</h1>
           <TopKeywords keywords={userData.likedKeywords}/>
           <h4 className='mt-5'>Update Profile Info</h4>
-          <h7>To update your user information please edit the fields below and click submit</h7>
-          <UpdateProfile username={userData.username} firstName={userData.firstName} lastName={userData.lastName}/> 
+          <p>To update your user information please edit the fields below and click submit</p>
+          {userData.likedKeywords.length>0? 
+          <UpdateProfile username={userData.username} firstName={userData.firstName} lastName={userData.lastName}/> :
+          <div>
+            <h6>No interests dectected yet. Go like some posts</h6>
+          </div>}
       </div>
   );
 };
