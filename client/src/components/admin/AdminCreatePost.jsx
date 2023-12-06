@@ -13,7 +13,7 @@ const AdminCreatePost = () => {
     const { name, value } = event.target;
     if (name==="tags"){
       const cleanTags= value.split(",").map(function(tag) {
-        return tag.trim();
+        return tag;
       });
       setPostData({ ...postData, [name]: cleanTags });
     }

@@ -32,8 +32,15 @@ const UpdateProfile = (props) => {
       if (error) {
         throw new Error('Unable to update post');
       }
+      setMesage({message:"Information Updated", status:"success"})
+      setUpdatedData({
+        firstName: props.firstName,
+        lastName: props.lastName,
+        username:props.username
+      })
     }catch (err){
       console.error(err)
+      setMesage({message:"Unable to update user info", status:"error"})
     }
   };
 
