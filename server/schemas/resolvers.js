@@ -203,7 +203,9 @@ const resolvers = {
     },
     // Admin delete any user account
     adminDelete: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+      const user = await User.findOneAndDelete({ _id: userId });
+      const comments = await Comment.deleteMany({ author: userId });
+      return user;
     },
     // working with auth: admin
     addPost: async (parent, { postTitle, postText, tags }, context) => {
