@@ -20,11 +20,11 @@ export const LOGIN = gql`
 
 // Mutation to update a user's information
 export const UPDATE_USER = gql`
-  mutation updateUser($criteria: UserUpdateInput) {
+  mutation updateUser($criteria: UserInput) {
     updateUser(criteria: $criteria) {
       _id
       username
-      email
+      firstName
     }
   }
 `;
@@ -146,6 +146,7 @@ const mutations = {
   //   UPDATE_USER,
   //   DELETE_USER,
   //   ADMIN_DELETE_USER,
+  UPDATE_USER,
   ADD_POST,
   //   UPDATE_POST,
   //   DELETE_POST,

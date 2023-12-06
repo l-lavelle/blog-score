@@ -167,6 +167,10 @@ export const SINGLE_USER = gql`
       firstName
       lastName
       username
+      likedKeywords {
+        keyword
+        count
+      }
     }
   }
 `;
