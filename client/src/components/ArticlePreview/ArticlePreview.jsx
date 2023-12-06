@@ -17,7 +17,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
 
   return (
     <>
-    <Accordion className="mb-4" defaultActiveKey="0"  >
+    <Accordion className="mb-4" defaultActiveKey="0">
     <Accordion.Item eventKey={eventKey+1} >
       <Accordion.Header onClick={toggleText}>
       <div className="mb-3 postTitle"> {postTitle}</div>

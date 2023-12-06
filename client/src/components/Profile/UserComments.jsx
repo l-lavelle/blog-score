@@ -27,14 +27,15 @@ const UserComments = () => {
     <h3 className='text-center mb-3'>Comment Dashboard</h3>
     <p className="ps-3 pe-3" style={{fontSize:"1.2rem"}}>Welcome to you comment dashboard to manage your content! Here you can see all of the comments that you made on blog posts. Click on one of the posts to see the entire post and edit or delete your comment.</p>
     </div>
-    <h4 className='mb-3'>Manage Comments:</h4>
+    <div style={{background:"#cccccc", borderRadius:"20px"}} className='p-2 mb-3'>
+    <h4 >Manage Comments:</h4>
     {commentData.length>0?
     <>
       {commentData.map((article, index) => (
         <Card key={index} className="mb-3" onClick={()=>openModal(article._id, article.postId.postTitle, article.postId.postText, article.commentText)}>
         <Card.Header>
           <Card.Title className="mb-3">{article.postId.postTitle}</Card.Title>
-          <p className="mb-3">{truncateText(article.postId.postText, 20)}</p>
+          <p>{truncateText(article.postId.postText, 20)}</p>
         </Card.Header>
         <Card.Body>
           <Card.Text>
@@ -59,6 +60,7 @@ const UserComments = () => {
         postText={modalData.postText}
         commentText={modalData.commentText}
       />
+    </div>
     </div>
   );
 };
