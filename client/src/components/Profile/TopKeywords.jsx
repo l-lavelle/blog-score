@@ -1,5 +1,8 @@
 const TopKeywords = (props) => {
- 
+  console.log(props.keywords)
+  console.log(props.keywords.length>0)
+// let filteredKeywords={}
+// if (props.keywords.length>0){
 const sortedKeywords= props.keywords.sort(function(a, b) {
   return b.count-a.count
 });
@@ -8,7 +11,8 @@ const subsetKeywords= sortedKeywords.slice(0, 5);
 let filteredKeywords = subsetKeywords.filter((user) => {
   return user.count > 0
 });
-
+// return filteredKeywords
+// }
   return (
     <>
     <h4 className='mt-3'>Current Top Interests</h4>

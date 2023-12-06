@@ -40,22 +40,25 @@ const Contact=()=>{
         <>
         <div className="footer-info">
             <h1>Contact Us</h1>
-            <p>We always love to here from our users! Feel free to contact us using the form below and we will get back to you as soon as possible.</p>
-        </div>
+            <p>We always love to hear from our users! Let us know your thoughts about the site, any suggestions for future features, or any problems you’re having. Contact us using the form below and we will reach out to you at email address provided as soon as possible.</p>
+        
          
         
         <div >
            <form ref={form} onSubmit={sendEmail} className='d-flex flex-column'>
-             <label style={{color:"white"}}>Name</label>
-             <input onChange={updateData} value={emailData.user_name} type="text" name="user_name" />
-             <label style={{color:"white"}}>Email</label>
-             <input onChange={updateData} value={emailData.user_email} type="email" name="user_email" />
-             <label style={{color:"white"}}>Message</label>
-             <textarea onChange={updateData} value={emailData.message} rows={12} name="message" />
-             <input type="submit" value="Send" />
+             <label >Name</label>
+             <input className='mb-3' onChange={updateData} value={emailData.user_name} type="text" name="user_name" />
+             <label >Email</label>
+             <input className='mb-3' onChange={updateData} value={emailData.user_email} type="email" name="user_email" />
+             <label >Message</label>
+             <textarea className='mb-3' onChange={updateData} value={emailData.message} rows={12} name="message" />
+              <div className='text-center'>
+             <input style={{borderRadius: "10px", padding: '5px', background: "#14e956" , border: "black", color:"black"}} className="text-center ps-3 pe-3" type="submit" value="Send" />
+             </div>
            </form>
            {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
            {message.status==='success'?<p className='text-center mt-3' style={{color:"green"}}>{message.message}</p>:null}
+        </div>
         </div>
          
         </>

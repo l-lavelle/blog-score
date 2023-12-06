@@ -14,12 +14,15 @@
   border-top-right-radius: 10px;
 }
 .footer-info {
-  color: rgb(225, 220, 220);
+  background-color: rgb(229, 229, 229);
+  padding: 2%;
+  border-radius: 25px;
 }
 .footer-link {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
+  font-family: "Helvetica-Neue", sans-serif;
 }
 .footer-link:hover {
   color: #14e956;
