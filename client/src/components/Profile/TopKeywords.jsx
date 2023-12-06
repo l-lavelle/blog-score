@@ -1,33 +1,30 @@
-import {SINGLE_USER_COMMENTS} from '../../utils/queries'
-
 const TopKeywords = (props) => {
  
-//   const { loading, data } = useQuery(SINGLE_USER_COMMENTS,{
-//     fetchPolicy: 'cache-and-network',
-//   });
-
-//   const commentData=data?.singleUserComments?.comments || []
- 
-const newwords= props.keywords.sort(function(a, b) {
-  console.log(a)
+const sortedKeywords= props.keywords.sort(function(a, b) {
   return b.count-a.count
 });
 
-const trial= newwords.slice(0, 5);
-console.log(trial)
+const subsetKeywords= sortedKeywords.slice(0, 5);
+let filteredKeywords = subsetKeywords.filter((user) => {
+  return user.count > 0
+});
 
   return (
     <>
-    <h1>Current Top Interests</h1>
-    {trial && trial.map((keyword, index) => (
-        <div key={index} className="card mb-3">
-          <h4 className="card-header bg-dark text-light p-2 mb-1">
-            {keyword.count} {keyword.keyword}<br />
-          </h4>
+    <h4 className='mt-3'>Current Top Interests</h4>
+    {filteredKeywords.length>0?
+    <>
+    {filteredKeywords && filteredKeywords.map((keyword, index) => (
+        <div key={index} className="mb-1">
+          <li className="p-2 mb-1 fs-5">
+             {keyword.keyword}<br />
+          </li>
           
         </div>
-      ))}
-    <h1>asdf</h1>
+      ))} </>:
+      <div>
+        <h6>No interests dectected yet. Go like some posts</h6>
+      </div>}
     </>
   );
 };

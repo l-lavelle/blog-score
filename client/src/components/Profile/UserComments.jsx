@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Container, Form, Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import {SINGLE_USER_COMMENTS} from '../../utils/queries'
 import {truncateText} from '../../utils/helper'
 import { useState } from 'react';
@@ -21,8 +21,13 @@ const UserComments = () => {
   };
 
   return (
-    <>
-    <h3 className='text-center mb-3'style={{color:"white"}}>Manage Comments</h3>
+    <div className="p-3" style={{background:"white"}}>
+    
+    <div className="p-1 mb-3" style={{background:"white"}}>
+    <h3 className='text-center mb-3'>Comment Dashboard</h3>
+    <p className="ps-3 pe-3" style={{fontSize:"1.2rem"}}>Welcome to you comment dashboard to manage your content! Here you can see all of the comments that you made on blog posts. Click on one of the posts to see the entire post and edit or delete your comment.</p>
+    </div>
+    <h4 className='mb-3'>Manage Comments:</h4>
     {commentData.length>0?
     <>
       {commentData.map((article, index) => (
@@ -54,7 +59,7 @@ const UserComments = () => {
         postText={modalData.postText}
         commentText={modalData.commentText}
       />
-    </>
+    </div>
   );
 };
 

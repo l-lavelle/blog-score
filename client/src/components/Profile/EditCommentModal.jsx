@@ -71,7 +71,7 @@ const EditCommentModal = (props) => {
         <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
           <Card>
             <Card.Header>
-                <h4 className="mb-3">{props.postTitle}</h4>
+                <h4 className="text-center mb-3">{props.postTitle}</h4>
             </Card.Header>
           </Card>
         </Modal.Title>
@@ -80,6 +80,7 @@ const EditCommentModal = (props) => {
       <p>
         {props.postText}
       </p>
+      <h4 className='mb-2'>Your Comment:</h4>
       <InputGroup>
         <Form.Control 
         name='commentText'
