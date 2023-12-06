@@ -235,7 +235,9 @@ const resolvers = {
     },
     // Delete post with _id: admin || moderator??
     deletePost: async (parent, { postId }, context) => {
-      return Post.findOneAndDelete({ _id: postId });
+      const post = Post.findOneAndDelete({ _id: postId });
+      const comments = await Comment.deleteMany({ postId: postId });
+      return post;
     },
     // Working with auth- all
     addComment: async (parent, { commentText, postId }, context) => {
