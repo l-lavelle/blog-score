@@ -7,6 +7,7 @@ const Footer = () => {
     <Container fluid className="footer-container fixed-bottom footer-rounded">
       <Row>
         <Col className="footer-col"> 
+        {/* Chnage to nav */}
         <p>
           <Link to='/about' className='footer-link'>About |</Link>
           <Link to='/guidelines' className='footer-link'> Guidelines |</Link>
