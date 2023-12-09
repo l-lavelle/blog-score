@@ -25,9 +25,10 @@ const Favorites = () => {
       const  likedPostData = data?.userLikedPost?.likedPost || []
       if (likedPostData.length>0){
         const defaultId= likedPostData[0]._id 
-        setDefaultPost(defaultId)}
+        setDefaultPost(defaultId)
+        higlightPost(defaultPost)}
     }
-  },[data?.userLikedPost?.likedPost, loading]);
+  },[data?.userLikedPost?.likedPost, loading,defaultPost]);
 
   const breakpoint = 700;
   useEffect(() => {
@@ -37,6 +38,16 @@ const Favorites = () => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, []);
+
+  const higlightPost = (id) => {
+    if (id === defaultPost && !singlePost) {
+      return "mb-4 card class-card card-highlight scroll-m";
+    } else if (id === singlePost) {
+      return "mb-4 card class-card card-highlight scroll-m";
+    } else {
+      return "mb-4 card class-card scroll-m";
+    }
+  };
 
   const getSinglePost = async (postId)=>{
     setSinglePost(postId)
@@ -75,7 +86,7 @@ const Favorites = () => {
             <div className="laptop-posts">
             <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
               {likedPostData.map((article, index) => (
-                <Card key={index} className={article._id=== singlePost ? "mb-4 class-card card-highlight scroll-m" : "mb-4 class-card scroll-m"} onClick={()=>getSinglePost(article._id)}>
+                <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>

@@ -13,8 +13,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 function RecentlyViewedPosts() {
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
-  const [defaultPost, setDefaultPost] = useState(null);
-
+  const [defaultPost, setDefaultPost] = useState('');
+  console.log("defaultPost", defaultPost)
   const { loading, data:recentData } = useQuery(RECENT_POSTS_QUERY, {
     fetchPolicy: 'cache-and-network',
   });
@@ -27,8 +27,9 @@ function RecentlyViewedPosts() {
       const  postData = recentData?.recentPosts || []
         const defaultId= postData[0]._id
         setDefaultPost(defaultId)
+        higlightPost(defaultPost)
     }
-  },[recentData?.recentPosts, loading]);
+  },[recentData?.recentPosts, loading, defaultPost]);
 
     const breakpoint = 700;
     useEffect(() => {
@@ -39,6 +40,17 @@ function RecentlyViewedPosts() {
       };
     }, []);
 
+    const higlightPost=(id)=>{
+      if (id===defaultPost && !singlePost){
+        return("mb-4 card class-card card-highlight scroll-m")
+      } else if(id===singlePost){
+        return("mb-4 card class-card card-highlight scroll-m")
+      } 
+      else{
+        return ("mb-4 card class-card scroll-m")
+      }
+    };
+    
     const getSinglePost = async (postId)=>{
       setSinglePost(postId)
     };
@@ -78,7 +90,7 @@ function RecentlyViewedPosts() {
               <div className="laptop-posts">
               <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
                 {postData.map((article, index) => (
-                  <div  key={index} className={article._id=== singlePost ? "mb-4 card class-card card-highlight scroll-m" : "mb-4 card class-card scroll-m"} onClick={()=>getSinglePost(article._id)}>
+                  <div  key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
