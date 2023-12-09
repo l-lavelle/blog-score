@@ -1,10 +1,26 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useQuery } from '@apollo/client';
+import {SINGLE_USER} from '../../utils/queries'
 import './NavBar.css';
 
 import Auth from '../../utils/auth';
 
 const NavBar = () => {
+  const { loading, data } = useQuery(SINGLE_USER,{
+    fetchPolicy: 'cache-and-network',
+  });
+  const userData=data?.singleUser
+  console.log(userData)
+
+  if (loading) {
+    return (
+    <>
+      <h1>Loading...</h1>
+    </>
+    )
+  }
+
   return (
     <>
      <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg"  fixed="top" className='px-3 rounded-navbar'>
@@ -16,7 +32,18 @@ const NavBar = () => {
           <Nav.Link href="recent">Recent</Nav.Link>
           {Auth.loggedIn()?( <Nav.Link href="/favorites">Favorites</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
           {Auth.loggedIn()?( 
-          <NavDropdown title="Profile" id="collapsible-nav-dropdown">
+          <NavDropdown 
+          title={
+            < >
+                <img className="thumbnail-image img-size" 
+                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+                    alt="user pic"
+                />
+                {userData.username}
+            </>
+        } 
+          // title={userData.username} 
+          id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/profile">
               Profile
             </NavDropdown.Item>
