@@ -79,30 +79,18 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+//Broke something everything started working differently- token needs to be updated??
 // userSchema.pre("findOneAndUpdate", async function (next) {
 //   try {
-//     if (this.isModified("password")) {
-//       const saltRounds = 10;
-//       this.password = await bcrypt.hash(this.password, saltRounds);
+//     if (this._update.$set.password) {
+//       const hashed = await bcrypt.hash(this._update.$set.password, 10);
+//       this._update.$set.password = hashed;
 //     }
 //     next();
 //   } catch (err) {
 //     return next(err);
 //   }
 // });
-
-userSchema.pre("findOneAndUpdate", async function (next) {
-  try {
-    console.log("update on model", this._update.$set.password);
-    if (this._update.$set.password) {
-      const hashed = await bcrypt.hash(this._update.$set.password, 10);
-      this._update.$set.password = hashed;
-    }
-    next();
-  } catch (err) {
-    return next(err);
-  }
-});
 
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);

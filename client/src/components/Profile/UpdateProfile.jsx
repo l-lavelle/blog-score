@@ -1,3 +1,5 @@
+// Need to confirm old password and add validation- not sure what happened with all data 
+// Delete database and start over 
 import  { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries'
