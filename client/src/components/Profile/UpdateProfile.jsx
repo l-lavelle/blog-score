@@ -20,6 +20,18 @@ const UpdateProfile = (props) => {
 
   const userUpdate= async ()=>{
     try{
+    if (updatedData.password){
+      await updateUser({
+        variables: { 
+          criteria:{
+            firstName: updatedData.firstName, 
+            lastName: updatedData.lastName, 
+            username: updatedData.username,
+            password: updatedData.password
+          },
+        }
+      })
+    } else {
       await updateUser({
         variables: { 
           criteria:{
@@ -27,8 +39,8 @@ const UpdateProfile = (props) => {
             lastName: updatedData.lastName, 
             username: updatedData.username,
           },
-        }
-      })
+        }})
+      }
       if (error) {
         throw new Error('Unable to update post');
       }
@@ -74,8 +86,19 @@ const UpdateProfile = (props) => {
     />
     </Form.Group>
 
-    {/* <Form.Group controlId="formBasicPassword">
-    <Form.Label className='text-ad mb-2 mt-3'>Password</Form.Label>
+    <Form.Group controlId="formOldPassword">
+    <Form.Label className='text-ad mb-2 mt-3'>Old Password</Form.Label>
+    <Form.Control
+        type="password"
+        name='oldPassword'
+        value={updatedData.oldPassword}
+        onChange={updateData}
+        autoComplete="off"
+    />
+    </Form.Group>
+
+    <Form.Group controlId="formBasicPassword">
+    <Form.Label className='text-ad mb-2 mt-3'>New Password</Form.Label>
     <Form.Control
         type="password"
         name='password'
@@ -94,7 +117,7 @@ const UpdateProfile = (props) => {
         onChange={updateData}
         autoComplete="off"
     />
-    </Form.Group> */}
+    </Form.Group>
     {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
     {message.status==='success'?<p className='text-center mt-3' style={{color:"green"}}>{message.message}</p>:null}
     <Button variant="primary" type="submit" className="fw-bold mt-3">

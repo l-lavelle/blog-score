@@ -189,11 +189,15 @@ const resolvers = {
     },
     //working with auth: all for your own account only
     updateUser: async (parent, { criteria }, context) => {
-      return await User.findOneAndUpdate(
+      console.log(criteria.password);
+      const updateUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $set: criteria },
         { new: true, runValidators: true }
       );
+      console.log("password", criteria.password);
+      // updateUser.save();
+      return updateUser;
     },
     //working with auth: all
     deleteUser: async (parent, args, context) => {
