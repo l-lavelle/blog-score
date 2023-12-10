@@ -1,3 +1,4 @@
+// When delete bottom fav doesnt update single profile
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {USER_LIKED_POSTS} from '../../utils/queries';

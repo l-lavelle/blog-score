@@ -68,7 +68,7 @@ const typeDefs = `#graphql
   type Mutation {
     addUser(user:UserInput): Auth
     login(username: String, password: String): Auth
-    updateUser(criteria:UserInput):Auth
+    updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User
     addPost(postTitle:String, postText:String, tags:[String]):Post
