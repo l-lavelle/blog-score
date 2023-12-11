@@ -1,4 +1,3 @@
-// Need to confirm old password and add validation
 import  { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries'
@@ -6,9 +5,11 @@ import {UPDATE_USER} from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const UpdateProfile = (props) => {
-  const [updateUser, { error }] = useMutation(UPDATE_USER);
+  const [updateUser, { error }] = useMutation(UPDATE_USER,{refetchQueries:[
+    SINGLE_USER
+  ]});
   const [message, setMesage]=useState({message:'', status:''});
-  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, oldPassword:'', password:'', confirmPassword:''});
+  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, password:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
@@ -22,7 +23,7 @@ const UpdateProfile = (props) => {
       if (updatedData.password.length<5){
         setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
       } else if (updatedData.password != updatedData.confirmPassword) {
-          setMesage({message:'Passwords do not match', status:'error'})
+          setMesage({message:'New passwords do not match', status:'error'})
       } else {
       await updateUser({
         variables: { 
@@ -39,10 +40,8 @@ const UpdateProfile = (props) => {
         firstName: props.firstName,
         lastName: props.lastName,
         username:props.username,
-        oldPassword:"",
         password: "",
         confirmPassword:""
-
       })
      }
     } else {
@@ -65,12 +64,6 @@ const UpdateProfile = (props) => {
       if (error) {
         throw new Error('Unable to update post');
       }
-      // setMesage({message:"Information Updated", status:"success"})
-      // setUpdatedData({
-      //   firstName: props.firstName,
-      //   lastName: props.lastName,
-      //   username:props.username
-      // })
     }catch (err){
       console.error(err)
       setMesage({message:"Unable to update user info", status:"error"})
@@ -107,19 +100,8 @@ const UpdateProfile = (props) => {
     />
     </Form.Group>
 
-    <Form.Group controlId="formOldPassword">
-    <Form.Label className='text-ad mb-2 mt-3'>Old Password</Form.Label>
-    <Form.Control
-        type="password"
-        name='oldPassword'
-        value={updatedData.oldPassword}
-        onChange={updateData}
-        autoComplete="off"
-    />
-    </Form.Group>
-
     <Form.Group controlId="formBasicPassword">
-    <Form.Label className='text-ad mb-2 mt-3'>New Password</Form.Label>
+    <Form.Label className='fs-4 mb-2 mt-3'>New Password</Form.Label>
     <Form.Control
         type="password"
         name='password'
@@ -130,7 +112,7 @@ const UpdateProfile = (props) => {
     </Form.Group>
 
     <Form.Group controlId="formBasicConfirmPassword">
-    <Form.Label className='text-ad mb-2 mt-3'>Confirm Password</Form.Label>
+    <Form.Label className='fs-4 mb-2 mt-3'>Confirm Password</Form.Label>
     <Form.Control
         type="password"
         name='confirmPassword'
