@@ -139,6 +139,22 @@ export const DOWNVOTE_POST = gql`
   }
 `;
 
+export const ADD_FRIEND = gql`
+  mutation addFriend($userId: ID) {
+    addFriend(userId: $userId) {
+      _id
+    }
+  }
+`;
+
+export const DELETE_FRIEND = gql`
+  mutation deleteFriend($userId: ID) {
+    deleteFriend(userId: $userId) {
+      _id
+    }
+  }
+`;
+
 // Export all mutations as a single object (optional)
 const mutations = {
   ADD_USER,
@@ -155,6 +171,8 @@ const mutations = {
   DELETE_COMMENT,
   UPVOTE_POST,
   DOWNVOTE_POST,
+  ADD_FRIEND,
+  DELETE_FRIEND,
 };
 
 export default mutations;

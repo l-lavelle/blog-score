@@ -31,7 +31,12 @@ const resolvers = {
     },
     singleUser: async (parent, args, context) => {
       if (context.user) {
-        return await User.findOne({ _id: context.user._id });
+        return await User.findOne({ _id: context.user._id }).populate([
+          {
+            path: "friends",
+            model: "User",
+          },
+        ]);
       }
     },
     singleUserComments: async (parent, args, context) => {

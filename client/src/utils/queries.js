@@ -171,6 +171,10 @@ export const SINGLE_USER = gql`
         keyword
         count
       }
+      friends {
+        username
+        _id
+      }
     }
   }
 `;
