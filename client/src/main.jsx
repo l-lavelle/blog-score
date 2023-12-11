@@ -16,7 +16,8 @@ import About from './components/Footer/About'
 import Guidelines from './components/Footer/Rules';
 import Contact from './components/Footer/Contact'
 import UserComments from './components/Profile/UserComments'
-import Profile from './components/Profile/Profile'
+import Profile from './components/Profile/Profile';
+import Friends from './components/Profile/Friends';
 
 const router = createBrowserRouter([
   {
@@ -79,7 +80,10 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />
       },
-      
+      {
+        path: '/friends',
+        element: <Friends />
+      },
     ]
   },
 ]);

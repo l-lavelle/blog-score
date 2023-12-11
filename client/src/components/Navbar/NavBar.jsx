@@ -50,6 +50,9 @@ const NavBar = () => {
             <NavDropdown.Item href="/userComments">
               Manage Comments
             </NavDropdown.Item>
+            <NavDropdown.Item href="/friends">
+              Friends
+            </NavDropdown.Item>
             </NavDropdown>
               ):([])}  
           {Auth.IsAdmin()?( 

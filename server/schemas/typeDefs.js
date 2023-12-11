@@ -9,6 +9,7 @@ const typeDefs = `#graphql
     unlikedPost:[Post]
     posts: [Post]
     comments: [Comment]
+    friends:[User]
     likedKeywords: [KeywordCount] # Define it as an array of KeywordCount
   }
   type KeywordCount {
@@ -79,6 +80,8 @@ const typeDefs = `#graphql
     deleteComment(commentId:ID):Comment
     upvotePost(postId:ID): Post
     downvotePost(postId:ID):Post
+    addFriend(userId:ID):User
+    deleteFriend(userId:ID):User
   }
 `;
 module.exports = typeDefs;

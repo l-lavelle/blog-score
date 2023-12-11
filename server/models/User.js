@@ -57,6 +57,12 @@ const userSchema = new Schema(
         ref: "Post",
       },
     ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     unlikedPost: [
       {
         type: Schema.Types.ObjectId,
