@@ -9,6 +9,7 @@ import SinglePostPreview from '../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
+
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const SingleUserProfile = () => {
@@ -118,6 +119,7 @@ const SingleUserProfile = () => {
     return (
       <Container>
         <h1>hi</h1>
+       
       {/* <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
       {likedPostData.length>0 ? 
         <>
