@@ -39,15 +39,19 @@ const Friends = () => {
             </Button>
         </Link>
        <h3 className='text-center mb-3'style={{color:"white"}}>Friends</h3>
+       
         {users.length>0? 
             users.map((user) => (
           <div  key={user._id} className="card mb-3">
+          <Link to={"/friends/"+user._id}> 
             <h4 className="card-header p-2 ">
               {user.username} <br />
             </h4>
+          </Link>
             <p onClick={()=>removeFriend(user._id)}>-</p>
           </div>
-        )) :
+        )) 
+        :
         <h3>No friends yet. Search for friends</h3>}
         </>
       );

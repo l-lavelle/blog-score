@@ -194,8 +194,22 @@ export const SINGLE_USER_COMMENTS = gql`
     }
   }
 `;
+
+export const FIND_FRIEND = gql`
+  query findFriend($userId: ID) {
+    findFriend(userId: $userId) {
+      _id
+      username
+      likedPost {
+        _id
+        postTitle
+        postText
+      }
+    }
+  }
+`;
 // Query to get all comments with their authors
-// export const GET_COMMENTS = gql`
+// export const GET_COMMENTS = gql`;
 //   query getComments {
 //     comments {
 //       _id

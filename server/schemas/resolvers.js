@@ -39,6 +39,14 @@ const resolvers = {
         ]);
       }
     },
+    findFriend: async (parent, { userId }) => {
+      return await User.findOne({ _id: userId }).populate([
+        {
+          path: "likedPost",
+          model: "Post",
+        },
+      ]);
+    },
     singleUserComments: async (parent, args, context) => {
       if (context.user) {
         return await User.findOne({ _id: context.user._id }).populate([

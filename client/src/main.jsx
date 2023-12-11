@@ -19,6 +19,7 @@ import UserComments from './components/Profile/UserComments'
 import Profile from './components/Profile/Profile';
 import FindUsers from './components/Profile/FindUsers';
 import Friends from './components/Profile/Friends';
+import SingleUserProfile from './components/Profile/SingleUserProfile'
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: '/friends',
         element: <Friends />
+      },
+      {
+        path: '/friends/:id',
+        element: <SingleUserProfile />
       },
     ]
   },
