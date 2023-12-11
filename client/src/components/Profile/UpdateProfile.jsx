@@ -1,5 +1,4 @@
-// Need to confirm old password and add validation- not sure what happened with all data 
-// Delete database and start over 
+// Need to confirm old password and add validation
 import  { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries'
@@ -7,22 +6,24 @@ import {UPDATE_USER} from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const UpdateProfile = (props) => {
-  const [updateUser, { error }] = useMutation(UPDATE_USER, {refetchQueries:[
-    SINGLE_USER
-  ]});
-
-  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, oldPassword:'', password:'', confirmPassword:''});
-  
+  const [updateUser, { error }] = useMutation(UPDATE_USER);
   const [message, setMesage]=useState({message:'', status:''});
+  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, oldPassword:'', password:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUpdatedData({ ...updatedData, [name]: value });
   };
 
-  const userUpdate= async ()=>{
+  const userUpdate= async (event)=>{
+    event.preventDefault();
     try{
     if (updatedData.password){
+      if (updatedData.password.length<5){
+        setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
+      } else if (updatedData.password != updatedData.confirmPassword) {
+          setMesage({message:'Passwords do not match', status:'error'})
+      } else {
       await updateUser({
         variables: { 
           criteria:{
@@ -33,6 +34,17 @@ const UpdateProfile = (props) => {
           },
         }
       })
+      setMesage({message:"Information Updated", status:"success"})
+      setUpdatedData({
+        firstName: props.firstName,
+        lastName: props.lastName,
+        username:props.username,
+        oldPassword:"",
+        password: "",
+        confirmPassword:""
+
+      })
+     }
     } else {
       await updateUser({
         variables: { 
@@ -42,16 +54,23 @@ const UpdateProfile = (props) => {
             username: updatedData.username,
           },
         }})
+
+        setMesage({message:"Information Updated", status:"success"})
+        setUpdatedData({
+          firstName: props.firstName,
+          lastName: props.lastName,
+          username:props.username
+        })
       }
       if (error) {
         throw new Error('Unable to update post');
       }
-      setMesage({message:"Information Updated", status:"success"})
-      setUpdatedData({
-        firstName: props.firstName,
-        lastName: props.lastName,
-        username:props.username
-      })
+      // setMesage({message:"Information Updated", status:"success"})
+      // setUpdatedData({
+      //   firstName: props.firstName,
+      //   lastName: props.lastName,
+      //   username:props.username
+      // })
     }catch (err){
       console.error(err)
       setMesage({message:"Unable to update user info", status:"error"})
