@@ -3,6 +3,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useQuery } from '@apollo/client';
 import {SINGLE_USER} from '../../utils/queries'
 import './NavBar.css';
+// import { Link } from 'react-router-dom';
+// Check seems to be okay with the / for href redirect but test 
 
 import Auth from '../../utils/auth';
 
@@ -28,8 +30,8 @@ const NavBar = () => {
        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
        <Navbar.Collapse id="responsive-navbar-nav">
        <Nav title="Dropdown" className="me-auto justify-content-end m-3" style={{ width: "100%" }}>
-         {Auth.loggedIn()?( <Nav.Link href="home">Home</Nav.Link>):(<Nav.Link href="/">Home</Nav.Link>)}
-          <Nav.Link href="recent">Recent</Nav.Link>
+         {Auth.loggedIn()?( <Nav.Link href="/home">Home</Nav.Link>):(<Nav.Link href="/">Home</Nav.Link>)}
+          <Nav.Link href="/recent">Recent</Nav.Link>
           {Auth.loggedIn()?( <Nav.Link href="/favorites">Favorites</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
           {Auth.loggedIn()?( 
           <NavDropdown 
@@ -41,9 +43,15 @@ const NavBar = () => {
                 />
                 {userData.username}
             </>
-        } 
-          // title={userData.username} 
+          } 
           id="collapsible-nav-dropdown">
+            
+            {/* <NavDropdown.Item>
+            <Link to="/profile"> 
+              Profile
+            </Link>
+            </NavDropdown.Item> */}
+            
             <NavDropdown.Item href="/profile">
               Profile
             </NavDropdown.Item>

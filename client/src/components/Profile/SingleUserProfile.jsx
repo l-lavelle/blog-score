@@ -1,3 +1,4 @@
+//Routing issue, upvote issue, look aournd and see whats up with the data 
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {FIND_FRIEND} from '../../utils/queries';
@@ -19,20 +20,20 @@ const SingleUserProfile = () => {
     const [defaultPost, setDefaultPost] = useState(null);
     console.log("friend id", id)
     const {  loading, data } = useQuery(FIND_FRIEND,{ variables: { userId:id } });
-    const  likedPostData = data || [];
+    const  following = data?.findFriend || [];
   
-    console.log("friend data",likedPostData)
+    console.log("friend data",following)
     useEffect(() => {
       if (loading) {
         null
       } else {
-        const  likedPostData = data?.userLikedPost?.likedPost || []
-        if (likedPostData.length>0){
-          const defaultId= likedPostData[0]._id 
+        const  following = data?.findFriend?.likedPost || []
+        if (following.length>0){
+          const defaultId= following[0]._id 
           setDefaultPost(defaultId)
           higlightPost(defaultPost)}
       }
-    },[data?.userLikedPost?.likedPost, loading,defaultPost]);
+    },[data?.findFriend?.likedPost, loading,defaultPost]);
   
     const breakpoint = 700;
     useEffect(() => {
@@ -53,9 +54,9 @@ const SingleUserProfile = () => {
       }
     };
   
-    // const getSinglePost = async (postId)=>{
-    //   setSinglePost(postId)
-    // };
+    const getSinglePost = async (postId)=>{
+      setSinglePost(postId)
+    };
   
     if (loading) {
       if (width > breakpoint){
@@ -84,13 +85,19 @@ const SingleUserProfile = () => {
     if (width > breakpoint) {
       return (
         <div>
-          <h1>hi</h1>
-          {/* <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
-          {likedPostData.length>0?  
+          <div className='d-flex'>
+          <img className="thumbnail-image" 
+            src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+            alt="user pic"
+          />
+          <h3 className='text-center mb-3'style={{color:"white"}}>{following.username}</h3>
+           
+          </div>
+          {following.likedPost.length>0?  
             <div className="laptop-container">
               <div className="laptop-posts">
               <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-                {likedPostData.map((article, index) => (
+                {following.likedPost.map((article, index) => (
                   <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                     <Card.Body className="post-card">
                       <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -108,10 +115,9 @@ const SingleUserProfile = () => {
             </div> :
             <Card>
               <Card.Body>
-                <Card.Title>No Favorites Yet</Card.Title>
-                <Card.Text>Check out blog posts and like to save to favorites</Card.Text>
+                <Card.Title>User has no favorites yet</Card.Title>
               </Card.Body>
-            </Card> } */}
+            </Card> }
         </div>
       );
     }
@@ -120,10 +126,10 @@ const SingleUserProfile = () => {
       <Container>
         <h1>hi</h1>
        
-      {/* <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
-      {likedPostData.length>0 ? 
+      <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+      {following.likedPost.length>0 ? 
         <>
-          {likedPostData.map((article) => (
+          {following.likedPost.map((article) => (
             <Card key={article._id}  className="mb-4">
               <Card.Body>
                 <Card.Title>{article.postTitle}</Card.Title>
@@ -138,7 +144,7 @@ const SingleUserProfile = () => {
            <Card.Title>No Favorites Yet</Card.Title>
            <Card.Text>Check out blog posts and like to save to favorites</Card.Text>
          </Card.Body>
-       </Card> } */}
+       </Card> }
       </Container>
     );
 };
