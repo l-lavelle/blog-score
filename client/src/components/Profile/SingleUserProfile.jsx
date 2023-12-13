@@ -9,7 +9,8 @@ import SinglePostPreview from '../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
-
+import TopKeywords from './TopKeywords';
+import './SingleUserProfile.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const SingleUserProfile = () => {
@@ -85,7 +86,7 @@ const SingleUserProfile = () => {
       return (
         <>
         <div>
-          <div className='d-flex align-items-center'>
+          <div className='d-flex align-items-center new'>
           <img className="thumbnail-image" 
             src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
             alt="user pic"
@@ -96,6 +97,10 @@ const SingleUserProfile = () => {
             <p className='text-center mb-3 ms-5'style={{color:"white"}}>{following.profileInfo}</p>
           </div>
           </div>
+          {following.likedKeywords.length>0? 
+            <TopKeywords keywords={following.likedKeywords}/>:
+            []
+          }
           {following.likedPost.length>0?  
             <div className="laptop-container">
               <div className="laptop-posts">

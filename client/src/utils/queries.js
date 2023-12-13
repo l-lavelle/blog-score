@@ -212,6 +212,10 @@ export const FIND_FRIEND = gql`
         postText
         upvotes
       }
+      likedKeywords {
+        keyword
+        count
+      }
     }
   }
 `;

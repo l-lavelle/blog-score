@@ -1,3 +1,6 @@
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+
 // https://stackoverflow.com/questions/64957735/typeerror-cannot-assign-to-read-only-property-0-of-object-object-array-in
 const TopKeywords = (props) => {
 
@@ -10,6 +13,42 @@ let filteredKeywords = subsetKeywords.filter((user) => {
   return user.count > 0
 });
 
+const pieData=[]
+const chartLabels=[]
+filteredKeywords.forEach((element) => {
+    pieData.push(element.count)
+    chartLabels.push(element.keyword)
+});
+
+ChartJS.register(ArcElement, Tooltip);
+  
+  const data = {
+    labels: chartLabels,
+    // 
+    datasets: [
+      {
+        label: 'Top Current Interests',
+        data: pieData,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
   return (
     <>
     <h4 className='mt-3'>Current Top Interests</h4>
@@ -22,7 +61,9 @@ let filteredKeywords = subsetKeywords.filter((user) => {
           </li>
           
         </div>
-      ))} </>:
+      ))} 
+      <Pie data={data} />
+    </>:
       <div>
         <h6>No interests dectected yet. Go like some posts</h6>
       </div>}
