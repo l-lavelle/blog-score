@@ -204,6 +204,8 @@ export const FIND_FRIEND = gql`
     findFriend(userId: $userId) {
       _id
       username
+      title
+      profileInfo
       likedPost {
         _id
         postTitle
