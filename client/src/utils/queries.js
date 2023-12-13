@@ -169,6 +169,8 @@ export const SINGLE_USER = gql`
       firstName
       lastName
       username
+      title
+      profileInfo
       likedKeywords {
         keyword
         count

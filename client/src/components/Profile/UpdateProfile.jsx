@@ -9,11 +9,12 @@ const UpdateProfile = (props) => {
     SINGLE_USER
   ]});
   const [message, setMesage]=useState({message:'', status:''});
-  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, password:'', confirmPassword:''});
+  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, title:props.title, profileInfo:props.profileInfo, password:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUpdatedData({ ...updatedData, [name]: value });
+    console.log(updatedData)
   };
 
   const userUpdate= async (event)=>{
@@ -31,7 +32,9 @@ const UpdateProfile = (props) => {
             firstName: updatedData.firstName, 
             lastName: updatedData.lastName, 
             username: updatedData.username,
-            password: updatedData.password
+            password: updatedData.password,
+            title:updatedData.title,
+            profileInfo:updatedData.profileInfo
           },
         }
       })
@@ -40,6 +43,8 @@ const UpdateProfile = (props) => {
         firstName: props.firstName,
         lastName: props.lastName,
         username:props.username,
+        title:props.title,
+        profileInfo:props.profileInfo,
         password: "",
         confirmPassword:""
       })
@@ -51,6 +56,8 @@ const UpdateProfile = (props) => {
             firstName: updatedData.firstName, 
             lastName: updatedData.lastName, 
             username: updatedData.username,
+            title:updatedData.title,
+            profileInfo:updatedData.profileInfo
           },
         }})
 
@@ -58,7 +65,9 @@ const UpdateProfile = (props) => {
         setUpdatedData({
           firstName: props.firstName,
           lastName: props.lastName,
-          username:props.username
+          username:props.username,
+          title:props.title,
+          profileInfo:props.profileInfo
         })
       }
       if (error) {
@@ -97,6 +106,25 @@ const UpdateProfile = (props) => {
         name='username'
         defaultValue={props.username}
         onChange={updateData}
+    />
+    </Form.Group>
+    <Form.Group controlId="formTitle">
+    <Form.Label className='fs-4 mb-2 mt-3'>Title</Form.Label>
+    <Form.Control
+        type="text"
+        name='title'
+        defaultValue={props.title}
+        onChange={updateData}
+    />
+    </Form.Group>
+    <Form.Group controlId="formProfileInfo">
+    <Form.Label className='fs-4 mb-2 mt-3'>Profile Info</Form.Label>
+    <Form.Control
+        as="textarea"
+        name='profileInfo'
+        defaultValue={props.profileInfo}
+        onChange={updateData}
+        rows={10}
     />
     </Form.Group>
 

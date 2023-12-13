@@ -5,6 +5,8 @@ const typeDefs = `#graphql
     lastName: String
     username: String
     role:String
+    title:String
+    profileInfo:String
     likedPost:[Post]
     unlikedPost:[Post]
     posts: [Post]
@@ -49,6 +51,8 @@ const typeDefs = `#graphql
     username:String
     password:String
     role:String
+    title:String
+    profileInfo:String
   }
   type Auth {
     token: ID

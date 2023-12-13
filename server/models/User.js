@@ -34,6 +34,12 @@ const userSchema = new Schema(
       type: String,
       default: "user",
     },
+    title: {
+      type: String,
+    },
+    profileInfo: {
+      type: String,
+    },
     posts: [
       {
         type: Schema.Types.ObjectId,

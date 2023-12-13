@@ -25,7 +25,7 @@ if(loading){
           }
           <h4 className='mt-5'>Update Profile Info</h4>
           <p>To update your user information please edit the fields below and click submit</p>
-          <UpdateProfile username={userData.username} firstName={userData.firstName} lastName={userData.lastName}/> 
+          <UpdateProfile username={userData.username} firstName={userData.firstName} lastName={userData.lastName} title={userData.title} profileInfo={userData.profileInfo}/> 
       </div>
   );
 };
