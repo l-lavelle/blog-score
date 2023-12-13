@@ -135,6 +135,7 @@ export const RECENT_POSTS_QUERY = gql`
       _id
       postTitle
       postText
+      upvotes
     }
   }
 `;
@@ -146,6 +147,7 @@ export const USER_LIKED_POSTS = gql`
         _id
         postTitle
         postText
+        upvotes
       }
     }
   }
@@ -204,6 +206,7 @@ export const FIND_FRIEND = gql`
         _id
         postTitle
         postText
+        upvotes
       }
     }
   }

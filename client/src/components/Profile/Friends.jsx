@@ -52,7 +52,7 @@ const Friends = () => {
           </div>
         )) 
         :
-        <h3>No friends yet. Search for friends</h3>}
+        <h3 className="text-center" style={{ background: "white" , border: "black", padding:"20px"}}>No friends yet. Search for users to add friends!</h3>}
         </>
       );
     };

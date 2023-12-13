@@ -12,7 +12,7 @@ const SinglePostPreview = ({postId}) => {
   fetchPolicy: 'cache-and-network',
   });
   const  singlePostData = onePost?.getSinglePost || [];
-
+console.log("single post", singlePostData)
   if (loading) {
     return (
     <>

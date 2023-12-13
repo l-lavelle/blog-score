@@ -1,4 +1,3 @@
-//Routing issue, upvote issue, look aournd and see whats up with the data 
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {FIND_FRIEND} from '../../utils/queries';
@@ -84,13 +83,14 @@ const SingleUserProfile = () => {
   
     if (width > breakpoint) {
       return (
+        <>
         <div>
-          <div className='d-flex'>
+          <div className='d-flex align-items-center'>
           <img className="thumbnail-image" 
             src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
             alt="user pic"
           />
-          <h3 className='text-center mb-3'style={{color:"white"}}>{following.username}</h3>
+          <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.username}</h3>
            
           </div>
           {following.likedPost.length>0?  
@@ -119,13 +119,22 @@ const SingleUserProfile = () => {
               </Card.Body>
             </Card> }
         </div>
+        </>
       );
     }
   
     return (
       <Container>
-        <h1>hi</h1>
-       
+       <div>
+          <div className='d-flex flex-column'>
+          <img className="thumbnail-image" 
+            src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+            alt="user pic"
+          />
+          <h3 className='text-center mb-3'style={{color:"white"}}>{following.username}</h3>
+           
+          </div>
+       </div>
       <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
       {following.likedPost.length>0 ? 
         <>
