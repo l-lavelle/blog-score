@@ -5,6 +5,7 @@ import {ADD_FRIEND} from '../../utils/mutations';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries';
+import Auth from '../../utils/auth'
 
 const FindUsers = () => {
     const { loading, data:allUsers } = useQuery(GET_USERS, {
@@ -40,6 +41,8 @@ const FindUsers = () => {
       }
   
       const results = users.filter(({ _id: id1 }) => !currentFriends.some(({ _id: id2 }) => id2 === id1));
+      const withoutSelf = results.filter(users=> users._id !== Auth.getProfile().data._id)
+      console.log("me",withoutSelf)
       return (
         <>
          
@@ -51,11 +54,18 @@ const FindUsers = () => {
             </Button>
         </Link>
         {users &&
-            results.map((user) => (
-          <div  onClick={()=>newFriend(user._id)}key={user._id} className="card mb-3">
+            withoutSelf.map((user) => (
+          <div key={user._id} className="card mb-3">
             <h4 className="card-header p-2 ">
+            <img className="thumbnail-image img-size" 
+                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+                    alt="user pic"
+            />
+            <Link to={"/user/"+user._id}> 
               {user.username} <br />
+            </Link>
             </h4>
+            <p onClick={()=>newFriend(user._id)}>+</p>
           </div>
         ))}
         </>

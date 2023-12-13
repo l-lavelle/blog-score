@@ -94,6 +94,10 @@ const router = createBrowserRouter([
         path: '/friends/:id',
         element: <SingleUserProfile />
       },
+      {
+        path: '/user/:id',
+        element: <SingleUserProfile />
+      },
     ]
   },
 ]);
