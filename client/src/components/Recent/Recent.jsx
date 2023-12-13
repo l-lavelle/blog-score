@@ -11,6 +11,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 function RecentlyViewedPosts() {
+  const [query, setQuery] = useState("")
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState('');
@@ -86,10 +87,20 @@ function RecentlyViewedPosts() {
          <Col> 
           <div>
             <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+          <div className='searchBar-position'>
+             <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+          </div>
             <div className="laptop-container">
               <div className="laptop-posts">
               <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-                {postData.map((article, index) => (
+                { postData.filter(post => {
+                  if (query === '') {
+                    return post;
+                  } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+                    return post;
+                  }
+                })
+                .map((article, index) => (
                   <div  key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -116,7 +127,16 @@ function RecentlyViewedPosts() {
     return (
       <div className="main-content">
         <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
-        {postData.map((article, index) => (
+        <div className='searchBar-position'>
+             <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+        </div>
+        {postData.filter(post => {
+          if (query === '') {
+            return post;
+          } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+            return post;
+          }
+        }).map((article, index) => (
           <ArticlePreview key={index} {...article} />
         ))}
       </div>

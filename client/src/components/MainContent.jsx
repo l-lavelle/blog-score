@@ -83,8 +83,8 @@ const MainContent = () => {
   if (width > breakpoint) {
     return (
       <div>
-        <div>
-            <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)}/>
+        <div className='searchBar-position'>
+            <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
         </div>
         <div className="laptop-container">
           <div className="laptop-posts">
@@ -116,8 +116,8 @@ const MainContent = () => {
   }
   return (
     <div className="main-content">
-     <div>
-        <input placeholder="Enter Post Title" onChange={event => setQuery(event.target.value)}/>
+     <div className='searchBar-position'>
+        <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
       </div>
       {postData.filter(post => {
             if (query === '') {

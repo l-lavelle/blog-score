@@ -12,6 +12,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const Favorites = () => {
+  const [query, setQuery] = useState("")
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
@@ -58,7 +59,7 @@ const Favorites = () => {
     if (width > breakpoint){
       return (
       <>
-        <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+        <h3 className='text-center mb-3'style={{color:"white"}}>Favorites</h3>
         <div className='laptop-container'>
           <div className="laptop-posts">
             <Skeleton className="mb-4" animation="wave" height={120} count={6} />
@@ -72,7 +73,7 @@ const Favorites = () => {
     }
     return (
       <>
-        <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+        <h3 className='text-center mb-3'style={{color:"white"}}>Favorites</h3>
         <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
       </>
     )
@@ -82,11 +83,20 @@ const Favorites = () => {
     return (
       <div>
         <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+        <div className='searchBar-position'>
+          <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+        </div>
         {likedPostData.length>0?  
           <div className="laptop-container">
             <div className="laptop-posts">
             <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-              {likedPostData.map((article, index) => (
+              {likedPostData.filter(post => {
+              if (query === '') {
+                return post;
+              } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+                return post;
+              }
+            }).map((article, index) => (
                 <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -115,9 +125,18 @@ const Favorites = () => {
   return (
     <Container>
     <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
+    <div className='searchBar-position'>
+      <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+    </div>
     {likedPostData.length>0 ? 
       <>
-        {likedPostData.map((article) => (
+       {likedPostData.filter(post => {
+              if (query === '') {
+                return post;
+              } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+                return post;
+              }
+            }).map((article) => (
           <Card key={article._id}  className="mb-4">
             <Card.Body>
               <Card.Title>{article.postTitle}</Card.Title>

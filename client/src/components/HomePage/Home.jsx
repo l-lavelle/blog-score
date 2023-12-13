@@ -7,10 +7,12 @@ import ArticlePreview from '../ArticlePreview/ArticlePreview';
 import SinglePostPreview from '../SinglePostPreview';
 import {truncateText} from '../../utils/helper';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import '../HomePage/SearchBar.css';
 
 const Home = () => {
+  const [query, setQuery] = useState("")
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
@@ -82,10 +84,19 @@ const Home = () => {
  if (width > breakpoint) {
     return (
       <div>
+        <div className='searchBar-position'>
+          <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+        </div>
         <div className="laptop-container">
           <div className="laptop-posts">
           <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-            {postData.map((article, index) => (
+            {postData.filter(post => {
+              if (query === '') {
+                return post;
+              } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+                return post;
+              }
+            }).map((article, index) => (
               <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
               <Card.Body className="post-card">
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -107,7 +118,16 @@ const Home = () => {
     
   return (
     <div className="main-content">
-      {postData.map((article, index) => (
+      <div className='searchBar-position'>
+        <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)} />
+      </div>
+      {postData.filter(post => {
+        if (query === '') {
+          return post;
+        } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
+          return post;
+        }
+      }).map((article, index) => (
         <ArticlePreview key={index} {...article} />
       ))}
     </div>
