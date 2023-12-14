@@ -15,12 +15,11 @@ import AdminManageUsers from './components/admin/AdminManageUsers';
 import About from './components/Footer/About'
 import Guidelines from './components/Footer/Rules';
 import Contact from './components/Footer/Contact'
-import UserComments from './components/Profile/UserComments'
 import Profile from './components/Profile/Profile';
 import FindUsers from './components/Profile/FindUsers';
 import Friends from './components/Profile/Friends';
 import SingleUserProfile from './components/Profile/SingleUserProfile'
-
+import ProfileDashboard from './components/Profile/ProfileDashboard/ProfileDashboard';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,8 +74,8 @@ const router = createBrowserRouter([
         element: <Contact />
       },
       {
-        path: '/userComments',
-        element: <UserComments />
+        path: '/friends',
+        element: <Friends />
       },
       {
         path: '/profile',
@@ -87,8 +86,8 @@ const router = createBrowserRouter([
         element: <FindUsers />
       },
       {
-        path: '/friends',
-        element: <Friends />
+        path: '/userDashboard',
+        element: <ProfileDashboard />
       },
       {
         path: '/friends/:id',

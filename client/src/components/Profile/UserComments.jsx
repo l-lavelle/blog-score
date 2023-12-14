@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import {SINGLE_USER_COMMENTS} from '../../utils/queries'
 import {truncateText} from '../../utils/helper'
 import { useState } from 'react';
-import EditCommentModal from './EditCommentModal'
+import EditCommentModal from './ProfileEditCommentModal/EditCommentModal'
 
 const UserComments = () => {
   const [modalShow, setModalShow] = useState(false);

@@ -55,8 +55,8 @@ const NavBar = () => {
             <NavDropdown.Item href="/profile">
               Profile
             </NavDropdown.Item>
-            <NavDropdown.Item href="/userComments">
-              Manage Comments
+            <NavDropdown.Item href="/userDashboard">
+               Dashboard
             </NavDropdown.Item>
             <NavDropdown.Item href="/friends">
               Friends

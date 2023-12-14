@@ -1,16 +1,11 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
-import { useMutation } from '@apollo/client';
-import {UPDATE_COMMENT} from '../../utils/mutations';
-import {DELETE_COMMENT} from '../../utils/mutations';
 import { useState } from 'react';
-import { Card } from 'react-bootstrap';
-import {SINGLE_USER_COMMENTS} from '../../utils/queries'
+import { useMutation } from '@apollo/client';
+import {UPDATE_COMMENT} from '../../../utils/mutations';
+import {DELETE_COMMENT} from '../../../utils/mutations';
+import {SINGLE_USER_COMMENTS} from '../../../utils/queries';
+import { Card,Button,Modal,Form,InputGroup } from 'react-bootstrap';
 
 const EditCommentModal = (props) => {
-    console.log("props",props)
   const [updatedData, setUpdatedData] = useState({postId: "", commentText: props.commentText});
 
   const [updateComment, { error }] = useMutation(UPDATE_COMMENT, {refetchQueries:[
@@ -25,7 +20,6 @@ const EditCommentModal = (props) => {
   const updateData= async (event)=>{
     const { name, value } = event.target;
     setUpdatedData({ ...updatedData, [name]: value });
-    // console.log(updatedData)
   };
 
   // update comment 
