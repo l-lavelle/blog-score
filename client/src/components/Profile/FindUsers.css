@@ -1,5 +1,33 @@
 .img-card-user {
-  width: 80%;
-  max-width: 600px;
-  height: 80%;
+  max-width: 80%;
+  max-height: 80%;
+}
+.users-header-info {
+  background-color: white;
+  border-radius: 25px;
+}
+.link-users-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.link-profile-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  flex-direction: column;
+}
+.user-name {
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .img-card-user {
+    max-width: 200px;
+    max-height: 200px;
+  }
 }

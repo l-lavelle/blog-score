@@ -7,9 +7,11 @@ import { Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries';
 import Auth from '../../utils/auth';
+import { useState } from 'react';
 import './FindUsers.css';
 
 const FindUsers = () => {
+  const [query, setQuery] = useState("");
     const { loading, data:allUsers } = useQuery(GET_USERS, {
         fetchPolicy: 'cache-and-network',
       });
@@ -44,31 +46,40 @@ const FindUsers = () => {
       const withoutSelf = results.filter(users=> users._id !== Auth.getProfile().data._id)
       
       return (
-        <>
-       <h3 className='text-center mb-3'style={{color:"white"}}>Find Users</h3>
-       <p>To follow a user click on there profile and they will be added to your following list. All done looking for users?</p>
-       <Link to="/friends"> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold mt-4">
+      <>
+      <div className="users-header-info">
+       <h3 className='text-center pt-2'>Find Users</h3>
+       <p className='text-center'>To follow a user click on there profile and they will be added to your following list. All done looking for users?</p>
+       <Link to="/friends" className='link-users-center pb-3'> 
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 See Following
             </Button>
         </Link>
+        </div>
         {users &&
-        <Container> 
+        <Container className='mt-3'> 
+        <div className='searchBar-position'>
+          <input className="searchBar-style" placeholder="Search for User" onChange={event => setQuery(event.target.value)} />
+        </div>
             <Row xs={6}>
-           {withoutSelf.map((user) => (
+           {withoutSelf.filter(user => {
+          if (query === '') {
+            return user;
+          } else if (user.username.toLowerCase().includes(query.toLowerCase())) {
+            return user;
+          }
+        }).map((user) => (
           <Col xs={6} md={4} lg={3} key={user._id}>
-          
-          <div className="card d-flex align-items-center" style={{ height: "20rem" }}> 
+          <div className="card d-flex align-items-center mb-3 user-card" > 
+            <Link className='link-profile-center mt-2' to={"/user/"+user._id}>
             <img className="thumbnail-image img-card-user" 
                     src={user.imageLink?"https://upload.wikimedia.org/wikipedia/commons/4/47/VW_K%C3%A4fer_blue_1956_vr_TCE.jpg":"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"}
                     alt="user pic"
             />
-            <Link to={"/user/"+user._id}> 
-              {user.username} <br />
             </Link>
-           
-            <Button onClick={()=>newFriend(user._id)}>Follow</Button>
-            </div>
+            <div className='user-name'>{user.username} </div>
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} className="mb-2 mt-2" onClick={()=>newFriend(user._id)}>Follow</Button>
+          </div>
           </Col>
         ))}
         </Row>

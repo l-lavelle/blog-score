@@ -1,5 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { Container, Row, Col } from 'react-bootstrap';
 
 // https://stackoverflow.com/questions/64957735/typeerror-cannot-assign-to-read-only-property-0-of-object-object-array-in
 const TopKeywords = (props) => {
@@ -20,7 +21,7 @@ filteredKeywords.forEach((element) => {
     chartLabels.push(element.keyword)
 });
 
-ChartJS.register(ArcElement, Tooltip);
+ChartJS.register(ArcElement, Tooltip,Legend);
   
   const data = {
     labels: chartLabels,
@@ -51,18 +52,29 @@ ChartJS.register(ArcElement, Tooltip);
   };
   return (
     <>
-    <h4 className='mt-3'>Current Top Interests</h4>
+    <h5 className='mt-3 mb-3 text-center'>Current Top Interests</h5>
     {filteredKeywords.length>0?
     <>
+     <Container className='d-flex justify-content-center align-items-center'> 
+      <Row >
+      <Col>
+      <Pie data={data} />
+      </Col>
+      {/* <Col>
     {filteredKeywords && filteredKeywords.map((keyword, index) => (
-        <div key={index} className="mb-1">
+        <div key={index} className="mb-1 d-flex justify-content-center align-items-center">
           <li className="p-2 mb-1 fs-5">
              {keyword.keyword}<br />
           </li>
           
         </div>
       ))} 
-      <Pie data={data} />
+      </Col> */}
+      {/* </Row>
+      <Row xs={6}> */}
+      
+      </Row>
+    </Container> 
     </>:
       <div>
         <h6>No interests dectected yet. Go like some posts</h6>

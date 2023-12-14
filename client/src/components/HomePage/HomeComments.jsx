@@ -60,6 +60,10 @@ const HomeComment = ({ postId}) => {
           <Card key={index}  className="mb-4">
             <Card.Body>
               <p>
+              <img className="thumbnail-image img-size" 
+                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+                    alt="user pic"
+                />
                 {posts.author.username}{' - '}  
                 {new Date(parseInt(posts.createdAt)).toLocaleDateString()}
               </p>

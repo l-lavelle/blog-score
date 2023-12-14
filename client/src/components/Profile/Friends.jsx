@@ -5,8 +5,12 @@ import {DELETE_FRIEND} from '../../utils/mutations';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
+import './FindUsers.css';
 
 const Friends = () => {
+  const [query, setQuery] = useState("");
+
     const { loading, data } = useQuery(SINGLE_USER, {
         fetchPolicy: 'cache-and-network',
       });
@@ -34,35 +38,44 @@ const Friends = () => {
       
       return (
         <>
-        <Link to="/users"> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold mt-4">
+      <div className="users-header-info">
+       <h3 className='text-center pt-2'>Following</h3>
+       <p className='text-center'>Click on a users profile to see all there liked posts. Want to follow more users?</p>
+       <Link to="/users" className='link-users-center pb-3'> 
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 Search for user
             </Button>
         </Link>
-       <h3 className='text-center mb-3'style={{color:"white"}}>Following</h3>
-    
+      </div>
         {users.length>0? 
-        <Container> 
-        <Row xs={6}>
-            {users.map((user) => (
-           <Col xs={6} md={4} key={user._id}>
-            <div className="card" style={{ height: "12rem" }}> 
-            <h4 className="p-2 ">
-            <Link to={"/friends/"+user._id}> 
-              {user.username} <br />
-            </Link>
-              <img className="thumbnail-image img-size" 
-                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+        <Container className='mt-3'> 
+        <div className='searchBar-position'>
+          <input className="searchBar-style" placeholder="Search for User" onChange={event => setQuery(event.target.value)} />
+        </div>
+          <Row xs={6} >
+            {users.filter(user => {
+          if (query === '') {
+            return user;
+          } else if (user.username.toLowerCase().includes(query.toLowerCase())) {
+            return user;
+          }
+        }).map((user) => (
+           <Col xs={6} md={4} lg={3} key={user._id}>
+            <div className="card d-flex align-items-center mb-3 user-card"> 
+            <Link className='link-profile-center mt-2' to={"/friends/"+user._id}> 
+            <img className="thumbnail-image img-card-user" 
+                    src={user.imageLink?"https://upload.wikimedia.org/wikipedia/commons/4/47/VW_K%C3%A4fer_blue_1956_vr_TCE.jpg":"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"}
                     alt="user pic"
-              />
-              <p onClick={()=>removeFriend(user._id)}>-</p>
-            </h4>
+            />
+            </Link>
+            <div className='user-name'>{user.username}</div> 
+            <Button className="mb-2 mt-2" style={{ maxWidth: '20vw',  padding: '5px', background: "#FF7F7F" , border: "black", color:"black"}}  onClick={()=>removeFriend(user._id)}>Unfollow</Button>
             </div>
           </Col>))}
          </Row>
          </Container> 
         :
-        <h3 className="text-center" style={{ background: "white" , border: "black", padding:"20px"}}>No friends yet. Search for users to add friends!</h3>}
+        <h5 className="text-center mt-3" style={{ background: "white" , border: "black", padding:"20px", borderRadius:"25px"}}>Not following anyone yet. Search for users add!</h5>}
         
         </>
       );
