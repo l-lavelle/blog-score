@@ -1,26 +1,17 @@
-// Need to set default load for createPost
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import UserComments from '../UserComments';
 import AdminCreatePost from '../../admin/AdminCreatePost';
 import ProfileManagePost from '../ProfileManagePost/ProfileManagePost';
 
 const ProfileDashboard=()=>{
-  const [show, setShow] = useState({component:'createPost'});
+  const [show, setShow] = useState({component:'createPosts'});
 
     const changePage = (e)=>{
         const currentCompoent= e.target.name
         setShow({component: currentCompoent})
     }
-   
-    // useEffect(() => {
-    //   const defaultId= AdminPostData[0]._id
-    //   setDefaultPost(defaultId)
-    //   higlightPost(defaultPost)
-    //   setShow({component: "createPost"})
-    //   console.log("show",show)
-    // },[]);
-    console.log("show",show)
+
     return(
     <>
     <ButtonGroup aria-label="Basic example">
@@ -28,6 +19,7 @@ const ProfileDashboard=()=>{
       <Button name="managePosts" onClick={changePage} className={show.component==="managePosts"?"mt-5":""}variant="secondary">Middle</Button>
       <Button name="comments" onClick={changePage} className={show.component==="comments"?"mt-5":""} variant="secondary">Comments</Button>
     </ButtonGroup>
+    {/* {!show.component? <AdminCreatePost/>:[]} */}
     {show.component==="createPosts"? <AdminCreatePost/> :[]}
     {show.component==="managePosts"? <ProfileManagePost/>:[]}
     {show.component==="comments"? <UserComments/>:[]}
