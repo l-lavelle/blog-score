@@ -115,6 +115,7 @@ export const GET_RECOMMENDED_POSTS = gql`
       author {
         _id
         username
+        role
       }
       postComments {
         _id
@@ -171,6 +172,7 @@ export const SINGLE_USER = gql`
       username
       title
       profileInfo
+      role
       likedKeywords {
         keyword
         count
@@ -178,6 +180,13 @@ export const SINGLE_USER = gql`
       friends {
         username
         _id
+        role
+        posts {
+          _id
+          postTitle
+          postText
+          upvotes
+        }
       }
     }
   }

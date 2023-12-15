@@ -20,6 +20,8 @@ import FindUsers from './components/Profile/FindUsers';
 import Friends from './components/Profile/Friends';
 import SingleUserProfile from './components/Profile/SingleUserProfile'
 import ProfileDashboard from './components/Profile/ProfileDashboard/ProfileDashboard';
+import Feed from './components/Feed/Feed';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -96,6 +98,10 @@ const router = createBrowserRouter([
       {
         path: '/user/:id',
         element: <SingleUserProfile />
+      },
+      {
+        path: 'feed',
+        element: <Feed />
       },
     ]
   },

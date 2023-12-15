@@ -36,6 +36,13 @@ const resolvers = {
             path: "friends",
             model: "User",
           },
+          {
+            path: "friends",
+            populate: {
+              path: "posts",
+              model: "Post",
+            },
+          },
         ]);
       }
     },
@@ -223,7 +230,7 @@ const resolvers = {
     },
     // working with auth: admin
     addPost: async (parent, { postTitle, postText, tags }, context) => {
-      if (context.user.role === "admin") {
+      if (context.user) {
         const post = await Post.create({
           postTitle,
           postText,

@@ -32,6 +32,7 @@ const NavBar = () => {
        <Nav title="Dropdown" className="me-auto justify-content-end m-3" style={{ width: "100%" }}>
          {Auth.loggedIn()?( <Nav.Link href="/home">Home</Nav.Link>):(<Nav.Link href="/">Home</Nav.Link>)}
           <Nav.Link href="/recent">Recent</Nav.Link>
+          {Auth.loggedIn()?( <Nav.Link href="/feed">Feed</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
           {Auth.loggedIn()?( <Nav.Link href="/favorites">Favorites</Nav.Link>):(<Nav.Link href="/login">Favorites</Nav.Link>)}
           {Auth.loggedIn()?( 
           <NavDropdown 

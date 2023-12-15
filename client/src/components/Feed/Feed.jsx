@@ -1,37 +1,44 @@
 import { useQuery } from '@apollo/client';
 import { useEffect , useState } from 'react';
-import {GET_RECOMMENDED_POSTS} from '../utils/queries'
 import { Card } from 'react-bootstrap';
-import ArticlePreview from './ArticlePreview/ArticlePreview';
-import SinglePostPreview from './SinglePostPreview'
-import {truncateText} from '../utils/helper'
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
+import SinglePostPreview from '../SinglePostPreview'
+import {truncateText} from '../../utils/helper'
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import './Recent/Recent.css'
-import Skeleton from 'react-loading-skeleton'
+import {SINGLE_USER} from '../../utils/queries';
+import MainContent from '../MainContent';
+import '../Recent/Recent.css';
+import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const MainContent = () => {
+const Feed = () => {
   const [query, setQuery] = useState("")
+
+  const { loading, data } = useQuery(SINGLE_USER, {
+    fetchPolicy: 'cache-and-network',
+  });
+  const  allFriends = data?.singleUser?.friends || [];
+
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
 
-  const { loading, data } = useQuery(GET_RECOMMENDED_POSTS,{
-    fetchPolicy: 'cache-and-network',
-  });
-
-  const  postData = data?.getRecommendedPosts || []
-  const AdminPostData = postData.filter(post => {
-    if (post?.author?.role === 'admin') {
-        return post;
+  const filteredUserPosts = allFriends.filter(post => {
+    if (post?.role === 'user') {
+        return post
     } 
-  });
-
+    });
+    const friendsPosts=[]
+     filteredUserPosts.forEach(function(fruit) {
+        friendsPosts.push(fruit.posts);
+    });
+    const friendsPostFlat=friendsPosts.flat(1)
+    console.log(friendsPostFlat)
   useEffect(() => {
     if (loading) {
       null
-    } else {
-        const defaultId= AdminPostData[0]._id
+    } else if (friendsPostFlat.length>0){
+        const defaultId= friendsPostFlat[0]._id
         setDefaultPost(defaultId)
         higlightPost(defaultPost)
     }
@@ -58,6 +65,7 @@ const MainContent = () => {
 
   const getSinglePost = async (postId)=>{
     setSinglePost(postId)
+    console.log(singlePost)
   }
 
   if (loading) {
@@ -87,19 +95,23 @@ const MainContent = () => {
   if (width > breakpoint) {
     return (
       <div>
+        {filteredUserPosts.length>0 ?
+        <>
         <div className='searchBar-position'>
             <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
         </div>
         <div className="laptop-container">
           <div className="laptop-posts">
           <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-            {AdminPostData.filter(post => {
+            {friendsPostFlat
+            .filter(post => {
             if (query === '') {
                 return post;
             } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
                return post;
             }
-          }).map((article, index) => (
+          })
+          .map((article, index) => (
               <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
               <Card.Body className="post-card">
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -115,15 +127,23 @@ const MainContent = () => {
             { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
             </div>
         </div>
+        </>:
+        <>
+            <h1>Friends have not posted yet. Check out content from our creators for now</h1>
+            <MainContent/>
+        </>
+        }
       </div>
     );
   }
   return (
     <div className="main-content">
+     {filteredUserPosts.length>0 ? 
+     <>
      <div className='searchBar-position'>
         <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
       </div>
-      {AdminPostData.filter(post => {
+      {friendsPostFlat.filter(post => {
             if (query === '') {
                 return post;
             } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
@@ -132,8 +152,14 @@ const MainContent = () => {
           }).map((article, index) => (
         <ArticlePreview key={index} {...article} />
       ))}
+      </>:
+      <>
+      <h1>Friends have not posted yet. Check out content from our creators for now</h1>
+      <MainContent/>
+      </>
+    }
     </div>
   );
 };
 
-export default MainContent;
+export default Feed;
