@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import './FindUsers.css';
 
 const Friends = () => {
@@ -33,7 +34,38 @@ const Friends = () => {
       };
 
       if (loading) {
-        return <div>Loading...</div>;
+        return (
+          <>
+        <div className="users-header-info">
+          <h3 className='text-center pt-2'>Following</h3>
+          <p className='text-center'>Click on a users profile to see all there liked posts. Want to follow more users?</p>
+          <Link to="/users" className='link-users-center pb-3'> 
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+                Search for user
+            </Button>
+          </Link>
+        </div>
+          <Container className='mt-3'> 
+          <div className='searchBar-position'>
+             <input className="searchBar-style" placeholder="Search for User" onChange={event => setQuery(event.target.value)} />
+           </div>
+           <Row xs={6}>
+           <Col xs={6} md={4} lg={3}>
+           <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+           </Col>
+           <Col xs={6} md={4} lg={3}>
+           <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+           </Col>
+           <Col xs={6} md={4} lg={3}>
+           <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+           </Col>
+           <Col xs={6} md={4} lg={3}>
+           <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+           </Col>
+           </Row>
+           </Container>
+           </>
+        )
       }
       
       return (

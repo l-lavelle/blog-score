@@ -3,8 +3,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useQuery } from '@apollo/client';
 import {SINGLE_USER} from '../../utils/queries'
 import './NavBar.css';
-// import { Link } from 'react-router-dom';
-// Check seems to be okay with the / for href redirect but test 
 
 import Auth from '../../utils/auth';
 
@@ -13,14 +11,9 @@ const NavBar = () => {
     fetchPolicy: 'cache-and-network',
   });
   const userData=data?.singleUser
-  console.log(userData)
 
   if (loading) {
-    return (
-    <>
-      <h1>Loading...</h1>
-    </>
-    )
+    return (<></>)
   }
 
   return (
@@ -45,14 +38,7 @@ const NavBar = () => {
                 {userData.username}
             </>
           } 
-          id="collapsible-nav-dropdown">
-            
-            {/* <NavDropdown.Item>
-            <Link to="/profile"> 
-              Profile
-            </Link>
-            </NavDropdown.Item> */}
-            
+          id="collapsible-nav-dropdown">        
             <NavDropdown.Item href="/profile">
               Profile
             </NavDropdown.Item>

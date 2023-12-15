@@ -61,6 +61,7 @@ const typeDefs = `#graphql
     users: [User]
     singleUser:User
     singleUserComments:User
+    singleUserBlogs:User
     findFriend(userId:ID):User
     userLikedPost:User
     userUnlikedPost:User

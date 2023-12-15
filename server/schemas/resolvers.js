@@ -71,6 +71,16 @@ const resolvers = {
         ]);
       }
     },
+    singleUserBlogs: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findOne({ _id: context.user._id }).populate([
+          {
+            path: "posts",
+            model: "Post",
+          },
+        ]);
+      }
+    },
     basicUser: async () => {
       return await User.find({ role: "user" }).populate([
         {

@@ -1,18 +1,19 @@
-import AdminPreview from './AdminPreview';
-import EditPostModal from './EditPostModal';
+import AdminPreview from '../../admin/AdminPreview';
+import EditPostModal from '../../admin/EditPostModal';
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import {GET_POSTS} from '../../utils/queries';
+import {SINGLE_USER_POSTS} from '../../../utils/queries';
 import Skeleton from 'react-loading-skeleton';
 
-const AdminManageBlog = () => {
+const ProfileManagePost = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalData, setModalData] = useState({postId: "", blogTitle:"" , blogText: "", tags:[]});
-  const { loading, data } = useQuery(GET_POSTS,  {
+  const { loading, data } = useQuery(SINGLE_USER_POSTS,  {
     fetchPolicy: 'cache-and-network',
   });
-  const  postData = data?.posts || [];
-
+  
+  const  postData = data?.singleUserBlogs?.posts || [];
+  console.log(postData)
   const openModal = async (_id, blogTitle, blogText) =>{
     await setModalData({postId:_id, blogTitle:blogTitle, blogText: blogText})
     setModalShow(true)
@@ -48,4 +49,4 @@ const AdminManageBlog = () => {
   );
 };
   
-export default AdminManageBlog;
+export default ProfileManagePost;

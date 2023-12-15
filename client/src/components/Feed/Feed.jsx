@@ -9,7 +9,7 @@ import {SINGLE_USER} from '../../utils/queries';
 import MainContent from '../MainContent';
 import '../Recent/Recent.css';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Feed = () => {
   const [query, setQuery] = useState("")
@@ -33,7 +33,7 @@ const Feed = () => {
         friendsPosts.push(fruit.posts);
     });
     const friendsPostFlat=friendsPosts.flat(1)
-    console.log(friendsPostFlat)
+    
   useEffect(() => {
     if (loading) {
       null
@@ -72,7 +72,7 @@ const Feed = () => {
     if (width > breakpoint){
     return (
     <>
-      <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+      <h3 className='text-center mb-3'style={{color:"white"}}>Feed</h3>
       <div className='laptop-container'>
         <div className="laptop-posts">
           <Skeleton className="mb-4" animation="wave" height={120} count={6} />
@@ -86,7 +86,7 @@ const Feed = () => {
   }
     return (
       <>
-        <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
+        <h3 className='text-center mb-3'style={{color:"white"}}>Feed</h3>
         <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
       </>
     )
@@ -97,6 +97,7 @@ const Feed = () => {
       <div>
         {filteredUserPosts.length>0 ?
         <>
+        <h3 className='text-center mb-3'style={{color:"white"}}>Feed</h3>
         <div className='searchBar-position'>
             <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
         </div>
@@ -140,6 +141,7 @@ const Feed = () => {
     <div className="main-content">
      {filteredUserPosts.length>0 ? 
      <>
+     <h3 className='text-center mb-3'style={{color:"white"}}>Favorites</h3>
      <div className='searchBar-position'>
         <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
       </div>

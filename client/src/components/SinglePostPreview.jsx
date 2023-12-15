@@ -4,6 +4,7 @@ import HomeUpVote from './HomePage/HomeUpvote';
 import HomeComments from './HomePage/HomeComments';
 import { GET_SINGLE_POST} from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import Skeleton from 'react-loading-skeleton';
 
 const SinglePostPreview = ({postId}) => {
 
@@ -12,11 +13,11 @@ const SinglePostPreview = ({postId}) => {
   fetchPolicy: 'cache-and-network',
   });
   const  singlePostData = onePost?.getSinglePost || [];
-console.log("single post", singlePostData)
+
   if (loading) {
     return (
     <>
-      <h1>Loading...</h1>
+       <Skeleton style={{marginBottom:"20px"}} animation="wave" height={420} count={1} />
     </>
     )
   }

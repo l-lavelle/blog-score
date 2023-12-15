@@ -9,10 +9,10 @@ const Profile = () => {
   });
 
   const userData = data?.singleUser
-  console.log(userData)
-if(loading){
-  return <h1>loading...</h1>
-}
+  
+  if(loading){
+    return <h1>loading...</h1>
+  }
 
   return (
       <div className="card-3d my-5" style={{ padding: '20px' , background:"white", borderRadius:"25px"}}>

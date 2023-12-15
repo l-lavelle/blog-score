@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import {ADD_COMMENT } from '../../utils/mutations';
 import {GET_SINGLE_POST} from '../../utils/queries';
+import Skeleton from 'react-loading-skeleton';
 
 const HomeComment = ({ postId}) => {
   const { loading, data } = useQuery(GET_SINGLE_POST,{
@@ -46,7 +47,7 @@ const HomeComment = ({ postId}) => {
   if (loading) {
     return (
     <>
-      <h1>Loading...</h1>
+      <Skeleton style={{marginBottom:"20px"}} animation="wave" height={60} count={4} />
     </>
     )
   }

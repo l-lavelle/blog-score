@@ -208,6 +208,18 @@ export const SINGLE_USER_COMMENTS = gql`
   }
 `;
 
+export const SINGLE_USER_POSTS = gql`
+  query singleUserBlogs {
+    singleUserBlogs {
+      posts {
+        postText
+        postTitle
+        _id
+      }
+    }
+  }
+`;
+
 export const FIND_FRIEND = gql`
   query findFriend($userId: ID) {
     findFriend(userId: $userId) {

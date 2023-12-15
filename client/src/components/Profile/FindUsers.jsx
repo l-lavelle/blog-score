@@ -8,6 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries';
 import Auth from '../../utils/auth';
 import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import './FindUsers.css';
 
 const FindUsers = () => {
@@ -39,7 +40,38 @@ const FindUsers = () => {
       };
 
       if (loading) {
-        return <div>Loading...</div>;
+        return (
+        <>
+       <div className="users-header-info">
+        <h3 className='text-center pt-2'>Find Users</h3>
+        <p className='text-center'>To follow a user click on there profile and they will be added to your following list. All done looking for users?</p>
+        <Link to="/friends" className='link-users-center pb-3'> 
+            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+                See Following
+            </Button>
+        </Link>
+       </div>
+       <Container className='mt-3'> 
+       <div className='searchBar-position'>
+          <input className="searchBar-style" placeholder="Search for User" onChange={event => setQuery(event.target.value)} />
+        </div>
+        <Row xs={6}>
+        <Col xs={6} md={4} lg={3}>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+        </Col>
+        <Col xs={6} md={4} lg={3}>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+        </Col>
+        <Col xs={6} md={4} lg={3}>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+        </Col>
+        <Col xs={6} md={4} lg={3}>
+        <Skeleton style={{marginBottom:"20px"}} animation="wave" height={180} count={4} />
+        </Col>
+        </Row>
+        </Container>
+        </>
+        )
       }
   
       const results = users.filter(({ _id: id1 }) => !currentFriends.some(({ _id: id2 }) => id2 === id1));
@@ -61,8 +93,8 @@ const FindUsers = () => {
         <div className='searchBar-position'>
           <input className="searchBar-style" placeholder="Search for User" onChange={event => setQuery(event.target.value)} />
         </div>
-            <Row xs={6}>
-           {withoutSelf.filter(user => {
+        <Row xs={6}>
+        {withoutSelf.filter(user => {
           if (query === '') {
             return user;
           } else if (user.username.toLowerCase().includes(query.toLowerCase())) {
