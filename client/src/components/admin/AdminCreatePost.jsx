@@ -1,3 +1,4 @@
+//tags are working make sure that able to submit and validation good 
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
 import  { useState } from 'react';
@@ -8,25 +9,57 @@ const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
   const [message, setMesage]=useState('');
   const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
+  const [tags,setTags] = useState({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
+  const [counter, setCounter] = useState(1);
 
   const updateData = async (event)=>{
     const { name, value } = event.target;
     if (name==="tags"){
-      const cleanTags= value.split(",").map(function(tag) {
-        return tag;
-      });
-      setPostData({ ...postData, [name]: cleanTags });
+      // console.log(4)
+      // const cleanTags= value.split(",").map(function(tag) {
+      //   return tag;
+      // });
+      // console.log("value",value)
+      // setPostData({ ...postData, [name]: value });
+      // console.log(postData)
     }
     else{
     setPostData({ ...postData, [name]: value });
     }
   };
 
+  const updateTags = async(event)=>{
+    const { name, value } = event.target;
+    setTags({...tags, [name]:value})
+    console.log("tags",tags)
+  };
+
   const createPost = async (event) => {
+    const allTags = Object.values(tags);
+    // console.log(allTags)
+    
+    const trimmed_x = allTags.map(s => s.trim());
+    const trial = trimmed_x.filter(s=>s);
+    // setPostData({ ...postData, tags: [...trial] })
+    // const trial = allTags.split(",").map(function(tag) {
+    //   return tag.trim();
+    // });
+    console.log(postData)
+      //   return tag;
+    // console.log("alltags",allTags)
+    // const cleanTags= allTags.forEach(tag=>tag)
+    // console.log(cleanTags)
+    //all tags in an array, cleaned -
+    // push into postData
+
     event.preventDefault();
     try {
       await addPost({
-        variables: {...postData },
+        variables: {
+          postTitle: postData.postTitle,
+          postText: postData.postText,
+          tags: trial
+        },
       });
       if (error) {
         throw new Error('Unable post');
@@ -42,6 +75,11 @@ const AdminCreatePost = () => {
     })
   };
  
+  const handleClick = () => {
+    if (counter<5){
+    setCounter(counter + 1);
+    }
+  };
   
   return (
   <Container fluid={true}>
@@ -75,19 +113,39 @@ const AdminCreatePost = () => {
                 />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
+              {/* <Form.Group controlId="formBasicEmail">
                 <Form.Label className='text-ad m-3'>Tags</Form.Label>
                 <p>Please seperate multiple tags with comma</p>
                 <Form.Control
                   type="text"
                   placeholder="add tags"
                   name='tags'
-                  value={postData.tags}
+                  value={postData.tags[0]}
                   onChange={updateData}
                 />
-              </Form.Group>
+              </Form.Group> */}
+
+              {/* Trial for tags */}
+              <Form.Group controlId="formTags">
+              <Form.Label className='text-ad m-3'>Tags</Form.Label>
+              {Array.from(Array(counter)).map((c, index) => {
+                return (
+                  <Form.Control
+                  key={c}
+                  type="text"
+                  placeholder="add tags"
+                  name={"tags"+index}
+                  value={postData.tags[index]}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                )
+                })}
+                </Form.Group>
+                <p onClick={handleClick}>More tags</p>
+
               <div className="text-center">
-              <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} disabled={!(postData.postTitle && postData.postText && postData.tags.length>0)} variant="primary" type="submit" className="w-100 fw-bold mt-4">
+              <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} disabled={!(postData.postTitle && postData.postText )} variant="primary" type="submit" className="w-100 fw-bold mt-4">
                 Submit
               </Button>
               </div>
