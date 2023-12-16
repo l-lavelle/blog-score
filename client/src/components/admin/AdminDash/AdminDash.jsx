@@ -4,7 +4,7 @@ import AdminManageBlog from '../AdminManageBlog'
 import AdminManageUsers from '../AdminManageUsers';
 
 const AdminDash=()=>{
-  const [show, setShow] = useState({component:'managePosts'});
+  const [show, setShow] = useState({component:'manageBlogs'});
 
     const changePage = (e)=>{
         const currentCompoent= e.target.name
