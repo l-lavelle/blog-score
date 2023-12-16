@@ -48,18 +48,11 @@ const NavBar = () => {
             <NavDropdown.Item href="/friends">
               Friends
             </NavDropdown.Item>
+            {Auth.IsAdmin()?<NavDropdown.Item href="admin">
+              Admin
+            </NavDropdown.Item>:[]}
             </NavDropdown>
               ):([])}  
-          {Auth.IsAdmin()?( 
-          <NavDropdown title="Admin" id="collapsible-nav-dropdown">
-            <NavDropdown.Item href="/adminPosts">
-              Create a post
-            </NavDropdown.Item>
-            <NavDropdown.Item href="/adminBlogs">
-              Manage Blog
-            </NavDropdown.Item>
-            <NavDropdown.Item href="/adminUsers">Manage Users</NavDropdown.Item>
-          </NavDropdown>):([])}  
           {Auth.loggedIn()?(<Nav.Link onClick={Auth.logout}>Logout</Nav.Link>):(<Nav.Link href="/login">Login</Nav.Link>)}
         </Nav>
       </Navbar.Collapse>

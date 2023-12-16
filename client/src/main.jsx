@@ -9,9 +9,6 @@ import Home from './components/HomePage/Home';
 import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login';
 import SignUp from './components/Signup/Signup';
-import AdminCreatePost from './components/admin/AdminCreatePost';
-import AdminManageBlog from './components/admin/AdminManageBlog';
-import AdminManageUsers from './components/admin/AdminManageUsers';
 import About from './components/Footer/About'
 import Guidelines from './components/Footer/Rules';
 import Contact from './components/Footer/Contact'
@@ -21,6 +18,7 @@ import Friends from './components/Profile/Friends';
 import SingleUserProfile from './components/Profile/SingleUserProfile'
 import ProfileDashboard from './components/Profile/ProfileDashboard/ProfileDashboard';
 import Feed from './components/Feed/Feed';
+import AdminDash from './components/admin/AdminDash/AdminDash';
 
 const router = createBrowserRouter([
   {
@@ -52,16 +50,8 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: '/adminPosts',
-        element: <AdminCreatePost />
-      },
-      {
-        path: '/adminBlogs',
-        element: <AdminManageBlog />
-      },
-      {
-        path: '/adminUsers',
-        element: <AdminManageUsers />
+        path: '/admin',
+        element: <AdminDash/>
       },
       {
         path: '/about',

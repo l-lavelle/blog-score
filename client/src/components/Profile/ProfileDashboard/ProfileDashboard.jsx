@@ -3,6 +3,7 @@ import {Button, ButtonGroup} from 'react-bootstrap';
 import UserComments from '../UserComments';
 import AdminCreatePost from '../../admin/AdminCreatePost';
 import ProfileManagePost from '../ProfileManagePost/ProfileManagePost';
+import './ProfileDashboard.css';
 
 const ProfileDashboard=()=>{
   const [show, setShow] = useState({component:'createPosts'});
@@ -14,10 +15,10 @@ const ProfileDashboard=()=>{
 
     return(
     <>
-    <ButtonGroup aria-label="Basic example">
-      <Button name="createPosts" onClick={changePage} className={show.component==="createPosts"?"mt-5":""} variant="secondary">Left</Button>
-      <Button name="managePosts" onClick={changePage} className={show.component==="managePosts"?"mt-5":""}variant="secondary">Middle</Button>
-      <Button name="comments" onClick={changePage} className={show.component==="comments"?"mt-5":""} variant="secondary">Comments</Button>
+    <ButtonGroup className="mb-3" aria-label="Basic example">
+      <Button name="createPosts" onClick={changePage} className={show.component==="createPosts"?"dash-btn-hightlight":""} variant="secondary">Create Posts</Button>
+      <Button name="managePosts" onClick={changePage} className={show.component==="managePosts"?"dash-btn-hightlight":""}variant="secondary">Manage Posts</Button>
+      <Button name="comments" onClick={changePage} className={show.component==="comments"?"dash-btn-hightlight":""} variant="secondary">Manage Comments</Button>
     </ButtonGroup>
     {/* {!show.component? <AdminCreatePost/>:[]} */}
     {show.component==="createPosts"? <AdminCreatePost/> :[]}

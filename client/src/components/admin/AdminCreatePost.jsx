@@ -14,18 +14,7 @@ const AdminCreatePost = () => {
 
   const updateData = async (event)=>{
     const { name, value } = event.target;
-    if (name==="tags"){
-      // console.log(4)
-      // const cleanTags= value.split(",").map(function(tag) {
-      //   return tag;
-      // });
-      // console.log("value",value)
-      // setPostData({ ...postData, [name]: value });
-      // console.log(postData)
-    }
-    else{
     setPostData({ ...postData, [name]: value });
-    }
   };
 
   const updateTags = async(event)=>{
@@ -36,21 +25,8 @@ const AdminCreatePost = () => {
 
   const createPost = async (event) => {
     const allTags = Object.values(tags);
-    // console.log(allTags)
-    
-    const trimmed_x = allTags.map(s => s.trim());
-    const trial = trimmed_x.filter(s=>s);
-    // setPostData({ ...postData, tags: [...trial] })
-    // const trial = allTags.split(",").map(function(tag) {
-    //   return tag.trim();
-    // });
-    console.log(postData)
-      //   return tag;
-    // console.log("alltags",allTags)
-    // const cleanTags= allTags.forEach(tag=>tag)
-    // console.log(cleanTags)
-    //all tags in an array, cleaned -
-    // push into postData
+    const cleanedTags = allTags.map(s => s.trim());
+    const filteredTags = cleanedTags.filter(s=>s);
 
     event.preventDefault();
     try {
@@ -58,7 +34,7 @@ const AdminCreatePost = () => {
         variables: {
           postTitle: postData.postTitle,
           postText: postData.postText,
-          tags: trial
+          tags: filteredTags
         },
       });
       if (error) {
