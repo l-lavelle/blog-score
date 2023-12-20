@@ -19,3 +19,12 @@
   display: flex;
   text-align: center;
 }
+
+.article-img {
+  min-width: 80%;
+  max-width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

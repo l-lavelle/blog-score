@@ -26,15 +26,16 @@ const SinglePostPreview = ({postId}) => {
   return (
     <>  
     <Card className="mt-3">
-    {singlePostData.pictureLink?<img src={singlePostData.pictureLink} width="300"/>:[]}
-    <Card.Title className="mt-3 text-center">{singlePostData.postTitle}</Card.Title>
-    <Card.Text className='singlePost-author'>Author: {singlePostData.author.username}</Card.Text>
+    {singlePostData.pictureLink?<img className="singlePost-img mt-3"src={singlePostData.pictureLink} width="300"/>:[]}
+    <Card.Title className="mt-3 text-center singlePost-Title">{singlePostData.postTitle}</Card.Title>
+    {/* <Card.Text className='singlePost-author'>Author: {singlePostData.author.username}</Card.Text> */}
     <Card.Text className='singlePost-date'>{new Date(parseInt(singlePostData.createdAt)).toLocaleDateString()}</Card.Text>
+    <div style={{ borderTop: "2px solid black ", marginLeft: 20, marginRight: 20 }}></div>
     <Card.Body>
       <p className='mb-3'>{singlePostData.postText}</p>
         <div>
           {Auth.loggedIn()?
-          <div className=" mt-2 vote-btns">
+          <div className="vote-btns">
             <div className='me-2'>
             <HomeUpVote upvotes={singlePostData.upvotes} _id={singlePostData._id}/>
             </div>

@@ -18,10 +18,9 @@
 .card-highlight {
   box-shadow: 0 0 7px 7px #14e956;
 }
-/* Needs to be responsive to box width */
 .scroll-pic {
-  min-width: 400px;
-  max-width: 500px;
+  min-width: 80%;
+  max-width: 80%;
   display: block;
   margin-left: auto;
   margin-right: auto;

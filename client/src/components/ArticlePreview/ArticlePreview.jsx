@@ -20,7 +20,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink}) => {
     <Accordion className="mb-4" defaultActiveKey="0">
     <Accordion.Item eventKey={eventKey+1} >
       <Accordion.Header onClick={toggleText}>
-      {pictureLink?<img src={pictureLink} width="300"/>:[]}
+      {pictureLink?<img className="article-img" src={pictureLink} width="300"/>:[]}
       <div className="mb-3 postTitle"> {postTitle}</div>
       <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
       </Accordion.Header>

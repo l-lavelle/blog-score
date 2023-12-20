@@ -86,6 +86,7 @@ export const GET_POSTS = gql`
       tags
       upvotes
       downvotes
+      pictureLink
       author {
         _id
         username
@@ -113,6 +114,7 @@ export const GET_RECOMMENDED_POSTS = gql`
       tags
       upvotes
       downvotes
+      pictureLink
       author {
         _id
         username
@@ -155,6 +157,7 @@ export const USER_LIKED_POSTS = gql`
         postTitle
         postText
         upvotes
+        pictureLink
       }
     }
   }
@@ -192,6 +195,7 @@ export const SINGLE_USER = gql`
           postTitle
           postText
           upvotes
+          pictureLink
         }
       }
     }
@@ -238,6 +242,7 @@ export const FIND_FRIEND = gql`
         postTitle
         postText
         upvotes
+        pictureLink
       }
       likedKeywords {
         keyword

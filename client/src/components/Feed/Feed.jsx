@@ -18,7 +18,7 @@ const Feed = () => {
     fetchPolicy: 'cache-and-network',
   });
   const  allFriends = data?.singleUser?.friends || [];
-
+  
   const [width, setWidth] = useState(window.innerWidth);
   const [singlePost, setSinglePost] = useState('');
   const [defaultPost, setDefaultPost] = useState(null);
@@ -115,6 +115,7 @@ const Feed = () => {
           .map((article, index) => (
               <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
               <Card.Body className="post-card">
+                {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
                 <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                 <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
               </Card.Body>
