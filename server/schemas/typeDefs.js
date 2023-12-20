@@ -78,7 +78,7 @@ const typeDefs = `#graphql
     updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User
-    addPost(postTitle:String, postText:String, tags:[String]):Post
+    addPost(postTitle:String, postText:String, tags:[String], pictureLink:String):Post
     updatePost(criteria: PostInput, postId:ID):Post
     deletePost(postId:ID):Post
     addComment(commentText:String, postId:ID):Comment

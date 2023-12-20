@@ -28,6 +28,7 @@ const SinglePostPreview = ({postId}) => {
     <Card.Title className="mt-3 text-center">{singlePostData.postTitle}</Card.Title>
     <Card.Body>
       <p className='mb-3'>{singlePostData.postText}</p>
+      <img src={singlePostData.pictureLink} width="300"/>
         <div>
           {Auth.loggedIn()?
           <div className=" mt-2 vote-btns">

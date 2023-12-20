@@ -20,7 +20,7 @@ function RecentlyViewedPosts() {
     fetchPolicy: 'cache-and-network',
   });
   const  postData = recentData?.recentPosts || [];
-  
+  console.log(postData)
   useEffect(() => {
     if (loading) {
       null
@@ -82,7 +82,7 @@ function RecentlyViewedPosts() {
 
     if (width > breakpoint) {
       return (
-        <Container float> 
+        <Container > 
          <Row> 
          <Col> 
           <div>
@@ -105,6 +105,8 @@ function RecentlyViewedPosts() {
                   <Card.Body className="post-card">
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
+                    <p>Image</p>
+                   <img src={article.pictureLink} width="300"/>
                   </Card.Body>
                   </div>
                 ))}

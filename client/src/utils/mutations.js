@@ -49,8 +49,18 @@ export const ADMIN_DELETE_USER = gql`
 
 //Mutation to add a new post
 export const ADD_POST = gql`
-  mutation addPost($postTitle: String, $postText: String, $tags: [String]) {
-    addPost(postTitle: $postTitle, postText: $postText, tags: $tags) {
+  mutation addPost(
+    $postTitle: String
+    $postText: String
+    $tags: [String]
+    $pictureLink: String
+  ) {
+    addPost(
+      postTitle: $postTitle
+      postText: $postText
+      tags: $tags
+      pictureLink: $pictureLink
+    ) {
       _id
       postTitle
       postText

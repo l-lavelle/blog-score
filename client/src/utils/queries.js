@@ -49,6 +49,7 @@ export const GET_SINGLE_POST = gql`
       upvotes
       downvotes
       createdAt
+      pictureLink
       author {
         _id
         username
@@ -137,6 +138,7 @@ export const RECENT_POSTS_QUERY = gql`
       postTitle
       postText
       upvotes
+      pictureLink
     }
   }
 `;

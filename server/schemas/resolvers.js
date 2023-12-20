@@ -239,12 +239,17 @@ const resolvers = {
       return user;
     },
     // working with auth: admin
-    addPost: async (parent, { postTitle, postText, tags }, context) => {
+    addPost: async (
+      parent,
+      { postTitle, postText, tags, pictureLink },
+      context
+    ) => {
       if (context.user) {
         const post = await Post.create({
           postTitle,
           postText,
           tags,
+          pictureLink,
           author: context.user._id,
         });
         const postId = post._id;
