@@ -190,7 +190,15 @@ const resolvers = {
     },
 
     recentPosts: async () => {
-      return await Post.find({}).sort({ createdAt: -1 }).limit(5);
+      return await Post.find({})
+        .populate([
+          {
+            path: "author",
+            model: "User",
+          },
+        ])
+        .sort({ createdAt: -1 })
+        .limit(5);
     },
   },
   Mutation: {

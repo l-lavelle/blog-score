@@ -103,10 +103,11 @@ function RecentlyViewedPosts() {
                 .map((article, index) => (
                   <div  key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
+                    {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
                     <Card.Title className="mb-3">{article.postTitle}</Card.Title>
+                    {/* <Card.Text>By {article.author.username}</Card.Text>
+                    <Card.Text>{new Date(parseInt(article.createdAt)).toLocaleDateString()}</Card.Text> */}
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
-                    <p>Image</p>
-                   <img src={article.pictureLink} width="300"/>
                   </Card.Body>
                   </div>
                 ))}

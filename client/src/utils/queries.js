@@ -139,6 +139,10 @@ export const RECENT_POSTS_QUERY = gql`
       postText
       upvotes
       pictureLink
+      createdAt
+      author {
+        username
+      }
     }
   }
 `;

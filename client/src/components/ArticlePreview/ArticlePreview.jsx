@@ -6,7 +6,7 @@ import HomeUpVote from '../HomePage/HomeUpvote';
 import HomeComments from '../HomePage/HomeComments';
 import {truncateText} from '../../utils/helper';
 
-const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
+const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleText = () => {
@@ -20,6 +20,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes}) => {
     <Accordion className="mb-4" defaultActiveKey="0">
     <Accordion.Item eventKey={eventKey+1} >
       <Accordion.Header onClick={toggleText}>
+      {pictureLink?<img src={pictureLink} width="300"/>:[]}
       <div className="mb-3 postTitle"> {postTitle}</div>
       <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
       </Accordion.Header>

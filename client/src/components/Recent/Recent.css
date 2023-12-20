@@ -18,6 +18,15 @@
 .card-highlight {
   box-shadow: 0 0 7px 7px #14e956;
 }
+/* Needs to be responsive to box width */
+.scroll-pic {
+  min-width: 400px;
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 
 @media (min-width: 700px) and (max-width: 1199.98px) {
   .laptop-container {
