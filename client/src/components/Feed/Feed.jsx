@@ -131,7 +131,8 @@ const Feed = () => {
         </div>
         </>:
         <>
-            <h1>Friends have not posted yet. Check out content from our creators for now</h1>
+        <h5 className="text-center mt-3" style={{ background: "white" , border: "black", padding:"20px", borderRadius:"25px"}}>
+        Friends have not posted yet. Check out content from our creators for now</h5>
             <MainContent/>
         </>
         }
@@ -157,7 +158,8 @@ const Feed = () => {
       ))}
       </>:
       <>
-      <h1>Friends have not posted yet. Check out content from our creators for now</h1>
+      <h5 className="text-center mt-3" style={{ background: "white" , border: "black", padding:"20px", borderRadius:"25px"}}>
+        Friends have not posted yet. Check out content from our creators for now</h5>
       <MainContent/>
       </>
     }

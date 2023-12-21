@@ -28,7 +28,7 @@ const SinglePostPreview = ({postId}) => {
     <Card className="mt-3">
     {singlePostData.pictureLink?<img className="singlePost-img mt-3"src={singlePostData.pictureLink} width="300"/>:[]}
     <Card.Title className="mt-3 text-center singlePost-Title">{singlePostData.postTitle}</Card.Title>
-    {/* <Card.Text className='singlePost-author'>Author: {singlePostData.author.username}</Card.Text> */}
+    <Card.Text className='singlePost-author'>Author: {singlePostData.author.username}</Card.Text>
     <Card.Text className='singlePost-date'>{new Date(parseInt(singlePostData.createdAt)).toLocaleDateString()}</Card.Text>
     <div style={{ borderTop: "2px solid black ", marginLeft: 20, marginRight: 20 }}></div>
     <Card.Body>
