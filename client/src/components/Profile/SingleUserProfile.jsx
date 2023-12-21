@@ -27,7 +27,7 @@ const SingleUserProfile = () => {
       if (loading) {
         null
       } else {
-        const  following = data?.findFriend?.likedPost || []
+        const  following = data?.findFriend?.posts || []
         if (following.length>0){
           const defaultId= following[0]._id 
           setDefaultPost(defaultId)
@@ -88,7 +88,7 @@ const SingleUserProfile = () => {
         <div>
           <div className='d-flex align-items-center new'>
           <img className="thumbnail-image" 
-            src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+            src={following.userPictureLink} 
             alt="user pic"
           />
           <div>
@@ -97,15 +97,11 @@ const SingleUserProfile = () => {
             <p className='text-center mb-3 ms-5'style={{color:"white"}}>{following.profileInfo}</p>
           </div>
           </div>
-          {following.likedKeywords.length>0? 
-            <TopKeywords keywords={following.likedKeywords}/>:
-            []
-          }
-          {following.likedPost.length>0?  
+          {following.posts.length>0?  
             <div className="laptop-container">
               <div className="laptop-posts">
               <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
-                {following.likedPost.map((article, index) => (
+                {following.posts.map((article, index) => (
                   <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                     <Card.Body className="post-card">
                       <Card.Title className="mb-3">{article.postTitle}</Card.Title>
@@ -123,7 +119,7 @@ const SingleUserProfile = () => {
             </div> :
             <Card>
               <Card.Body>
-                <Card.Title>User has no favorites yet</Card.Title>
+                <Card.Title>User hasnt created any posts yet</Card.Title>
               </Card.Body>
             </Card> }
         </div>
@@ -145,9 +141,9 @@ const SingleUserProfile = () => {
           </div>
        </div>
       <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
-      {following.likedPost.length>0 ? 
+      {following.posts.length>0 ? 
         <>
-          {following.likedPost.map((article) => (
+          {following.posts.map((article) => (
             <Card key={article._id}  className="mb-4">
               <Card.Body>
                 <Card.Title>{article.postTitle}</Card.Title>
@@ -159,8 +155,7 @@ const SingleUserProfile = () => {
         </>:
          <Card>
          <Card.Body>
-           <Card.Title>No Favorites Yet</Card.Title>
-           <Card.Text>Check out blog posts and like to save to favorites</Card.Text>
+           <Card.Text>User hasnt created any posts yet</Card.Text>
          </Card.Body>
        </Card> }
       </Container>

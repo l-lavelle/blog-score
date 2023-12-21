@@ -240,7 +240,8 @@ export const FIND_FRIEND = gql`
       username
       title
       profileInfo
-      likedPost {
+      userPictureLink
+      posts {
         _id
         postTitle
         postText

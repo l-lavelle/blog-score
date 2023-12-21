@@ -49,7 +49,7 @@ const resolvers = {
     findFriend: async (parent, { userId }) => {
       return await User.findOne({ _id: userId }).populate([
         {
-          path: "likedPost",
+          path: "posts",
           model: "Post",
         },
       ]);
