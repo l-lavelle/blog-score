@@ -1,4 +1,5 @@
 // When delete bottom fav doesnt update single profile
+// change to same design as rest of posts 
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {USER_LIKED_POSTS} from '../../utils/queries';
@@ -100,7 +101,7 @@ const Favorites = () => {
                 <Card key={index} className={higlightPost(article._id)} onClick={()=>getSinglePost(article._id)}>
                   <Card.Body className="post-card">
                     {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
-                    <Card.Title className="mb-3">{article.postTitle}</Card.Title>
+                    <Card.Title className="mb-3 text-center">{article.postTitle}</Card.Title>
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
                   </Card.Body>
                 </Card>
@@ -140,6 +141,7 @@ const Favorites = () => {
             }).map((article) => (
           <Card key={article._id}  className="mb-4">
             <Card.Body>
+            {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
               <Card.Title>{article.postTitle}</Card.Title>
               <HomeUpVote upvotes={article.upvotes} _id={article._id}/>
               <Card.Text>{article.postText}</Card.Text>

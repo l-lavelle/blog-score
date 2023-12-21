@@ -7,6 +7,7 @@ const typeDefs = `#graphql
     role:String
     title:String
     profileInfo:String
+    userPictureLink:String
     likedPost:[Post]
     unlikedPost:[Post]
     posts: [Post]
@@ -53,6 +54,7 @@ const typeDefs = `#graphql
     role:String
     title:String
     profileInfo:String
+    userPictureLink:String
   }
   type Auth {
     token: ID

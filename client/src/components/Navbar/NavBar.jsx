@@ -32,7 +32,7 @@ const NavBar = () => {
           title={
             < >
                 <img className="thumbnail-image img-size" 
-                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+                    src={userData.userPictureLink} 
                     alt="user pic"
                 />
                 {userData.username}

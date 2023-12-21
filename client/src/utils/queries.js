@@ -6,6 +6,7 @@ export const GET_USERS = gql`
     users {
       _id
       username
+      userPictureLink
       posts {
         _id
         postTitle
@@ -182,12 +183,14 @@ export const SINGLE_USER = gql`
       title
       profileInfo
       role
+      userPictureLink
       likedKeywords {
         keyword
         count
       }
       friends {
         username
+        userPictureLink
         _id
         role
         posts {

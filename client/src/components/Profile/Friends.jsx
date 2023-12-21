@@ -96,7 +96,7 @@ const Friends = () => {
             <div className="card d-flex align-items-center mb-3 user-card"> 
             <Link className='link-profile-center mt-2' to={"/friends/"+user._id}> 
             <img className="thumbnail-image img-card-user" 
-                    src={user.imageLink?"https://upload.wikimedia.org/wikipedia/commons/4/47/VW_K%C3%A4fer_blue_1956_vr_TCE.jpg":"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"}
+                    src={user.userPictureLink}
                     alt="user pic"
             />
             </Link>
