@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client';
-import {GET_USERS} from '../../utils/queries';
+import {GET_USERS} from '../../../utils/queries';
 import { useMutation } from '@apollo/client';
-import {ADD_FRIEND} from '../../utils/mutations';
+import {ADD_FRIEND} from '../../../utils/mutations';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
-import {SINGLE_USER} from '../../utils/queries';
-import Auth from '../../utils/auth';
+import {SINGLE_USER} from '../../../utils/queries';
+import Auth from '../../../utils/auth';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import './FindUsers.css';

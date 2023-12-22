@@ -6,7 +6,7 @@ import HomeUpVote from '../HomePage/HomeUpvote';
 import HomeComments from '../HomePage/HomeComments';
 import {truncateText} from '../../utils/helper';
 
-const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink}) => {
+const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink, author, createdAt}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleText = () => {
@@ -23,6 +23,8 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink}) => {
       {pictureLink?<img className="article-img" src={pictureLink} width="300"/>:[]}
       <div className="mb-3 postTitle"> {postTitle}</div>
       <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
+      {isExpanded ? <p className='singlePost-author'>Author: {author.username}</p>:[]}
+      {isExpanded?<p>{new Date(parseInt(createdAt)).toLocaleDateString()}</p>:[]}
       </Accordion.Header>
       <Accordion.Body>
       {postText}

@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import TopKeywords from './TopKeywords'
 import UpdateProfile from './UpdateProfile';
 import ProfilePic from './ProfilePic/ProfilePic';
+import Skeleton from 'react-loading-skeleton';
 
 const Profile = () => {
   const { loading, data } = useQuery(SINGLE_USER,{
@@ -12,7 +13,9 @@ const Profile = () => {
   const userData = data?.singleUser
   
   if(loading){
-    return <h1>loading...</h1>
+    return (
+      <Skeleton className="mt-3" style={{marginBottom:"20px"}} animation="wave" height={800} count={1} />
+    )
   }
 
   return (

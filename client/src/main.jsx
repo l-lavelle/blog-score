@@ -14,9 +14,9 @@ import About from './components/Footer/About'
 import Guidelines from './components/Footer/Rules';
 import Contact from './components/Footer/Contact'
 import Profile from './components/Profile/Profile';
-import FindUsers from './components/Profile/FindUsers';
+import FindUsers from './components/Profile/FindUsers/FindUsers';
 import Friends from './components/Profile/Friends';
-import SingleUserProfile from './components/Profile/SingleUserProfile'
+import SingleUserProfile from './components/Profile/SingleUserProfile/SingleUserProfile'
 import ProfileDashboard from './components/Profile/ProfileDashboard/ProfileDashboard';
 import Feed from './components/Feed/Feed';
 import AdminDash from './components/admin/AdminDash/AdminDash';

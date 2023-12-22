@@ -11,6 +11,7 @@ import SinglePostPreview from '../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import ArticlePreview from '../ArticlePreview/ArticlePreview';
 
 const Favorites = () => {
   const [query, setQuery] = useState("")
@@ -138,15 +139,16 @@ const Favorites = () => {
               } else if (post.postTitle.toLowerCase().includes(query.toLowerCase())) {
                 return post;
               }
-            }).map((article) => (
-          <Card key={article._id}  className="mb-4">
-            <Card.Body>
-            {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
-              <Card.Title>{article.postTitle}</Card.Title>
-              <HomeUpVote upvotes={article.upvotes} _id={article._id}/>
-              <Card.Text>{article.postText}</Card.Text>
-            </Card.Body>
-          </Card>
+            }).map((article, index) => (
+              <ArticlePreview key={index} {...article} />
+          // <Card key={article._id}  className="mb-4">
+          //   <Card.Body>
+          //   {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
+          //     <Card.Title>{article.postTitle}</Card.Title>
+          //     <HomeUpVote upvotes={article.upvotes} _id={article._id}/>
+          //     <Card.Text>{article.postText}</Card.Text>
+          //   </Card.Body>
+          // </Card>
         ))}
       </>:
        <Card>

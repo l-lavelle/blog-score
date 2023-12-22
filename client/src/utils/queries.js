@@ -88,6 +88,7 @@ export const GET_POSTS = gql`
       upvotes
       downvotes
       pictureLink
+      createdAt
       author {
         _id
         username
@@ -116,6 +117,7 @@ export const GET_RECOMMENDED_POSTS = gql`
       upvotes
       downvotes
       pictureLink
+      createdAt
       author {
         _id
         username
@@ -159,6 +161,10 @@ export const USER_LIKED_POSTS = gql`
         postText
         upvotes
         pictureLink
+        createdAt
+        author {
+          username
+        }
       }
     }
   }
@@ -199,6 +205,10 @@ export const SINGLE_USER = gql`
           postText
           upvotes
           pictureLink
+          createdAt
+          author {
+            username
+          }
         }
       }
     }

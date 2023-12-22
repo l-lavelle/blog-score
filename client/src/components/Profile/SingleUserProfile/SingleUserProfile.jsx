@@ -1,15 +1,14 @@
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import {FIND_FRIEND} from '../../utils/queries';
-import HomeUpVote from '../HomePage/HomeUpvote';
-import '../Recent/Recent.css';
+import {FIND_FRIEND} from '../../../utils/queries';
+import HomeUpVote from '../../HomePage/HomeUpvote';
+import '../../Recent/Recent.css';
 import { useEffect , useState } from 'react';
-import {truncateText} from '../../utils/helper';
-import SinglePostPreview from '../SinglePostPreview';
+import {truncateText} from '../../../utils/helper';
+import SinglePostPreview from '../../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
-import TopKeywords from './TopKeywords';
 import './SingleUserProfile.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 

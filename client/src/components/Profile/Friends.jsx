@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import './FindUsers.css';
+import './FindUsers/FindUsers.css';
 
 const Friends = () => {
   const [query, setQuery] = useState("");

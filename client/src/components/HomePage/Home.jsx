@@ -22,7 +22,7 @@ const Home = () => {
   });
 
   const  postData = data?.posts || [];
-
+console.log("postData", postData)
   useEffect(() => {
     if (loading) {
       null

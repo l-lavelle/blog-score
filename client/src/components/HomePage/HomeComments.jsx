@@ -54,7 +54,7 @@ const HomeComment = ({ postId}) => {
 
   return (
     <>
-      <h5>Comments:</h5>
+      <h5 className='mt-3'>Comments:</h5>
       {postData.postComments.length ?  
       <>
         {postData.postComments.map((posts, index) => (
