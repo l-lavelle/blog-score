@@ -1,3 +1,4 @@
+// Sometimes is not populating author but the data is there?? weird timing issue - when its deault post only 
 import { useQuery } from '@apollo/client';
 import { useEffect , useState } from 'react';
 import {GET_RECOMMENDED_POSTS} from '../utils/queries'

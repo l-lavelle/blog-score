@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import {SINGLE_USER} from '../../utils/queries'
 import {UPDATE_USER} from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
+import './UpdateProfile.css'
 
 const UpdateProfile = (props) => {
   const [updateUser, { error }] = useMutation(UPDATE_USER,{refetchQueries:[
@@ -127,9 +128,11 @@ const UpdateProfile = (props) => {
         rows={10}
     />
     </Form.Group>
-
+    
     <Form.Group controlId="formBasicPassword">
-    <Form.Label className='fs-4 mb-2 mt-3'>New Password</Form.Label>
+    <h3 className='mt-3'>Update Password</h3>
+    <p>If changing password please confirm new password by entering it in both fields below</p>
+    <Form.Label className='fs-4 mb-2 '>New Password</Form.Label>
     <Form.Control
         type="password"
         name='password'

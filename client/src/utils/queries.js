@@ -62,6 +62,7 @@ export const GET_SINGLE_POST = gql`
         author {
           _id
           username
+          userPictureLink
         }
       }
     }

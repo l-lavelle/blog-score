@@ -22,8 +22,8 @@ const Profile = () => {
       <div className="card-3d my-5" style={{ padding: '20px' , background:"white", borderRadius:"25px"}}>
           <h1 className="text-center fw-bold fs-2 mb-4">{userData.username}&apos;s Profile</h1>
           <ProfilePic imgPic={userData.userPictureLink}/>
-          <h4 >Update Profile Info</h4>
-          <p>To update your user information please edit the fields below and click submit</p>
+          <h4 className='mt-2 update-directions'>Update Profile Info</h4>
+          <p className='update-directions'>To update your user information please edit the desired fields below and click submit</p>
           <UpdateProfile username={userData.username} firstName={userData.firstName} lastName={userData.lastName} title={userData.title} profileInfo={userData.profileInfo}/> 
           {userData.likedKeywords.length>0? 
             <TopKeywords className='mt-5' keywords={userData.likedKeywords}/>:

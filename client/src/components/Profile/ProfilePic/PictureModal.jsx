@@ -84,11 +84,6 @@ const PictureModal = (props) => {
     } catch (err){
       console.error(err)
     }
-
-    //   console.log("datauRL", dataURL)
-    //   setFile({...file, myFile:"hi"})
-    //   console.log("file",file.myFile)
-    //   updateProfilePic()   
   }
 
   return (
@@ -100,20 +95,10 @@ const PictureModal = (props) => {
   >
     <Modal.Header closeButton>
       <Modal.Title id="contained-modal-title-vcenter">
-        Modal heading
+        Choose a new Profile Picture 
       </Modal.Title>
     </Modal.Header>
-    <Modal.Body>
-      <h4>Centered Modal</h4>
-      <p>
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-        consectetur ac, vestibulum at eros.
-      </p>
-    </Modal.Body>
-    <Modal.Footer>
-      {/* <Button onClick={props.onHide}>Close</Button> */}
-    </Modal.Footer>
+    <div className='text-center'>
     <input 
         type="file" 
         // label="Image"
@@ -121,7 +106,9 @@ const PictureModal = (props) => {
         // id="file-upload"
         accept=".jpeg,.png,.jpg"
         onChange={onSelectFile}>
-    </input>
+        </input>
+    </div>
+    <Modal.Body rows={12}>  
     {imgSrc && (
     <div className='flex flex-col items-center'>
     <ReactCrop
@@ -135,14 +122,15 @@ const PictureModal = (props) => {
     minWidth={minDimesion}>
         <img ref={imageRef} src={imgSrc} style={{maxHeight:"70vh"}} onLoad={onImageLoad}/>
     </ReactCrop>
-    <button onClick={cropImage}>
-      Crop Image
+    <button style={{borderRadius: "10px", padding: '5px', background: "white"}} onClick={cropImage}>
+      Save Profile Picture
     </button>
     </div>
     )}
     {crop && 
     <canvas ref={previewCanvas} style={{objectFit:"contain", width:200, height:200, display:"none"}}>
     </canvas>}
+    </Modal.Body>
   </Modal>
   );
 };

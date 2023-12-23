@@ -11,10 +11,10 @@ const SinglePostPreview = ({postId}) => {
 
   const { data:onePost, loading } = useQuery(GET_SINGLE_POST, {
   variables: { postId: postId },
-  fetchPolicy: 'cache-and-network',
+  
   });
   const  singlePostData = onePost?.getSinglePost || [];
-
+  console.log(singlePostData)
   if (loading) {
     return (
     <>

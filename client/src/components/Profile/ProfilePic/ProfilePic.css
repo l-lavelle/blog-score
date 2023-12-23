@@ -1,6 +1,18 @@
-/* need ratio to crop */
-/* .profile-pic {
+.profile-pic {
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
-} */
+  width: 30%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-pic {
+    width: 50%;
+    height: auto;
+  }
+  .update-directions {
+    text-align: center;
+  }
+}

@@ -7,15 +7,16 @@ import {UPDATE_POST} from '../../utils/mutations';
 import {DELETE_POST} from '../../utils/mutations';
 import { useState } from 'react';
 import {GET_POSTS} from '../../utils/queries';
+import {SINGLE_USER_POSTS} from '../../utils/queries';
 
 const EditPostModal = (props) => {
   const [updatedData, setUpdatedData] = useState({postId: "", postTitle: props.postTitle , postText: props.postText, tags:[]});
   const [updatePost, { error }] = useMutation(UPDATE_POST, {refetchQueries:[
-    GET_POSTS
+    GET_POSTS,SINGLE_USER_POSTS
   ]});
 
   const [deletePost] = useMutation(DELETE_POST, {refetchQueries:[
-    GET_POSTS
+    GET_POSTS,SINGLE_USER_POSTS
   ]});
 
   // Set new value of edited post 

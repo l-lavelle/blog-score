@@ -1,0 +1,13 @@
+.comment-pic {
+  border-radius: 50%;
+  max-width: 55px;
+  max-height: 55px;
+  margin-right: 10px;
+}
+.comment-info {
+  margin-top: 10px;
+  line-height: 0.4em;
+}
+.comment-username {
+  font-weight: bold;
+}

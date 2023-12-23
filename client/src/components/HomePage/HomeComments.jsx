@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import {ADD_COMMENT } from '../../utils/mutations';
 import {GET_SINGLE_POST} from '../../utils/queries';
 import Skeleton from 'react-loading-skeleton';
+import './HomeComments.css'
 
 const HomeComment = ({ postId}) => {
   const { loading, data } = useQuery(GET_SINGLE_POST,{
@@ -60,14 +61,16 @@ const HomeComment = ({ postId}) => {
         {postData.postComments.map((posts, index) => (
           <Card key={index}  className="mb-4">
             <Card.Body>
-              <p>
-              <img className="thumbnail-image img-size" 
-                    src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+              <div className='d-flex'>
+              <img className="thumbnail-image comment-pic" 
+                    src={posts.author.userPictureLink} 
                     alt="user pic"
                 />
-                {posts.author.username}{' - '}  
-                {new Date(parseInt(posts.createdAt)).toLocaleDateString()}
-              </p>
+                <div className='comment-info'>
+                <p className='comment-username'>{posts.author.username}</p>
+                <p>{new Date(parseInt(posts.createdAt)).toLocaleDateString()}</p>
+                </div>
+              </div>
                 {posts.commentText}
             </Card.Body>
           </Card>
