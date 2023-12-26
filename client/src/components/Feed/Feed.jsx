@@ -143,7 +143,7 @@ const Feed = () => {
     <div className="main-content">
      {filteredUserPosts.length>0 ? 
      <>
-     <h3 className='text-center mb-3'style={{color:"white"}}>Favorites</h3>
+     <h3 className='text-center mb-3'style={{color:"white"}}>Feed</h3>
      <div className='searchBar-position'>
         <input className="searchBar-style" placeholder="Search for Blog Post" onChange={event => setQuery(event.target.value)}/>
       </div>

@@ -2,18 +2,18 @@
   font-size: 1.5rem;
   font-weight: bolder;
 }
-.signup-link {
+.login-link {
   background-color: rgb(183, 180, 180);
 }
-.signup-link:hover {
+.login-link:hover {
   background-color: #14e956;
 }
-.login-btn:disabled {
+.signup-btn:disabled {
   background-color: #77e99c;
   border: #77e99c;
   color: black;
 }
-.login-btn {
+.signup-btn {
   background-color: #14e956;
   border: #14e956;
   color: black;

@@ -4,7 +4,7 @@ import {ADD_USER} from '../../utils/mutations';
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Button, Card } from 'react-bootstrap';
-import '../Login/Login.css';
+import './Signup.css';
 
 const SignUp = () => {
   const [addUser, {error} ] = useMutation(ADD_USER);
@@ -54,7 +54,7 @@ const SignUp = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+    <Container className="d-flex justify-content-center align-items-center">
       <Card className="card-3d my-5" style={{ width: '40rem' }}>
         <Card.Body>
           <Card.Title className="text-center fw-bold fs-2">Signup</Card.Title>
@@ -115,13 +115,13 @@ const SignUp = () => {
               />
             </Form.Group>
             {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
-            <Button variant="primary" 
+            <Button  
             disabled={!(userSignUpData.password && userSignUpData.username && userSignUpData.lastName && userSignUpData.firstName)} 
-            type="submit" className="w-100 fw-bold mt-3">
+            type="submit" className="w-100 fw-bold mt-3 signup-btn">
               Submit
             </Button>
             <h4 className='mt-3 text-center'>Already have an account? </h4>
-            <Link to="/login" className="btn btn-success w-100 fw-bold">Login here</Link>
+            <Link to="/login" className="btn w-100 fw-bold login-link">Login here</Link>
           </Form>
         </Card.Body>
       </Card>

@@ -28,3 +28,6 @@
   margin-right: auto;
   width: 50%;
 }
+.singlePost-date {
+  line-height: 0em;
+}

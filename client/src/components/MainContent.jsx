@@ -1,4 +1,4 @@
-// Sometimes is not populating author but the data is there?? weird timing issue - when its deault post only 
+// Default post not returning user for author in comments or post: only on admin??
 import { useQuery } from '@apollo/client';
 import { useEffect , useState } from 'react';
 import {GET_RECOMMENDED_POSTS} from '../utils/queries'
@@ -22,6 +22,7 @@ const MainContent = () => {
   });
 
   const  postData = data?.getRecommendedPosts || []
+  console.log("postdata", postData)
   const AdminPostData = postData.filter(post => {
     if (post?.author?.role === 'admin') {
         return post;

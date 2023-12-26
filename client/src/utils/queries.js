@@ -54,6 +54,10 @@ export const GET_SINGLE_POST = gql`
       author {
         _id
         username
+        firstName
+        role
+        title
+        lastName
       }
       postComments {
         _id
@@ -123,6 +127,7 @@ export const GET_RECOMMENDED_POSTS = gql`
         _id
         username
         role
+        firstName
       }
       postComments {
         _id

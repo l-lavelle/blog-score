@@ -1,32 +1,34 @@
+<!-- Update pictures -->
+
 # Blog-Score
 
 # Views
 
-![Alt text](image.png)
+![Alt text](Images/image.png)
 
 # Main View
 
-![Alt text](image-1.png)
+![Alt text](Images/image-1.png)
 
 # Expanded Main View
 
-![Alt text](image-2.png)
+![Alt text](Images/image-2.png)
 
 # Recently Viewed
 
-![Alt text](image-3.png)
+![Alt text](Images/image-3.png)
 
 # Recent Expanded View
 
-![Alt text](image-4.png)
+![Alt text](Images/image-4.png)
 
 # Favorites View
 
-![Alt text](image-5.png)
+![Alt text](Images/image-5.png)
 
 # Piggy Bank View
 
-![Alt text](image-6.png)
+![Alt text](Images/image-6.png)
 
 # OurMission
 
