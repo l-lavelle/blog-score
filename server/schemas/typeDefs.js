@@ -3,7 +3,7 @@ const typeDefs = `#graphql
     _id: ID
     firstName: String
     lastName: String
-    username: String
+    displayName: String
     role:String
     title:String
     profileInfo:String
@@ -49,7 +49,7 @@ const typeDefs = `#graphql
   input UserInput{
     firstName:String
     lastName:String
-    username:String
+    displayName:String
     password:String
     role:String
     title:String
@@ -76,7 +76,7 @@ const typeDefs = `#graphql
   }
   type Mutation {
     addUser(user:UserInput): Auth
-    login(username: String, password: String): Auth
+    login(displayName: String, password: String): Auth
     updateUser(criteria:UserInput):User
     deleteUser:User
     adminDelete(userId:ID):User

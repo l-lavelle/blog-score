@@ -5,7 +5,7 @@ export const GET_USERS = gql`
   query getUsers {
     users {
       _id
-      username
+      displayName
       userPictureLink
       posts {
         _id
@@ -30,7 +30,7 @@ export const GET_USERS = gql`
 export const GET_ROLE_USER = gql`
   query basicUser {
     basicUser {
-      username
+      displayName
       _id
       comments {
         commentText
@@ -53,7 +53,7 @@ export const GET_SINGLE_POST = gql`
       pictureLink
       author {
         _id
-        username
+        displayName
         firstName
         role
         title
@@ -65,7 +65,7 @@ export const GET_SINGLE_POST = gql`
         createdAt
         author {
           _id
-          username
+          displayName
           userPictureLink
         }
       }
@@ -96,14 +96,14 @@ export const GET_POSTS = gql`
       createdAt
       author {
         _id
-        username
+        displayName
       }
       postComments {
         _id
         commentText
         author {
           _id
-          username
+          displayName
         }
         createdAt
       }
@@ -125,16 +125,15 @@ export const GET_RECOMMENDED_POSTS = gql`
       createdAt
       author {
         _id
-        username
+        displayName
         role
-        firstName
       }
       postComments {
         _id
         commentText
         author {
           _id
-          username
+          displayName
         }
         createdAt
       }
@@ -152,7 +151,7 @@ export const RECENT_POSTS_QUERY = gql`
       pictureLink
       createdAt
       author {
-        username
+        displayName
       }
     }
   }
@@ -169,7 +168,7 @@ export const USER_LIKED_POSTS = gql`
         pictureLink
         createdAt
         author {
-          username
+          displayName
         }
       }
     }
@@ -191,7 +190,7 @@ export const SINGLE_USER = gql`
     singleUser {
       firstName
       lastName
-      username
+      displayName
       title
       profileInfo
       role
@@ -201,7 +200,7 @@ export const SINGLE_USER = gql`
         count
       }
       friends {
-        username
+        displayName
         userPictureLink
         _id
         role
@@ -213,7 +212,7 @@ export const SINGLE_USER = gql`
           pictureLink
           createdAt
           author {
-            username
+            displayName
           }
         }
       }
@@ -253,7 +252,7 @@ export const FIND_FRIEND = gql`
   query findFriend($userId: ID) {
     findFriend(userId: $userId) {
       _id
-      username
+      displayName
       title
       profileInfo
       userPictureLink
@@ -279,7 +278,7 @@ export const FIND_FRIEND = gql`
 //       commentText
 //       author {
 //         _id
-//         username
+//         displayName
 //       }
 //       createdAt
 //     }

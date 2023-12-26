@@ -105,7 +105,7 @@ function RecentlyViewedPosts() {
                   <Card.Body className="post-card">
                     {article.pictureLink?<img src={article.pictureLink} className='scroll-pic'/>:[]}
                     <Card.Title className="mb-3 text-center">{article.postTitle}</Card.Title>
-                    {/* <Card.Text>By {article.author.username}</Card.Text>
+                    {/* <Card.Text>By {article.author.displayName}</Card.Text>
                     <Card.Text>{new Date(parseInt(article.createdAt)).toLocaleDateString()}</Card.Text> */}
                     <Card.Text >{truncateText(article.postText, 20)}</Card.Text>
                   </Card.Body>

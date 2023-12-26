@@ -97,7 +97,7 @@ const FindUsers = () => {
         {withoutSelf.filter(user => {
           if (query === '') {
             return user;
-          } else if (user.username.toLowerCase().includes(query.toLowerCase())) {
+          } else if (user.displayName.toLowerCase().includes(query.toLowerCase())) {
             return user;
           }
         }).map((user) => (
@@ -109,7 +109,7 @@ const FindUsers = () => {
                     alt="user pic"
             />
             </Link>
-            <div className='user-name'>{user.username} </div>
+            <div className='user-name'>{user.displayName} </div>
             <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} className="mb-2 mt-2" onClick={()=>newFriend(user._id)}>Follow</Button>
           </div>
           </Col>

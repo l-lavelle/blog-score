@@ -35,7 +35,7 @@ const NavBar = () => {
                     src={userData.userPictureLink} 
                     alt="user pic"
                 />
-                {userData.username}
+                {userData.displayName}
             </>
           } 
           id="collapsible-nav-dropdown">        

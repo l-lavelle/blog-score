@@ -9,7 +9,7 @@ import './Login.css';
 const Login = () => {
   const [login, {error} ] = useMutation(LOGIN);
   const [message, setMesage]=useState({message:'', status:''});
-  const [userLoginData, setUserLoginData] = useState({ username: '', password: '' });
+  const [userLoginData, setUserLoginData] = useState({ displayName: '', password: '' });
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
@@ -20,8 +20,10 @@ const Login = () => {
     event.preventDefault();
     try {
       const {data}  = await login({
-        variables: { username: userLoginData.username,
-        password: userLoginData.password},
+        variables: { 
+        displayName: userLoginData.displayName,
+        password: userLoginData.password
+      },
       });
 
       Auth.login(data.login.token)
@@ -48,9 +50,9 @@ const Login = () => {
               <Form.Label className='text-ad mb-2 mt-3'>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter username"
-                name='username'
-                value={userLoginData.username}
+                placeholder="Enter Username"
+                name='displayName'
+                value={userLoginData.displayName}
                 onChange={updateData}
               />
             </Form.Group>
@@ -67,7 +69,7 @@ const Login = () => {
             </Form.Group>
             {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
             <Button type="submit" className="w-100 fw-bold mt-3 login-btn"
-            disabled={!(userLoginData.username && userLoginData.password)}>
+            disabled={!(userLoginData.displayName && userLoginData.password)}>
               Submit
             </Button>
             <h4 className='mt-3 text-center'>Don&apos;t have an account? </h4>

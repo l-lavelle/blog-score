@@ -88,7 +88,7 @@ const Friends = () => {
             {users.filter(user => {
           if (query === '') {
             return user;
-          } else if (user.username.toLowerCase().includes(query.toLowerCase())) {
+          } else if (user.displayName.toLowerCase().includes(query.toLowerCase())) {
             return user;
           }
         }).map((user) => (
@@ -100,7 +100,7 @@ const Friends = () => {
                     alt="user pic"
             />
             </Link>
-            <div className='user-name'>{user.username}</div> 
+            <div className='user-name'>{user.displayName}</div> 
             <Button className="mb-2 mt-2" style={{ maxWidth: '20vw',  padding: '5px', background: "#FF7F7F" , border: "black", color:"black"}}  onClick={()=>removeFriend(user._id)}>Unfollow</Button>
             </div>
           </Col>))}

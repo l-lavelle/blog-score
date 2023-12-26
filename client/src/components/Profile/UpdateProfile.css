@@ -1,0 +1,21 @@
+.update-profile-btn:disabled {
+  background-color: #77e99c;
+  border: #77e99c;
+  color: black;
+}
+.update-profile-btn {
+  background-color: #14e956;
+  border: #14e956;
+  color: black;
+}
+.update-profile-btn:hover {
+  background-color: #14e956;
+  border: #14e956;
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .password-instructions {
+    text-align: center;
+  }
+}

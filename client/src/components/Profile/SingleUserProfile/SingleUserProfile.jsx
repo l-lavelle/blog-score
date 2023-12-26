@@ -91,7 +91,7 @@ const SingleUserProfile = () => {
             alt="user pic"
           />
           <div>
-            <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.username}</h3>
+            <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.displayName}</h3>
             <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.title}</h3>
             <p className='text-center mb-3 ms-5'style={{color:"white"}}>{following.profileInfo}</p>
           </div>
@@ -134,7 +134,7 @@ const SingleUserProfile = () => {
             src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
             alt="user pic"
           />
-          <h3 className='text-center mb-3'style={{color:"white"}}>{following.username}</h3>
+          <h3 className='text-center mb-3'style={{color:"white"}}>{following.displayName}</h3>
           <h3 className='text-center mb-3'style={{color:"white"}}>{following.title}</h3>
           <p className='text-center mb-3'style={{color:"white"}}>{following.profileInfo}</p>
           </div>

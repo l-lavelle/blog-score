@@ -10,7 +10,7 @@ const UpdateProfile = (props) => {
     SINGLE_USER
   ]});
   const [message, setMesage]=useState({message:'', status:''});
-  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, username: props.username, title:props.title, profileInfo:props.profileInfo, password:'', confirmPassword:''});
+  const [updatedData, setUpdatedData] = useState({firstName: props.firstName, lastName:props.lastName, displayName: props.displayName, title:props.title, profileInfo:props.profileInfo, password:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
@@ -22,17 +22,19 @@ const UpdateProfile = (props) => {
     event.preventDefault();
     try{
     if (updatedData.password){
-      if (updatedData.password.length<5){
-        setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
+      if  (updatedData.displayName.length<4) {
+        setMesage({message:'Username must be more than 4 characters', status:'error'})
       } else if (updatedData.password != updatedData.confirmPassword) {
           setMesage({message:'New passwords do not match', status:'error'})
+      } else if (updatedData.password.length<5){
+        setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
       } else {
       await updateUser({
         variables: { 
           criteria:{
             firstName: updatedData.firstName, 
             lastName: updatedData.lastName, 
-            username: updatedData.username,
+            displayName: updatedData.displayName,
             password: updatedData.password,
             title:updatedData.title,
             profileInfo:updatedData.profileInfo
@@ -43,7 +45,7 @@ const UpdateProfile = (props) => {
       setUpdatedData({
         firstName: props.firstName,
         lastName: props.lastName,
-        username:props.username,
+        displayName:props.displayName,
         title:props.title,
         profileInfo:props.profileInfo,
         password: "",
@@ -51,12 +53,15 @@ const UpdateProfile = (props) => {
       })
      }
     } else {
+      if (updatedData.displayName.length<4) {
+        setMesage({message:'Username must be more than 4 characters', status:'error'})
+      } else {
       await updateUser({
         variables: { 
           criteria:{
             firstName: updatedData.firstName, 
             lastName: updatedData.lastName, 
-            username: updatedData.username,
+            displayName: updatedData.displayName,
             title:updatedData.title,
             profileInfo:updatedData.profileInfo
           },
@@ -66,11 +71,12 @@ const UpdateProfile = (props) => {
         setUpdatedData({
           firstName: props.firstName,
           lastName: props.lastName,
-          username:props.username,
+          displayName:props.displayName,
           title:props.title,
           profileInfo:props.profileInfo
         })
       }
+    }
       if (error) {
         throw new Error('Unable to update post');
       }
@@ -104,8 +110,8 @@ const UpdateProfile = (props) => {
     <Form.Label className='fs-4 mb-2 mt-3'>Username</Form.Label>
     <Form.Control
         type="text"
-        name='username'
-        defaultValue={props.username}
+        name='displayName'
+        defaultValue={props.displayName}
         onChange={updateData}
     />
     </Form.Group>
@@ -130,8 +136,8 @@ const UpdateProfile = (props) => {
     </Form.Group>
     
     <Form.Group controlId="formBasicPassword">
-    <h3 className='mt-3'>Update Password</h3>
-    <p>If changing password please confirm new password by entering it in both fields below</p>
+    <h4 className='mt-3 password-instructions'>Update Password</h4>
+    <p className='password-instructions'>If changing password please confirm new password by entering it in both fields below</p>
     <Form.Label className='fs-4 mb-2 '>New Password</Form.Label>
     <Form.Control
         type="password"
@@ -154,9 +160,11 @@ const UpdateProfile = (props) => {
     </Form.Group>
     {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
     {message.status==='success'?<p className='text-center mt-3' style={{color:"green"}}>{message.message}</p>:null}
-    <Button variant="primary" type="submit" className="fw-bold mt-3">
+    <div className='text-center'>
+    <Button type="submit" className="fw-bold mt-3 update-profile-btn">
     Save Changes
     </Button>
+    </div>
     </Form>
   );
 };

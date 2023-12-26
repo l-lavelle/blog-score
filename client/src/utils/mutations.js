@@ -11,8 +11,8 @@ export const ADD_USER = gql`
 
 // Mutation for logging in a user
 export const LOGIN = gql`
-  mutation login($username: String, $password: String) {
-    login(username: $username, password: $password) {
+  mutation login($displayName: String, $password: String) {
+    login(displayName: $displayName, password: $password) {
       token
     }
   }
@@ -23,7 +23,7 @@ export const UPDATE_USER = gql`
   mutation updateUser($criteria: UserInput) {
     updateUser(criteria: $criteria) {
       _id
-      username
+      displayName
       firstName
     }
   }
@@ -68,7 +68,7 @@ export const ADD_POST = gql`
       upvotes
       author {
         _id
-        username
+        displayName
       }
     }
   }
@@ -104,7 +104,7 @@ export const ADD_COMMENT = gql`
       commentText
       author {
         _id
-        username
+        displayName
       }
     }
   }

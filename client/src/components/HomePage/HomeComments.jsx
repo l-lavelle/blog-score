@@ -67,7 +67,7 @@ const HomeComment = ({ postId}) => {
                     alt="user pic"
                 />
                 <div className='comment-info'>
-                <p className='comment-username'>{posts.author.username}</p>
+                <p className='comment-displayName'>{posts.author.displayName}</p>
                 <p>{new Date(parseInt(posts.createdAt)).toLocaleDateString()}</p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const HomeComment = ({ postId}) => {
         
         {Auth.loggedIn()?
         <>
-          <h4 className="mt-4">Add a Comment:</h4>
+          <h5 className="mt-4">Add a Comment:</h5>
           <InputGroup className="mt-2">
           <Form.Control
             className="mb-2"

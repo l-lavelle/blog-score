@@ -60,7 +60,7 @@ const UsersModal = (props) => {
     >
     <Modal.Header closeButton>
       <Modal.Title style={{width:"100vw"}} id="contained-modal-title-vcenter">
-          {props.username}&apos;s Comments
+          {props.displayName}&apos;s Comments
       </Modal.Title>
     </Modal.Header>
       <Modal.Body>

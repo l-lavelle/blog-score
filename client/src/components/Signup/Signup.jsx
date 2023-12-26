@@ -9,7 +9,7 @@ import './Signup.css';
 const SignUp = () => {
   const [addUser, {error} ] = useMutation(ADD_USER);
   const [message, setMesage]=useState({message:'', status:''});
-  const [userSignUpData, setUserSignUpData] = useState({ username: '', password: '' , firstName:'', lastName:'', confirmPassword:''});
+  const [userSignUpData, setUserSignUpData] = useState({ displayName: '', password: '' , firstName:'', lastName:'', confirmPassword:''});
 
   const updateData= async (event)=>{
     const { name, value } = event.target;
@@ -23,13 +23,13 @@ const SignUp = () => {
       setMesage({message:'Passwords must be longer than 5 characters', status:'error'})
     } else if (userSignUpData.password != userSignUpData.confirmPassword) {
         setMesage({message:'Passwords do not match', status:'error'})
-    } else if (userSignUpData.username.length<4) {
+    } else if (userSignUpData.displayName.length<4) {
       setMesage({message:'Username must be longer than 4 characters', status:'error'})
     } else {
     try {
       const { data } = await addUser({
         variables: { user: 
-          {username:userSignUpData.username,
+          {displayName:userSignUpData.displayName,
             password: userSignUpData.password,
             firstName: userSignUpData.firstName,
             lastName: userSignUpData.lastName}},
@@ -43,8 +43,9 @@ const SignUp = () => {
       window.location.assign("/home")
 
     } catch (error) {
-      if(error.message===`E11000 duplicate key error collection: blog-score.users index: username_1 dup key: { username: "${userSignUpData.username}" }`){
+      if(error.message===`E11000 duplicate key error collection: blog-score.users index: displayName_1 dup key: { displayName: "${userSignUpData.displayName}" }`){
         setMesage({message:'Username already exists', status:'error'})
+        console.log(error)
       } else {
       setMesage({message:'Unable to create user', status:'error'})
       console.log(error.message);
@@ -84,9 +85,9 @@ const SignUp = () => {
               <Form.Label className='text-ad mb-2 mt-3'>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter username"
-                name='username'
-                value={userSignUpData.username}
+                placeholder="Enter Username"
+                name='displayName'
+                value={userSignUpData.displayName}
                 onChange={updateData}
               />
             </Form.Group>
@@ -95,7 +96,7 @@ const SignUp = () => {
               <Form.Label className='text-ad mb-2 mt-3'>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Enter Password"
                 name='password'
                 value={userSignUpData.password}
                 onChange={updateData}
@@ -107,7 +108,7 @@ const SignUp = () => {
               <Form.Label className='text-ad mb-2 mt-3'>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Enter Password Confirmation"
                 name='confirmPassword'
                 value={userSignUpData.confirmPassword}
                 onChange={updateData}
@@ -116,7 +117,7 @@ const SignUp = () => {
             </Form.Group>
             {message.status==='error'?<p className='text-center mt-3' style={{color:"red"}}>{message.message}</p>:null}
             <Button  
-            disabled={!(userSignUpData.password && userSignUpData.username && userSignUpData.lastName && userSignUpData.firstName)} 
+            disabled={!(userSignUpData.password && userSignUpData.displayName && userSignUpData.lastName && userSignUpData.firstName)} 
             type="submit" className="w-100 fw-bold mt-3 signup-btn">
               Submit
             </Button>

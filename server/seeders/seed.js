@@ -7,7 +7,7 @@ const userSeedData = [
   {
     firstName: "Jane",
     lastName: "Smith",
-    username: "janesmith",
+    displayName: "janesmith",
     password: "password127",
     role: "admin",
   },
@@ -15,14 +15,14 @@ const userSeedData = [
   {
     firstName: "John",
     lastName: "Doe",
-    username: "johndoe",
+    displayName: "johndoe",
     password: "password126",
     role: "admin", // This will be an array of references to other User documents
   },
   {
     firstName: "Sean",
     lastName: "Connor",
-    username: "Redbull-boi",
+    displayName: "Redbull-boi",
     password: "password123",
     role: "admin",
   },
@@ -30,28 +30,28 @@ const userSeedData = [
   {
     firstName: "Alex",
     lastName: "Tester",
-    username: "Horahed-2-hard",
+    displayName: "Horahed-2-hard",
     password: "password124",
     role: "admin",
   },
   {
     firstName: "Scott",
     lastName: "Keller",
-    username: "Tonga-till-u-bl33d",
+    displayName: "Tonga-till-u-bl33d",
     password: "password125",
     role: "admin",
   },
   {
     firstName: "Matt",
     lastName: "Hamilton",
-    username: "Zucced-a-apple",
+    displayName: "Zucced-a-apple",
     password: "password125",
     role: "admin",
   },
   {
     firstName: "Lauren",
     lastName: "Lavelle",
-    username: "Cat-lady-withthe-cats",
+    displayName: "Cat-lady-withthe-cats",
     password: "password8940",
     role: "admin",
   },

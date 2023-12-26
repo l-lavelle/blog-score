@@ -23,7 +23,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink, author
       {pictureLink?<img className="article-img" src={pictureLink} width="300"/>:[]}
       <div className="mb-3 postTitle"> {postTitle}</div>
       <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
-      {isExpanded ? <p className='singlePost-author'>Author: {author.username}</p>:[]}
+      {isExpanded ? <p className='singlePost-author'>Author: {author.displayName}</p>:[]}
       {isExpanded?<p className='singlePost-date'>{new Date(parseInt(createdAt)).toLocaleDateString()}</p>:[]}
       </Accordion.Header>
       <Accordion.Body>

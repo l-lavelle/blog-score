@@ -209,8 +209,8 @@ const resolvers = {
       return { token };
     },
     // working with auth: all
-    login: async (parent, { username, password }) => {
-      const user = await User.findOne({ username });
+    login: async (parent, { displayName, password }) => {
+      const user = await User.findOne({ displayName });
 
       if (!user) {
         throw AuthenticationError;
