@@ -1,0 +1,13 @@
+.profile-pic-btn {
+  background-color: #77e99c;
+  border: #77e99c;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+}
+.profile-pic-btn:hover {
+  background-color: #14e956;
+  border: #14e956;
+  color: black;
+  font-weight: bold;
+}

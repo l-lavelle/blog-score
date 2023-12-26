@@ -77,7 +77,7 @@ ChartJS.register(ArcElement, Tooltip,Legend);
     </Container> 
     </>:
       <div>
-        <h6>No interests dectected yet. Go like some posts</h6>
+        <h6 className='text-center'>No interests dectected yet. Go like some posts</h6>
       </div>}
     </>
   );

@@ -28,7 +28,7 @@ const Profile = () => {
           {userData.likedKeywords.length>0? 
             <TopKeywords className='mt-5' keywords={userData.likedKeywords}/>:
             <div>
-            <h6>No interests dectected yet. Go like some posts. asdf</h6>
+            <h6 className='text-center'>No interests dectected yet. Go like some posts.</h6>
             </div>
           }
       </div>

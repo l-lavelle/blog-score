@@ -8,20 +8,21 @@ import Modal from 'react-bootstrap/Modal';
 import {UPDATE_USER} from '../../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import {SINGLE_USER} from '../../../utils/queries'
+import "./PictureModal.css"
 
 const PictureModal = (props) => {
     const [updateUser, { error }] = useMutation(UPDATE_USER,{refetchQueries:[
         SINGLE_USER
       ]});
-  const imageRef = useRef(null)
-  const previewCanvas = useRef(null)
-  const [currentImageUrl, setcurrentImageUrl] = useState(null);
-  const [file, setFile] = useState({myFile:''});
+  const imageRef = useRef(null);
+  const previewCanvas = useRef(null);
   const [crop, setCrop]=useState();
   const [imgSrc, setImgSrc] = useState("");
 
 
   const onSelectFile= (e)=>{
+    setCrop()
+    setImgSrc("")
     const file = e.target.files[0];
     console.log(file)
     const reader = new FileReader
@@ -44,23 +45,6 @@ const PictureModal = (props) => {
     setCrop(crop)
   }
 
-  const updateProfilePic= async()=>{
-    console.log("update profile", file.myFile)
-    console.log(3)
-    try{
-        console.log(5)
-      await updateUser({
-        variables: { 
-          criteria:{
-            userPictureLink: file.myFile, 
-          },
-        }
-      })
-    } catch (err){
-      console.error(err)
-    }
-  }
-
   const cropImage = async()=>{
     setCanvasPreview(
         imageRef.current, 
@@ -71,9 +55,7 @@ const PictureModal = (props) => {
         )
       )
       const dataURL = previewCanvas.current.toDataURL()
-
       try{
-        console.log(5)
       await updateUser({
         variables: { 
           criteria:{
@@ -94,23 +76,21 @@ const PictureModal = (props) => {
     centered
   >
     <Modal.Header closeButton>
-      <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Title className="text-center" id="contained-modal-title-vcenter">
         Choose a new Profile Picture 
       </Modal.Title>
     </Modal.Header>
     <div className='text-center'>
     <input 
         type="file" 
-        // label="Image"
-        // name="myFile"
-        // id="file-upload"
         accept=".jpeg,.png,.jpg"
         onChange={onSelectFile}>
         </input>
     </div>
-    <Modal.Body rows={12}>  
+    <Modal.Body>  
     {imgSrc && (
-    <div className='flex flex-col items-center'>
+    <div className='d-flex flex-column align-items-center'>
+    <div className='d-flex flex-col items-center'>
     <ReactCrop
     onChange={
       (pixelCrop, percentCrop)=>setCrop(percentCrop)
@@ -122,8 +102,9 @@ const PictureModal = (props) => {
     minWidth={minDimesion}>
         <img ref={imageRef} src={imgSrc} style={{maxHeight:"70vh"}} onLoad={onImageLoad}/>
     </ReactCrop>
-    <button style={{borderRadius: "10px", padding: '5px', background: "white"}} onClick={cropImage}>
-      Save Profile Picture
+    </div>
+    <button className="mt-3 btn profile-pic-btn" onClick={cropImage}>
+    Save Profile Picture
     </button>
     </div>
     )}
