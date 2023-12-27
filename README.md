@@ -40,7 +40,6 @@ Welcome to Blog-Score, your go-to platform for curated content that perfectly al
 - [OurMission](#ourmission)
 - [Installation](#installation)
 - [WhyBlogScore](#whyblogscore)
-- [FileNavigation](#filenavigation)
 - [License](#license)
 - [Contributing](#contributing)
 - [Deployments](#deployments)
@@ -69,45 +68,6 @@ Blog-Score isn't just about today; it's designed for the future. With a 'seeders
 The journey with Blog-Score doesn't end here. Looking ahead, we envision an even more dynamic platform with upcoming developments and features. Our roadmap includes enhanced personalization algorithms, expanded content categories, and integrations with emerging technologies. We're dedicated to staying at the forefront of technological advancements to continually elevate the user experience. As we evolve, your feedback and suggestions will play a crucial role in shaping the future of Blog-Score.
 
 But Blog-Score isn't just about content; it's about community and engagement. Our developers have recently introduced an exciting, new upcoming feature – a "Support the Creators" button linked to a tip jar powered by Stripe. Soon users will be able to directly support their favorite creators, fostering a sense of community and appreciation for the incredible content on our platform. This innovation reflects our commitment to user engagement and the success of the creators who contribute to the Blog-Score community.
-
-## FileNavigation
-
-```
-Blog-Score
-|-- client
-|   |-- src
-|   |   |-- components
-|   |   |   |-- [Component files]
-|   |   |-- utils
-|   |   |   |-- auth.js
-|   |   |   |-- mutations.js
-|   |   |   |-- queries.js
-|   |   |-- app.jsx
-|   |   |-- main.jsx
-|-- server
-|   |-- config
-|   |   |-- connection.js
-|   |-- models
-|   |   |-- Comments.js
-|   |   |-- index.js
-|   |   |-- Posts.js
-|   |   |-- User.js
-|   |-- schemas
-|   |   |-- index.js
-|   |   |-- resolvers.js
-|   |   |-- typeDef.js
-|   |-- seeders
-|   |   |-- seed.js
-|   |-- utils
-|   |   |-- auth.js
-|   |-- package.json
-|   |-- server.js
-|-- .env
-|-- .gitignore
-|-- LICENSE
-|-- package.json
-|-- README.md
-```
 
 ## License
 
