@@ -26,7 +26,6 @@
   font-size: 1.2rem;
   text-align: center;
 }
-
 @media screen and (max-width: 768px) {
   .img-card-user {
     max-width: 200px;

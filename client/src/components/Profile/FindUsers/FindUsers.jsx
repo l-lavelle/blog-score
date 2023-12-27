@@ -44,9 +44,9 @@ const FindUsers = () => {
         <>
        <div className="users-header-info">
         <h3 className='text-center pt-2'>Find Users</h3>
-        <p className='text-center'>Click follow to add user to your following list. When a user you follow posts it will show up in your Feed tab. Follow users whose posts you like to create a custom feed. All done looking for users?</p>
+        <p className='text-center ms-3 me-3'>Click follow to add user to your following list. When a user you follow posts it will show up in your Feed tab. Follow users whose posts you like to create a custom feed. All done looking for users?</p>
         <Link to="/friends" className='link-users-center pb-3'> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+            <Button style={{ maxWidth: '50vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 See Following
             </Button>
         </Link>
@@ -81,9 +81,9 @@ const FindUsers = () => {
       <>
       <div className="users-header-info">
        <h3 className='text-center pt-2'>Find Users</h3>
-       <p className='text-center ms-3'>Click follow to add user to your following list. When a user you follow posts it will show up in your Feed tab. Follow users whose posts you like to create a custom feed. All done looking for users?</p>
+       <p className='text-center ms-3 me-3'>Click follow to add user to your following list. When a user you follow posts it will show up in your Feed tab. Follow users whose posts you like to create a custom feed. All done looking for users?</p>
        <Link to="/friends" className='link-users-center pb-3'> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+            <Button style={{ maxWidth: '50vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 See Following
             </Button>
         </Link>

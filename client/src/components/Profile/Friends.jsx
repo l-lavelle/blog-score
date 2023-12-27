@@ -38,9 +38,9 @@ const Friends = () => {
           <>
         <div className="users-header-info">
           <h3 className='text-center pt-2'>Following</h3>
-          <p className='text-center m-2'>Click on a users profile to see all their posts. Want to follow more users?</p>
+          <p className='text-center ms-3 me-3'>Click on a users profile to see all their posts. Want to follow more users?</p>
           <Link to="/users" className='link-users-center pb-3'> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+            <Button style={{ maxWidth: '50vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 Search for user
             </Button>
           </Link>
@@ -72,9 +72,9 @@ const Friends = () => {
         <>
       <div className="users-header-info">
        <h3 className='text-center pt-2'>Following</h3>
-       <p className='text-center ms-3'>Click on a users profile to see all their posts. Want to follow more users?</p>
+       <p className='text-center ms-3 me-3'>Click on a users profile to see all their posts. Want to follow more users?</p>
        <Link to="/users" className='link-users-center pb-3'> 
-            <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
+            <Button style={{ maxWidth: '50vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 Search for user
             </Button>
         </Link>
@@ -108,7 +108,6 @@ const Friends = () => {
          </Container> 
         :
         <h5 className="text-center mt-3" style={{ background: "white" , border: "black", padding:"20px", borderRadius:"25px"}}>Not following anyone yet. Search for users add!</h5>}
-        
         </>
       );
     };
