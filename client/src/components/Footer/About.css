@@ -1,0 +1,16 @@
+.TechImg {
+  width: 150px;
+  max-height: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.TechImg-small {
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.techList {
+  list-style-type: none;
+}

@@ -1,3 +1,8 @@
+import { Container, Row, Col } from 'react-bootstrap';
+import MERN from '../../assets/MERNStack.png'
+import GraphQL from '../../assets/GraphQL_Logo.svg.png'
+import JWT from '../../assets/JWTtoken.png'
+import './About.css'
 const AboutSite=()=>{
 
     return(
@@ -13,9 +18,29 @@ const AboutSite=()=>{
         <li>Pictures: All blog posts will have images embedded in the post. Your profile you will be able to add a profile picture or avatar to personalize your account. </li>
         </p>
         <h3>Technology Stack</h3>
-        <p>Are curious to see what technologies were used to build this site? This application was created using the MERN (Mongo, Express, React, Node) stack. 
-Looking at backend, data is stored using the NoSQL database MongoDb using Mongoose an object data modeling library to create model schemas. GraphQL, a query language, is used to get data from the database. Authentication and authorization is setup using JSON (JWT) Web Tokens. The front end of the application is comprised of components written using React. If you are interested in learning more about how the website was created check out <a className="contact-link" href="https://github.com/l-lavelle/blog-score">GitHub Page</a> to see all the code!
-</p>
+        <p>Are curious to see what technologies were used to build this site? If you are interested in learning more about how the website was created check out <a className="contact-link" href="https://github.com/l-lavelle/blog-score">GitHub Page</a> to see all the code!
+        <Container className='mt-3'> 
+           <Row xs={12}>
+           <Col className="d-flex flex-column align-items-center" xs={12} md={4} lg={4}>
+           <img className="TechImg-small mb-3"src={MERN}/>
+           <div className='mb-3'>
+           <li className='techList'>M- MongoDB: NoSQL Database </li>
+           <li className='techList'>E- Express: Node.js Web Framework</li>
+           <li className='techList'>R- React: Library Building UI Components</li>
+           <li className='techList'>N- Node: JavaScript Runtime Environment </li>
+           </div>
+           </Col>
+           <Col xs={12} md={4} lg={4} className='mb-3'>
+           <img className="TechImg mb-3" src={GraphQL}/>
+           <p className='text-center'>GraphQL a query language for APIs allowing you to get back only data you need</p>
+           </Col>
+           <Col xs={12} md={4} lg={4} className='mb-3'>
+           <img className="TechImg-small mb-3" src={JWT}/>
+           <p className='text-center'>JSON Web Tokens used for authentication and authorization</p>
+           </Col>
+           </Row>
+        </Container>
+        </p>
     </div>
     )
 }
