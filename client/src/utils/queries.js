@@ -262,6 +262,10 @@ export const FIND_FRIEND = gql`
         postText
         upvotes
         pictureLink
+        createdAt
+        author {
+          displayName
+        }
       }
       likedKeywords {
         keyword

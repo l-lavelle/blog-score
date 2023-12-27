@@ -1,7 +1,6 @@
 import { Container, Card } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import {FIND_FRIEND} from '../../../utils/queries';
-import HomeUpVote from '../../HomePage/HomeUpvote';
 import '../../Recent/Recent.css';
 import { useEffect , useState } from 'react';
 import {truncateText} from '../../../utils/helper';
@@ -9,6 +8,7 @@ import SinglePostPreview from '../../SinglePostPreview';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
+import ArticlePreview from '../../ArticlePreview/ArticlePreview';
 import './SingleUserProfile.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -61,7 +61,6 @@ const SingleUserProfile = () => {
       if (width > breakpoint){
         return (
         <>
-          <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
           <div className='laptop-container'>
             <div className="laptop-posts">
               <Skeleton className="mb-4" animation="wave" height={120} count={6} />
@@ -75,7 +74,6 @@ const SingleUserProfile = () => {
       }
       return (
         <>
-          <h3 className='text-center mb-3'style={{color:"white"}}>Recent Posts</h3>
           <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
         </>
       )
@@ -85,15 +83,15 @@ const SingleUserProfile = () => {
       return (
         <>
         <div>
-          <div className='d-flex align-items-center new'>
-          <img className="thumbnail-image" 
+          <div className='d-flex align-items-center singleUser-profile'>
+          <img className="thumbnail-image singleUser-profilePic" 
             src={following.userPictureLink} 
             alt="user pic"
           />
-          <div>
-            <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.displayName}</h3>
-            <h3 className='text-center mb-3 ms-5'style={{color:"white"}}>{following.title}</h3>
-            <p className='text-center mb-3 ms-5'style={{color:"white"}}>{following.profileInfo}</p>
+          <div className='align-items-center justify-content-center singleUser-profileInfo'>
+            <h3 className='text-center mb-3 singleUser-profileName'>{following.displayName}</h3>
+            <h3 className='text-center mb-3'>{following.title}</h3>
+            <p className='text-center mb-3'>{following.profileInfo}</p>
           </div>
           </div>
           {following.posts.length>0?  
@@ -116,9 +114,9 @@ const SingleUserProfile = () => {
                 { singlePost ? <SinglePostPreview postId={singlePost} /> : []}
               </div>
             </div> :
-            <Card>
+            <Card className='mt-3'>
               <Card.Body>
-                <Card.Title>User hasnt created any posts yet</Card.Title>
+                <Card.Title >User hasnt created any posts yet</Card.Title>
               </Card.Body>
             </Card> }
         </div>
@@ -128,31 +126,24 @@ const SingleUserProfile = () => {
   
     return (
       <Container>
-       <div>
-          <div className='d-flex flex-column'>
-          <img className="thumbnail-image" 
-            src={"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"} 
+       <div className='mb-3'>
+          <div className='d-flex flex-column align-items-center singleUser-profile'>
+          <img className="singleUser-profilePic mb-3" 
+            src={following.userPictureLink} 
             alt="user pic"
           />
-          <h3 className='text-center mb-3'style={{color:"white"}}>{following.displayName}</h3>
-          <h3 className='text-center mb-3'style={{color:"white"}}>{following.title}</h3>
-          <p className='text-center mb-3'style={{color:"white"}}>{following.profileInfo}</p>
+          <h3 className='text-center mb-3'>{following.displayName}</h3>
+          <h3 className='text-center mb-3'>{following.title}</h3>
+          <p className='mb-3 ms-2 me-2'>{following.profileInfo}</p>
           </div>
        </div>
-      <h3 className='text-center mb-3'style={{color:"white"}}>Favorite Posts</h3>
       {following.posts.length>0 ? 
         <>
-          {following.posts.map((article) => (
-            <Card key={article._id}  className="mb-4">
-              <Card.Body>
-                <Card.Title>{article.postTitle}</Card.Title>
-                <HomeUpVote upvotes={article.upvotes} _id={article._id}/>
-                <Card.Text>{article.postText}</Card.Text>
-              </Card.Body>
-            </Card>
+          {following.posts.map((article, index) => (
+             <ArticlePreview key={index} {...article} />
           ))}
         </>:
-         <Card>
+         <Card className='mt-3'>
          <Card.Body>
            <Card.Text>User hasnt created any posts yet</Card.Text>
          </Card.Body>

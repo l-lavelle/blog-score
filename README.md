@@ -113,6 +113,10 @@ Blog-Score
 
 This project is licensed under the MIT license.
 
+## Attributions
+
+<a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by Freepik - Flaticon</a>
+
 ## Contributing
 
 Applications to join the B|S team can be directed to seanconnor22@gmail.com

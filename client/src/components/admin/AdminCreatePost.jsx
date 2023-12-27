@@ -4,16 +4,16 @@ import { ADD_POST } from '../../utils/mutations';
 import  { useState } from 'react';
 import { Container, Form, Button, Card, Col, Row } from 'react-bootstrap';
 import './AdminCreatePost.css'
+import PlusIcon from '/src/assets/plus-sign.png' 
 
 const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
   const [message, setMesage]=useState('');
-  const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: [], pictureLink:''});
+  const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
   const [tags,setTags] = useState({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
   const [counter, setCounter] = useState(1);
   const [currentImageUrl, setcurrentImageUrl] = useState(null)
   const [file, setFile] = useState({myFile:''})
-
 
   const updateData = async (event)=>{
     const { name, value } = event.target;
@@ -23,7 +23,6 @@ const AdminCreatePost = () => {
   const updateTags = async(event)=>{
     const { name, value } = event.target;
     setTags({...tags, [name]:value})
-    console.log("tags",tags)
   };
 
   const handleInputFileChange = async (event) =>{
@@ -86,11 +85,14 @@ const AdminCreatePost = () => {
           postText: postData.postText,
           tags: filteredTags,
           pictureLink: file.myFile
-        },
+        },  
       });
       if (error) {
         throw new Error('Unable post');
       }
+
+    setTags({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
+    setcurrentImageUrl(null)
     } catch (error) {
       console.log(error);
     }
@@ -100,6 +102,9 @@ const AdminCreatePost = () => {
       postText: '',
       tags:[]
     })
+    console.log(postData)
+    
+    console.log(tags)
   };
  
   const handleClick = () => {
@@ -117,7 +122,7 @@ const AdminCreatePost = () => {
             <Card.Title className="text-center fw-bold fs-2">Create New Blog Post</Card.Title>
             <Form onSubmit={createPost} onClick={()=>{setMesage('')}}>
               <Form.Group controlId="formBasicEmail">
-                <Form.Label className='text-ad m-3'>Blog Title</Form.Label>
+                <Form.Label className='text-ad mt-3'>Blog Title</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Blog Title"
@@ -128,7 +133,7 @@ const AdminCreatePost = () => {
                </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
-                <Form.Label className='text-ad m-3'> Blog Text</Form.Label>
+                <Form.Label className='text-ad mt-3'> Blog Text</Form.Label>
                 <Form.Control
                   as="textarea" 
                   rows={10}
@@ -139,40 +144,29 @@ const AdminCreatePost = () => {
                   onChange={updateData}
                 />
               </Form.Group>
-
-              {/* <Form.Group controlId="formBasicEmail">
-                <Form.Label className='text-ad m-3'>Tags</Form.Label>
-                <p>Please seperate multiple tags with comma</p>
-                <Form.Control
-                  type="text"
-                  placeholder="add tags"
-                  name='tags'
-                  value={postData.tags[0]}
-                  onChange={updateData}
-                />
-              </Form.Group> */}
-
-              {/* Trial for tags */}
-              {/* add UUID for keys */}
+  
               <Form.Group controlId="formTags">
-              <Form.Label className='text-ad m-3'>Tags</Form.Label>
+              <Form.Label className='text-ad mt-3'>Tags</Form.Label>
               {Array.from(Array(counter)).map((c, index) => {
                 return (
                   <Form.Control
-                  key={c}
+                  key={"tags"+index}
                   type="text"
                   placeholder="add tags"
                   name={"tags"+index}
-                  value={postData.tags[index]}
+                  value={tags[index]}
                   onChange={updateTags}
                   className='mb-2'
                 />
                 )
                 })}
+                <img className='plus-sign' src={PlusIcon} onClick={handleClick}/>
                 </Form.Group>
-                <p onClick={handleClick}>More tags</p>
+              
 
-              <input 
+              <Form.Label className='text-ad mt-3'>Blog Picture</Form.Label>
+              <br></br>
+              <input
               type="file" 
               label="Image"
               name="myFile"

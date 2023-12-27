@@ -38,7 +38,7 @@ const Friends = () => {
           <>
         <div className="users-header-info">
           <h3 className='text-center pt-2'>Following</h3>
-          <p className='text-center'>Click on a users profile to see all there liked posts. Want to follow more users?</p>
+          <p className='text-center m-2'>Click on a users profile to see all their posts. Want to follow more users?</p>
           <Link to="/users" className='link-users-center pb-3'> 
             <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 Search for user
@@ -72,7 +72,7 @@ const Friends = () => {
         <>
       <div className="users-header-info">
        <h3 className='text-center pt-2'>Following</h3>
-       <p className='text-center'>Click on a users profile to see all there liked posts. Want to follow more users?</p>
+       <p className='text-center ms-3'>Click on a users profile to see all their posts. Want to follow more users?</p>
        <Link to="/users" className='link-users-center pb-3'> 
             <Button style={{ maxWidth: '20vw',  padding: '5px', background: "#14e956" , border: "black", color:"black"}} variant="primary" type="submit" className="w-100 fw-bold">
                 Search for user

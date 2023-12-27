@@ -13,7 +13,7 @@ const ProfileManagePost = () => {
   });
   
   const  postData = data?.singleUserBlogs?.posts || [];
-  console.log(postData)
+
   const openModal = async (_id, blogTitle, blogText) =>{
     await setModalData({postId:_id, blogTitle:blogTitle, blogText: blogText})
     setModalShow(true)
@@ -32,11 +32,18 @@ const ProfileManagePost = () => {
     <>
       <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Blog Posts </h1>
       <div className="main-content">
+      {postData.length>0?
+        <>
         {postData.map((article) => (
           <div onClick={()=>openModal(article._id, article.postTitle, article.postText)} key={article._id}>
               <AdminPreview {...article} />
           </div>  
         ))}
+        </>
+        :
+        <h5 className="text-center mt-3" style={{ background: "white" , border: "black", padding:"20px", borderRadius:"25px"}}>
+        You have not created any blog posts yet</h5>}
+
         <EditPostModal
           show={modalShow}
           onHide={() => setModalShow(false)}
