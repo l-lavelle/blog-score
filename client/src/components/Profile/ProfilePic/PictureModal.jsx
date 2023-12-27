@@ -37,7 +37,7 @@ const PictureModal = (props) => {
     const {width, height} = e.currentTarget
     const crop = makeAspectCrop({
       unit:"%",
-      width: 25,
+      width: 50,
     }, 
     aspectRatio,
     width,

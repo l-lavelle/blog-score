@@ -198,7 +198,7 @@ const resolvers = {
           },
         ])
         .sort({ createdAt: -1 })
-        .limit(5);
+        .limit(35);
     },
   },
   Mutation: {

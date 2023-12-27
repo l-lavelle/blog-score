@@ -23,11 +23,12 @@ const Profile = () => {
           <h1 className="text-center fw-bold fs-2 mb-4">{userData.displayName}&apos;s Profile</h1>
           <ProfilePic imgPic={userData.userPictureLink}/>
           <h4 className='mt-2 update-directions'>Update Profile Info</h4>
-          <p className='update-directions'>To update your user information please edit the desired fields below and click submit</p>
+          <p className='update-directions'>To update your user information please edit the desired fields below and click submit. Your title and profile information will be used for following and connecting with blog scorers.</p>
           <UpdateProfile displayName={userData.displayName} firstName={userData.firstName} lastName={userData.lastName} title={userData.title} profileInfo={userData.profileInfo}/> 
           {userData.likedKeywords.length>0? 
             <TopKeywords className='mt-5' keywords={userData.likedKeywords}/>:
             <div>
+            <h5 className='mt-3 mb-3 text-center'>Current Top Interests</h5>
             <h6 className='text-center'>No interests dectected yet. Go like some posts.</h6>
             </div>
           }

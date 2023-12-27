@@ -41,14 +41,11 @@ const Contact=()=>{
         <div className="footer-info">
             <h1>Contact Us</h1>
             <p>We always love to hear from our users! Let us know your thoughts about the site, any suggestions for future features, or any problems you’re having. Contact us using the form below and we will reach out to you at email address provided as soon as possible.</p>
-        
-         
-        
         <div >
            <form ref={form} onSubmit={sendEmail} className='d-flex flex-column'>
              <label >Name</label>
              <input className='mb-3' onChange={updateData} value={emailData.user_name} type="text" name="user_name" />
-             <label >Email</label>
+             <label>Email</label>
              <input className='mb-3' onChange={updateData} value={emailData.user_email} type="email" name="user_email" />
              <label >Message</label>
              <textarea className='mb-3' onChange={updateData} value={emailData.message} rows={12} name="message" />

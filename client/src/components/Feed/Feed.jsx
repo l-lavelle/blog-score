@@ -103,7 +103,7 @@ const Feed = () => {
         </div>
         <div className="laptop-container">
           <div className="laptop-posts">
-          <Scrollbars className="scrollbar" autoHeight autoHeightMin={100} autoHeightMax="calc(100vh - 36px - 35px - 75px)"style={{ width: "100%"}}>
+          <Scrollbars className="scrollbar" style={{ width: "100%"}}>
             {friendsPostFlat
             .filter(post => {
             if (query === '') {

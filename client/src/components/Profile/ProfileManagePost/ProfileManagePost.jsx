@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import {SINGLE_USER_POSTS} from '../../../utils/queries';
 import Skeleton from 'react-loading-skeleton';
+import './ProfileManagePost.css';
 
 const ProfileManagePost = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -22,16 +23,22 @@ const ProfileManagePost = () => {
   if (loading) {
     return (
       <>
-      <h3 className='text-center fw-bold fs-2'style={{color:"white"}}>Manage Blog Posts</h3>
+      <div className="p-3" style={{background:"white", borderRadius:"25px"}}>
+      <div className="p-1 mb-3" style={{background:"white"}}>
+      <h3 className='text-center fw-bold fs-2 p-3'>Manage Blog Posts</h3>
+      <p className="ps-5 pe-5">Welcome to your posts dashboard! Here you can see all of the posts that you have created. Click on one of the posts to see the entire post and edit or delete.</p>
+      </div>
       <Skeleton style={{marginBottom:"20px"}} animation="wave" height={120} count={6} />
+      </div>
       </>
     )
   }
 
   return (
-    <>
-      <h1 className="text-center fw-bold fs-2" style={{ color:"white"}}>Manage Blog Posts </h1>
-      <div className="main-content">
+    <div className='ProfileMangePosts-container'>
+      <h1 className="text-center fw-bold fs-2 p-3">Manage Blog Posts </h1>
+      <p className="ps-5 pe-5" style={{fontSize:"1.1rem"}}>Welcome to your posts dashboard! Here you can see all of the posts that you have created. Click on one of the posts to see the entire post and edit or delete.</p>
+      <div className="main-content p-3">
       {postData.length>0?
         <>
         {postData.map((article) => (
@@ -52,7 +59,7 @@ const ProfileManagePost = () => {
           title={modalData.blogTitle}
         />
       </div>
-    </>
+    </div>
   );
 };
   

@@ -1,17 +1,17 @@
-//tags are working make sure that able to submit and validation good 
+// Drop down didnt work with clearing needed the value to useState with Array
 import { useMutation } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
 import  { useState } from 'react';
 import { Container, Form, Button, Card, Col, Row } from 'react-bootstrap';
 import './AdminCreatePost.css'
-import PlusIcon from '/src/assets/plus-sign.png' 
+// import PlusIcon from '/src/assets/plus-sign.png' 
 
 const AdminCreatePost = () => {
   const [addPost, {error} ] = useMutation(ADD_POST);
   const [message, setMesage]=useState('');
   const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
   const [tags,setTags] = useState({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
-  const [counter, setCounter] = useState(1);
+  // const [counter, setCounter] = useState(1);
   const [currentImageUrl, setcurrentImageUrl] = useState(null)
   const [file, setFile] = useState({myFile:''})
 
@@ -91,28 +91,27 @@ const AdminCreatePost = () => {
         throw new Error('Unable post');
       }
 
-    setTags({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
+    
     setcurrentImageUrl(null)
     } catch (error) {
       console.log(error);
     }
     setMesage( "success" );
+    setTags({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''});
     setPostData({
       postTitle: '',
       postText: '',
       tags:[]
     })
-    console.log(postData)
-    
-    console.log(tags)
   };
  
-  const handleClick = () => {
-    if (counter<5){
-    setCounter(counter + 1);
-    }
-  };
+  // const handleClick = () => {
+  //   if (counter<5){
+  //   setCounter(counter + 1);
+  //   }
+  // };
   
+
   return (
   <Container fluid={true}>
     <Row>
@@ -147,20 +146,60 @@ const AdminCreatePost = () => {
   
               <Form.Group controlId="formTags">
               <Form.Label className='text-ad mt-3'>Tags</Form.Label>
-              {Array.from(Array(counter)).map((c, index) => {
+              {/* {Array.from(Array(counter)).map((c, index) => {
                 return (
                   <Form.Control
                   key={"tags"+index}
                   type="text"
                   placeholder="add tags"
                   name={"tags"+index}
-                  value={tags[index]}
+                  value={tags.}
                   onChange={updateTags}
                   className='mb-2'
                 />
                 )
-                })}
-                <img className='plus-sign' src={PlusIcon} onClick={handleClick}/>
+                })} */}
+                <Form.Control
+                  type="text"
+                  placeholder="add tags"
+                  name='tags0'
+                  value={tags.tags0}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                <Form.Control
+                  type="text"
+                  placeholder="add tags"
+                  name='tags1'
+                  value={tags.tags1}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                <Form.Control
+                  type="text"
+                  placeholder="add tags"
+                  name='tags2'
+                  value={tags.tags2}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                <Form.Control
+                  type="text"
+                  placeholder="add tags"
+                  name='tags3'
+                  value={tags.tags3}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                  <Form.Control
+                  type="text"
+                  placeholder="add tags"
+                  name='tags4'
+                  value={tags.tags4}
+                  onChange={updateTags}
+                  className='mb-2'
+                />
+                {/* <img className='plus-sign' src={PlusIcon} onClick={handleClick}/> */}
                 </Form.Group>
               
 

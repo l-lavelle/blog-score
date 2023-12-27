@@ -18,7 +18,9 @@ const Guidelines=()=>{
                 <li>Irrvelant comments</li>
                 <li>Threatening, defamatory, obscene, or profane comments</li>
                 <li>Any comments that are deemed offense</li> 
-                We thank you in advance for refraining from performing any of the following. If there are comments that do not follow the rules, the owner of this blog reserves the right to edit or delete any comments submitted to the blog without notice. 
+            </p>
+            <p>
+            We thank you in advance for refraining from performing any of the following. If there are comments that do not follow the rules, the owner of this blog reserves the right to edit or delete any comments submitted to the blog without notice. 
             </p>
         </div>
     )
