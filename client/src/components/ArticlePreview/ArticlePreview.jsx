@@ -21,7 +21,7 @@ const ArticlePreview = ({ _id, postTitle, postText, upvotes, pictureLink, author
     <Accordion.Item eventKey={eventKey+1} >
       <Accordion.Header onClick={toggleText}>
       {pictureLink?<img className="article-img" src={pictureLink} width="300"/>:[]}
-      <div className="mb-3 postTitle"> {postTitle}</div>
+      <div className="mb-3 postTitle text-center mt-3"> {postTitle}</div>
       <div >{isExpanded ? '' : truncateText(postText, 20)}</div>
       {isExpanded ? <p className='singlePost-author'>Author: {author.displayName}</p>:[]}
       {isExpanded?<p className='singlePost-date'>{new Date(parseInt(createdAt)).toLocaleDateString()}</p>:[]}

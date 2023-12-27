@@ -115,9 +115,6 @@ This project is licensed under the MIT license.
 
 ## Attributions
 
-<a href="https://www.flaticon.com/free-icons/plus" title="plus icons">Plus icons created by Freepik - Flaticon</a>
-Photo by <a href="https://unsplash.com/@adigold1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Adi Goldstein</a> on <a href="https://unsplash.com/photos/teal-led-panel-EUsVwEOsblE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-
 ## Contributing
 
 Applications to join the B|S team can be directed to seanconnor22@gmail.com

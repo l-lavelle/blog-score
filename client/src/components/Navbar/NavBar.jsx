@@ -13,7 +13,16 @@ const NavBar = () => {
   const userData=data?.singleUser
 
   if (loading) {
-    return (<></>)
+    return (
+    <>
+      <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg"  fixed="top" className='px-3 rounded-navbar'>
+      <Navbar.Brand href="/" className='font-c color-c size-change'>B|S</Navbar.Brand>
+       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+       <Navbar.Collapse id="responsive-navbar-nav">
+      </Navbar.Collapse>
+    </Navbar>
+   </>
+    )
   }
 
   return (
