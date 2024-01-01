@@ -18,19 +18,26 @@ const PictureModal = (props) => {
   const previewCanvas = useRef(null);
   const [crop, setCrop]=useState();
   const [imgSrc, setImgSrc] = useState("");
-
+  const [fileError, setFileError]=useState({message:'', status:''});
 
   const onSelectFile= (e)=>{
+    setFileError({message:'', status:''})
     setCrop()
     setImgSrc("")
     const file = e.target.files[0];
-    console.log(file)
+    const fileSize = file.size * .001
+    console.log(fileSize)
+    if (fileSize>120){
+      setFileError({message:'File size needs to be under 120KB', status:'error'})
+    }
+    else{
     const reader = new FileReader
     reader.onload= function(){
       const imageUrl = reader.result?.toString() || ""
       setImgSrc(imageUrl)
     }
     reader.readAsDataURL(file)
+  }
   }
 
   const onImageLoad = (e)=>{
@@ -88,6 +95,7 @@ const PictureModal = (props) => {
         </input>
     </div>
     <Modal.Body>  
+    {fileError.status==='error'?<p className='mt-3' style={{color:"red"}}>{fileError.message}</p>:null}
     {imgSrc && (
     <div className='d-flex flex-column align-items-center'>
     <div className='d-flex flex-col items-center'>

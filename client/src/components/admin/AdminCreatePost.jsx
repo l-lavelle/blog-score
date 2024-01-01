@@ -11,6 +11,7 @@ const AdminCreatePost = () => {
   const [message, setMesage]=useState('');
   const [postData, setPostData] = useState({ postTitle: '', postText: '', tags: []});
   const [tags,setTags] = useState({tags0:'', tags1:'',tags2:'',tags3:'',tags4:''})
+  const [fileError, setFileError]=useState({message:'', status:''});
   // const [counter, setCounter] = useState(1);
   const [currentImageUrl, setcurrentImageUrl] = useState(null)
   const [file, setFile] = useState({myFile:''})
@@ -26,10 +27,19 @@ const AdminCreatePost = () => {
   };
 
   const handleInputFileChange = async (event) =>{
+    setFileError({message:'', status:''})
     const localfile = event.target.files[0]
+    const fileSize=localfile.size * .001
+
+    if (fileSize>120){
+      console.log("hi")
+      setFileError({message:'File size needs to be under 120KB', status:'error'})
+      // console.log("tooo big")
+    } else {
     setcurrentImageUrl(URL.createObjectURL(localfile))
     const base64 = await convertToBase64(localfile)
     setFile({...file, myFile:base64})
+  }
 
     // const newImage = document.createElement("img");
     // newImage.src=base64;
@@ -213,6 +223,7 @@ const AdminCreatePost = () => {
               accept=".jpeg,.png,.jpg"
               onChange={handleInputFileChange}>
               </input>
+              {fileError.status==='error'?<p className='mt-3' style={{color:"red"}}>{fileError.message}</p>:null}
               {currentImageUrl && (
                 <div>
                   <img width={"250px"} src={currentImageUrl} alt="not found" />
